@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 // https://www.youtube.com/watch?v=wRmeFtRkF-8
 
 import React, { Suspense, useCallback, useMemo, useRef } from "react";
