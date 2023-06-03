@@ -7,7 +7,7 @@ export default function Landing() {
     <banner className="landing-container" id="landing" role="banner">
       <div className="title-container">
         <AnimatePresence>
-          <motion.h1
+          <h1
             className="title-text gradient-text noselect"
             role="heading"
             aria-level="1"
@@ -18,17 +18,15 @@ export default function Landing() {
               delay: 0.5
             }}
           >
-            {/* We'll want to stagger these two using staggerChildren at some point */}
             Darren<br/>Wong
-          </motion.h1>
+          </h1>
           <motion.h2 
             className="gradient-text noselect"             
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{
               duration: 3,
-              delay: 1,
-              ease: [0, 0.71, 0.2, 1.01]
+              delay: 1
             }}
           >
             data analyst<br/>
@@ -45,8 +43,7 @@ export default function Landing() {
           animate={{ opacity: 1 }}
           transition={{
             duration: 3,
-            delay: 4,
-            ease: [0, 0.71, 0.2, 1.01]
+            delay: 3
           }}
         />
       </div>
