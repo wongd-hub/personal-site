@@ -1,7 +1,8 @@
 import * as React from "react"
+import { motion } from "framer-motion";
 
 const DownArrow = (props) => (
-  <svg
+  <motion.svg
     xmlns="http://www.w3.org/2000/svg"
     xmlSpace="preserve"
     width={props.width}
@@ -23,7 +24,7 @@ const DownArrow = (props) => (
       fill="url(#gradient1)"
       stroke="url(#gradient1)"
     />
-  </svg>
+  </motion.svg>
 )
 
 export default DownArrow

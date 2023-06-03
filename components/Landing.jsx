@@ -38,7 +38,17 @@ export default function Landing() {
         </AnimatePresence>
       </div>
       <div className="arrow-down noselect gradient-text">
-        <DownArrow width={80} height={80}/>
+        <DownArrow 
+          width={80} 
+          height={80}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{
+            duration: 3,
+            delay: 4,
+            ease: [0, 0.71, 0.2, 1.01]
+          }}
+        />
       </div>
     </banner>
   );
