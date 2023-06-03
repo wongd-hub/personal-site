@@ -1,6 +1,7 @@
 import React from "react";
 import { motion } from "framer-motion";
 import DownArrow from "./assets/DownArrow";
+import DiagonalArrow from "./assets/DiagonalArrow";
 
 export default function Landing() {
   return (
@@ -28,9 +29,9 @@ export default function Landing() {
               delay: 1
             }}
           >
-            data analyst<br/>
-            blogger<br/>
-            aspiring web dev
+            <span><span className="underline">data analyst</span> <DiagonalArrow width={13} height={13}/></span>
+            <span><span className="underline">blogger</span> <DiagonalArrow className="highlight" width={13} height={13}/></span>
+            <span><span className="underline">aspiring web dev</span> <DiagonalArrow className="highlight" width={13} height={13}/></span>
           </motion.h2>
       </div>
       <motion.div className="arrow-down noselect gradient-text">

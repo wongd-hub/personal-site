@@ -7,6 +7,20 @@
     background-image: url(/assets/images/nnnoise.svg);
 }
 
+.underline {
+    text-decoration: underline;
+    text-decoration-color: rgba(236, 72, 153, 0.5);
+    text-decoration-thickness: 0.25rem;
+    transition-property: all;
+    transition-duration: 200ms;
+    transition-timing-function: ease-out; 
+}
+  
+//   .highlight:hover, .highlight:focus {
+//     text-decoration-thickness: 0.5rem;
+//     // text-decoration-color: rgba(129, 140, 248, 0.5);
+//   }
+
 .title-container {
     width: 100%;
     padding: 2rem 7rem;
@@ -24,6 +38,19 @@
         display: flex;
         flex-direction: column;
         justify-content: flex-end;
+        align-items: flex-end;
+        & > span {
+            width: fit-content;
+        }
+        & > span:last-child {
+            margin-bottom: 0.25rem;
+        }
+    }
+    & > h2:hover > span {
+        cursor: pointer;
+    }
+    & > h2 > span:hover .underline {
+        text-decoration-thickness: 0.5rem;
     }
 }
 
