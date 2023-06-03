@@ -37,7 +37,16 @@ export default function Landing() {
       </div>
       <div className="arrow-down noselect gradient-text">
         {/* Get this to fade in last and maybe bounce every 10 seconds */}
-        <motion.p>Scroll down!</motion.p> 
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{
+            duration: 3,
+            delay: 2.5
+          }}
+        >
+          Scroll down!
+        </motion.div> 
         <DownArrow 
           width={80} 
           height={80}
@@ -45,7 +54,7 @@ export default function Landing() {
           animate={{ opacity: 1 }}
           transition={{
             duration: 3,
-            delay: 3
+            delay: 2
           }}
         />
       </div>

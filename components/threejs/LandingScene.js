@@ -8,7 +8,6 @@ import { Loader } from "@react-three/drei";
 import noise, { perlin3 } from "../assets/noise";
 import { EffectComposer, DepthOfField } from '@react-three/postprocessing';
 
-
 extend({ HemisphereLight, DirectionalLight });
 
 function ProceduralPoints({
@@ -180,8 +179,6 @@ function ProceduralPoints({
 
       <pointsMaterial
         attach="material"
-        // map={imgTex}
-        // color={0x00aaff}
         vertexColors
         size={0.5}
         sizeAttenuation
