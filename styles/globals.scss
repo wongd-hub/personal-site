@@ -26,29 +26,32 @@ a {
   }
 }
 
-.landing-annotation {
-  opacity: 0.6;
-}
-
 .landing-container {
   width: 100%;
   height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
   background-image: url(/assets/images/nnnoise.svg);
 }
 
 .title-container {
   width: 100%;
   padding: 2rem 7rem;
+  margin-top: 3rem;
   color: white;
   position: relative;
+  display: flex;
+  justify-content: space-between;
   & > h2 {
     font-size: 1.275rem;
     font-weight: normal;
     bottom: 0;
+    text-align: right;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: end;
   }
 }
 
@@ -58,6 +61,7 @@ a {
   line-height: 6rem;
   text-align: left;
   padding-bottom: 1rem;
+  margin: 0;
 }
 
 .gradient-text {
@@ -91,44 +95,61 @@ a {
                                   supported by Chrome, Edge, Opera and Firefox */
 }
 
-// @media screen and (max-width: 800px) {
-//   .title-container {
-//     text-align: center;
-//     padding: 2rem 0;
-//     & > h2 {
-//       margin: 1rem 2rem;
-//       margin-bottom: 38px;
-//     }
-//   }
-
-//   .title-text {
-//     margin: 0 2rem;
-//   }
-// }
-
-@media screen and (max-width: 640px) {
-  .title-text {
-    font-size: 4rem;
+@media screen and (max-width: 850px) {
+  .title-container {
+    & > h2 {
+      font-size: 1rem;
+      padding-top: 1rem;
+    }
   }
 
   .title-container {
     padding: 2rem 10%;
-    & > h2 {
-      font-size: 1.5rem;
-      margin-bottom: 38px;
-    }
+  }
+
+  .title-text {
+    font-size: 4.5rem;
+    line-height: 4rem;
   }
 }
 
-// @media screen and (max-width: 400px) {
-//   .title-text {
-//     font-size: 1.5rem;
-//   }
+@media screen and (max-width: 640px) {
+  .title-text {
+    font-size: 5rem;
+    padding-bottom: 1rem;
+  }
 
-//   .title-container {
-//     & > h2 {
-//       font-size: 0.8rem;
-//       margin-bottom: 38px;
-//     }
-//   }
-// }
+  .landing-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-image: url(/assets/images/nnnoise.svg);
+  }
+  
+  .title-container {
+    width: 100%;
+    position: relative;
+    flex-direction: column;
+    margin-top: 1rem;
+    & > h2 {
+      font-size: 1rem;
+      font-weight: normal;
+      bottom: 0;
+    }
+  }
+
+}
+
+@media screen and (max-width: 500px) {
+  .title-text {
+    font-size: 4rem;
+    line-height: 3.5rem;
+  }
+
+  .title-container {
+    & > h2 {
+      font-size: 1rem;
+      text-align: left;
+    }
+  }
+}
