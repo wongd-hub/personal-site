@@ -36,6 +36,8 @@ export default function Landing() {
         </AnimatePresence>
       </div>
       <div className="arrow-down noselect gradient-text">
+        {/* Get this to fade in last and maybe bounce every 10 seconds */}
+        <motion.p>Scroll down!</motion.p> 
         <DownArrow 
           width={80} 
           height={80}
