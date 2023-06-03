@@ -1,6 +1,6 @@
 # Personal portfolio site
 
-gif goes here
+![](https://github.com/wongd-hub/personal-site/blob/main/other-resources/screenie.gif)
 
 ## Development
 
