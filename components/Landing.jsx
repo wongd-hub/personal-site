@@ -2,8 +2,25 @@ import React from "react";
 import { motion } from "framer-motion";
 import DownArrow from "./assets/DownArrow";
 import DiagonalArrow from "./assets/DiagonalArrow";
+import Link from "next/link";
 
 export default function Landing() {
+
+  const highlightedRoles = [
+    {
+      text: "data analyst",
+      href: "github.com",
+    },    
+    {
+      text: "blogger",
+      href: "github.com",
+    },
+    {
+      text: "aspiring web dev",
+      href: "github.com",
+    }
+  ]
+
   return (
     <banner className="landing-container" id="landing" role="banner">
       <div className="title-container">
@@ -29,9 +46,16 @@ export default function Landing() {
               delay: 1
             }}
           >
-            <span><span className="underline">data analyst</span> <DiagonalArrow width={13} height={13}/></span>
-            <span><span className="underline">blogger</span> <DiagonalArrow className="highlight" width={13} height={13}/></span>
-            <span><span className="underline">aspiring web dev</span> <DiagonalArrow className="highlight" width={13} height={13}/></span>
+            {highlightedRoles.map((el, i) => (
+              <motion.span key={el.href}>
+                <Link href={el.href}>
+                  <span>
+                    <span className="underline">{el.text}</span>&nbsp;
+                    <DiagonalArrow width={13} height={13}/>
+                  </span>
+                </Link>
+              </motion.span>
+            ))}
           </motion.h2>
       </div>
       <motion.div className="arrow-down noselect gradient-text">
