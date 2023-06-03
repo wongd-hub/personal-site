@@ -17,7 +17,7 @@ export default function Home() {
       <LandingModelScene />*/}
 
       
-      <RippleScene which="particle" style={{ height: "100vh", width: "100vw", minWidth: "528px", position: "fixed", zIndex: -10 }} />
+      <RippleScene which="particle" style={{ height: "100vh", width: "100vw", position: "absolute", zIndex: -10 }} />
       <Landing /> 
 
       <main role="main">
