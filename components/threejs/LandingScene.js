@@ -5,9 +5,8 @@ import React, { Suspense, useCallback, useMemo, useRef } from "react";
 import { HemisphereLight, DirectionalLight } from "three";
 import { applyProps, Canvas, useFrame, extend } from "@react-three/fiber";
 import { Loader } from "@react-three/drei";
-import noise, { perlin3 } from "../effects/noise";
+import noise, { perlin3 } from "../assets/noise";
 import { EffectComposer, DepthOfField } from '@react-three/postprocessing';
-
 
 extend({ HemisphereLight, DirectionalLight });
 
@@ -180,8 +179,6 @@ function ProceduralPoints({
 
       <pointsMaterial
         attach="material"
-        // map={imgTex}
-        // color={0x00aaff}
         vertexColors
         size={0.5}
         sizeAttenuation

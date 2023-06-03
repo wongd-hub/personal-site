@@ -1,12 +1,13 @@
 import React from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import DownArrow from "./assets/DownArrow";
 
 export default function Landing() {
   return (
     <banner className="landing-container" id="landing" role="banner">
       <div className="title-container">
         <AnimatePresence>
-          <motion.h1
+          <h1
             className="title-text gradient-text noselect"
             role="heading"
             aria-level="1"
@@ -17,17 +18,15 @@ export default function Landing() {
               delay: 0.5
             }}
           >
-            {/* We'll want to stagger these two using staggerChildren at some point */}
             Darren<br/>Wong
-          </motion.h1>
+          </h1>
           <motion.h2 
             className="gradient-text noselect"             
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{
               duration: 3,
-              delay: 1,
-              ease: [0, 0.71, 0.2, 1.01]
+              delay: 1
             }}
           >
             data analyst<br/>
@@ -36,7 +35,29 @@ export default function Landing() {
           </motion.h2>
         </AnimatePresence>
       </div>
-      <div className="arrow-down noselect gradient-text"></div>
+      <div className="arrow-down noselect gradient-text">
+        {/* Get this to fade in last and maybe bounce every 10 seconds */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{
+            duration: 3,
+            delay: 2.5
+          }}
+        >
+          Scroll down!
+        </motion.div> 
+        <DownArrow 
+          width={80} 
+          height={80}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{
+            duration: 3,
+            delay: 2
+          }}
+        />
+      </div>
     </banner>
   );
 }

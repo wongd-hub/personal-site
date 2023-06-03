@@ -1,0 +1,104 @@
+.landing-container {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-image: url(/assets/images/nnnoise.svg);
+}
+
+.title-container {
+    width: 100%;
+    padding: 2rem 7rem;
+    margin-top: 3rem;
+    color: white;
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    & > h2 {
+        font-size: 1.275rem;
+        font-weight: normal;
+        bottom: 0;
+        text-align: right;
+        margin: 0;
+        display: flex;
+        flex-direction: column;
+        justify-content: end;
+    }
+}
+
+.title-text {
+    font-size: 7rem;
+    max-width: 870px;
+    line-height: 6rem;
+    text-align: left;
+    padding-bottom: 1rem;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    & > p {
+        margin: 0;
+    }
+}
+
+.arrow-down {
+    position: absolute;
+    bottom: 2rem;
+    // height: 80px; 
+    // width: 80px;
+    background: url('data:image/svg+xml,<svg fill="%23ffffff" height="200px" width="200px" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 330 330" xml:space="preserve"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path id="XMLID_225_" d="M325.607,79.393c-5.857-5.857-15.355-5.858-21.213,0.001l-139.39,139.393L25.607,79.393 c-5.857-5.857-15.355-5.858-21.213,0.001c-5.858,5.858-5.858,15.355,0,21.213l150.004,150c2.813,2.813,6.628,4.393,10.606,4.393 s7.794-1.581,10.606-4.394l149.996-150C331.465,94.749,331.465,85.251,325.607,79.393z"></path> </g></svg>');
+    background-repeat: no-repeat;
+    background-size: cover;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    & > p {
+        font-size: 0.8rem;
+    }
+}
+
+
+@media screen and (max-width: 850px) {
+    .title-container {
+        padding: 2rem 10%;
+        & > h2 {
+            font-size: 1rem;
+            padding-top: 1rem;
+        }
+    }
+
+    .title-text {
+        font-size: 4.5rem;
+        line-height: 4rem;
+    }
+}
+
+@media screen and (max-width: 640px) {
+    .title-text {
+        font-size: 5rem;
+        padding-bottom: 1rem;
+    }
+
+    .title-container {
+        flex-direction: column;
+        margin-top: 1rem;
+        & > h2 {
+            font-size: 1rem;
+        }
+    }
+
+}
+
+@media screen and (max-width: 500px) {
+    .title-text {
+        font-size: 4rem;
+        line-height: 3.5rem;
+    }
+
+    .title-container {
+        & > h2 {
+            font-size: 1rem;
+            text-align: left;
+        }
+    }
+}
