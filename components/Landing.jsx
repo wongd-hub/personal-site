@@ -9,10 +9,12 @@ export default function Landing() {
           role="heading"
           aria-level="1"
         >
-          Darren Wong
+          Darren<br/>Wong
         </h1>
         <h2 className="gradient-text noselect">
-          Data Analyst
+          data analyst<br/>
+          blogger<br/>
+          aspiring web dev
         </h2>
       </div>
     </banner>
