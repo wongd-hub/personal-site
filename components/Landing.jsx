@@ -9,22 +9,22 @@ export default function Landing() {
   const highlightedRoles = [
     {
       text: "data analyst",
-      href: "github.com",
+      href: "github.com1",
     },    
     {
       text: "blogger",
-      href: "github.com",
+      href: "github.com2",
     },
     {
       text: "aspiring web dev",
-      href: "github.com",
+      href: "github.com3",
     }
   ]
 
   return (
-    <banner className="landing-container" id="landing" role="banner">
-      <div className="title-container">
-          <h1
+    <motion.div className="landing-container" id="landing" role="banner">
+      <motion.div className="title-container">
+          <motion.h1
             className="title-text gradient-text noselect"
             role="heading"
             aria-level="1"
@@ -36,18 +36,31 @@ export default function Landing() {
             }}
           >
             Darren<br/>Wong
-          </h1>
+          </motion.h1>
           <motion.h2 
             className="gradient-text noselect"             
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{
-              duration: 3,
-              delay: 1
+            initial="hidden"
+            animate="visible"
+            variants={{
+              hidden: { opacity: 0 },
+              visible: {
+                opacity: 1,
+                transition: {
+                  duration: 3,
+                  delay: 1,
+                  staggerChildren: 1
+                }
+              },
             }}
           >
             {highlightedRoles.map((el, i) => (
-              <motion.span key={el.href}>
+              <motion.span
+                key={el.href}
+                variants={{
+                  hidden: { opacity: 0 },
+                  visible: { opacity: 1 },
+                }}
+              >
                 <Link href={el.href}>
                   <span>
                     <span className="underline">{el.text}</span>&nbsp;
@@ -57,7 +70,7 @@ export default function Landing() {
               </motion.span>
             ))}
           </motion.h2>
-      </div>
+      </motion.div>
       <motion.div className="arrow-down noselect gradient-text">
         {/* Get this to fade in last and maybe bounce every 10 seconds */}
         <motion.div
@@ -81,6 +94,6 @@ export default function Landing() {
           }}
         />
       </motion.div>
-    </banner>
+    </motion.div>
   );
 }
