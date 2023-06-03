@@ -1,5 +1,6 @@
 import React from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import DownArrow from "./assets/DownArrow";
 
 export default function Landing() {
   return (
@@ -36,7 +37,9 @@ export default function Landing() {
           </motion.h2>
         </AnimatePresence>
       </div>
-      <div className="arrow-down noselect gradient-text"></div>
+      <div className="arrow-down noselect gradient-text">
+        <DownArrow width={80} height={80}/>
+      </div>
     </banner>
   );
 }
