@@ -94,43 +94,44 @@ a {
                                   supported by Chrome, Edge, Opera and Firefox */
 }
 
-@media screen and (max-width: 800px) {
-  .title-container {
-    text-align: center;
-    padding: 2rem 0;
-    & > h2 {
-      margin: 1rem 2rem;
-      margin-bottom: 38px;
-    }
-  }
+// @media screen and (max-width: 800px) {
+//   .title-container {
+//     text-align: center;
+//     padding: 2rem 0;
+//     & > h2 {
+//       margin: 1rem 2rem;
+//       margin-bottom: 38px;
+//     }
+//   }
 
+//   .title-text {
+//     margin: 0 2rem;
+//   }
+// }
+
+@media screen and (max-width: 640px) {
   .title-text {
-    margin: 0 2rem;
-  }
-}
-
-@media screen and (max-width: 590px) {
-  .title-text {
-    font-size: 2.275rem;
-  }
-
-  .title-container {
-    & > h2 {
-      font-size: 1rem;
-      margin-bottom: 38px;
-    }
-  }
-}
-
-@media screen and (max-width: 400px) {
-  .title-text {
-    font-size: 1.5rem;
+    font-size: 4rem;
   }
 
   .title-container {
+    padding: 2rem 10%;
     & > h2 {
-      font-size: 0.8rem;
+      font-size: 1.5rem;
       margin-bottom: 38px;
     }
   }
 }
+
+// @media screen and (max-width: 400px) {
+//   .title-text {
+//     font-size: 1.5rem;
+//   }
+
+//   .title-container {
+//     & > h2 {
+//       font-size: 0.8rem;
+//       margin-bottom: 38px;
+//     }
+//   }
+// }
