@@ -1,9 +1,10 @@
 import React from "react";
+import { motion, AnimatePresence } from "framer-motion";
 
 export default function Landing() {
   return (
     <banner className="landing-container" id="landing" role="banner">
-      <div className="title-container glass-background">
+      <div className="title-container">
         <h1
           className="title-text gradient-text noselect"
           role="heading"
@@ -17,6 +18,7 @@ export default function Landing() {
           aspiring web dev
         </h2>
       </div>
+      <div className="arrow-down noselect gradient-text"></div>
     </banner>
   );
 }
