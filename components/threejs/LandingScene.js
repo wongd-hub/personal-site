@@ -112,7 +112,7 @@ function ProceduralPoints({
     let i = 0;
     for (let yi = 0; yi < height; yi++) {
       for (let xi = 0; xi < width; xi++) {
-        positions[i + 2] = sampleNoise(positions[i], positions[i + 1], t * 0.2);
+        positions[i + 2] = sampleNoise(positions[i], positions[i + 1], t);
         let c = colorOfXYZT(
           positions[i],
           positions[i + 1],
@@ -182,7 +182,7 @@ export default function RippleScene(props) {
         flat
         linear
         colorManagement={false}
-        camera={{ position: [50, 10, 0], fov: 75 }}
+        camera={{ position: [50, 10, 0], fov: 75, near: 1, far: 100 }}
         className="gallery-canvas"
         style={props.style}
       >
@@ -198,13 +198,12 @@ export default function RippleScene(props) {
             }}
             anim={{
               init: 0,
-              update: (t) => t + 0.02,
+              update: (t) => t + 0.02 * 0.2,
             }}
           />
           <hemisphereLight args={["#AF67E9", "#6565E7", 2]} />
-          <directionalLight args={["#FFF", 0.4]} />
           <EffectComposer>
-            <DepthOfField focusDistance={0} focalLength={0.02} bokehScale={2} height={480} />
+            <DepthOfField focusDistance={0.7} focalLength={0.2} bokehScale={2} height={480} />
           </EffectComposer>
         </Suspense>
       </Canvas>
