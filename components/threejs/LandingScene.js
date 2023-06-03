@@ -50,10 +50,28 @@ function ProceduralPoints({
   };
 
   const colorOfXYZT = (x, y, z, t) => {
+    // Interpolate between two colours by finding their r/g/b,
+    // using the average point as the intercept/constant, 
+    // then dividing the distance between the midpoint and the lower
+    // end by the magnitude of raw z (seems to be -3.3--3 with current
+    // perlin noise parameters). Could functionalise if we figure out
+    // the max of the perlin3 function given certain parameters, but
+    // this isn't great since it doesn't give us a mid-point to delineate
+    // colours. Prefer old method for now.
+    // return {
+    //   r: (198 + z * -18.2) / 255,
+    //   g: (154 + z * -4.2) / 255,
+    //   b:  (230 + z * 5.5) / 255
+    // };
+
+    // Note r/g/b here range between 0 and 1.
+    // Adding t makes colours change as a function of time
+    // Making most of the colours depend heavily on z means that colour 
+    // will most heavily depend on height which is what we want.
     return {
-      r: z,
-      g: z / 5,
-      b: Math.sqrt(x ** 2 + y ** 2) / 75,
+      r: z + Math.cos(t * 2),
+      g: z / 10,
+      b: Math.sqrt(x ** 2 + y ** 2) / 100 + (Math.sin(t) - 0.3) / 2
     };
   };
 
@@ -203,7 +221,7 @@ export default function RippleScene(props) {
           />
           <hemisphereLight args={["#AF67E9", "#6565E7", 2]} />
           <EffectComposer>
-            <DepthOfField focusDistance={0.7} focalLength={0.2} bokehScale={2} height={480} />
+            <DepthOfField focusDistance={0.75} focalLength={0.2} bokehScale={2} height={480} />
           </EffectComposer>
         </Suspense>
       </Canvas>
