@@ -1,10 +1,17 @@
 import React from "react";
-import { motion } from "framer-motion";
 import DownArrow from "./assets/DownArrow";
 import DiagonalArrow from "./assets/DiagonalArrow";
 import Link from "next/link";
+import { gsap } from 'gsap';
+import { useEffect, useRef } from 'react';
+import SVGText from "./assets/SVGText";
 
 export default function Landing() {
+
+  // Create references to drive GSAP animations
+  const titleRef = useRef(null);
+  const roleRef = useRef([]);
+  const downArrowRef = useRef(null);
 
   const highlightedRoles = [
     {
@@ -21,79 +28,65 @@ export default function Landing() {
     }
   ]
 
+  useEffect(() => {
+
+    // Animate title
+    gsap.fromTo(
+      titleRef.current, 
+      { opacity: 0 }, 
+      { opacity: 1, duration: 3, delay: 0 }
+    );
+
+    // Animate roles with stagger
+    gsap.fromTo(
+      roleRef.current, 
+      { opacity: 0 }, 
+      { opacity: 1, duration: 3, delay: 3, stagger: 0.8 }
+    );
+
+    // Animate DownArrow
+    gsap.fromTo(
+      downArrowRef.current, 
+      { opacity: 0 }, 
+      { opacity: 1, duration: 3, delay: 5 }
+    );
+
+  }, []);
+
   return (
-    <motion.div className="landing-container" id="landing" role="banner">
-      <motion.div className="title-container">
-          <motion.h1
+    <div className="landing-container" id="landing">
+      <div className="title-container">
+          <h1
             className="title-text gradient-text noselect"
             role="heading"
             aria-level="1"
-            initial={{ y: 100, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            transition={{
-              duration: 3.5,
-              delay: 0.5
-            }}
+            ref={titleRef}
           >
             Darren<br/>Wong
-          </motion.h1>
-          <motion.h2 
-            className="gradient-text noselect"             
-            initial="hidden"
-            animate="visible"
-            variants={{
-              hidden: { opacity: 0 },
-              visible: {
-                opacity: 1,
-                transition: {
-                  duration: 3,
-                  delay: 1,
-                  staggerChildren: 1
-                }
-              },
-            }}
-          >
-            {highlightedRoles.map((el, i) => (
-              <motion.span
+          </h1>
+          <h2 className=" noselect">
+            {/* {highlightedRoles.map((el, i) => (
+              <div
                 key={el.href}
-                variants={{
-                  hidden: { opacity: 0 },
-                  visible: { opacity: 1 },
-                }}
+                ref={el => roleRef.current[i] = el}
               >
                 <Link href={el.href}>
-                  <span>
+                  <div ref={el => roleRef.current[i] = el}>
                     <span className="underline">{el.text}</span>&nbsp;
                     <DiagonalArrow width={13} height={13}/>
-                  </span>
+                  </div>
                 </Link>
-              </motion.span>
-            ))}
-          </motion.h2>
-      </motion.div>
-      <motion.div className="arrow-down noselect gradient-text">
+              </div>
+            ))} */}
+            <SVGText ref={downArrowRef}>HELLO WORLD testingj</SVGText>
+          </h2>
+      </div>
+      <div className="arrow-down noselect gradient-text" ref={downArrowRef}>
         {/* Get this to fade in last and maybe bounce every 10 seconds */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{
-            duration: 3,
-            delay: 0
-          }}
-        >
-          Scroll down!
-        </motion.div> 
-        <DownArrow 
-          width={80} 
-          height={80}
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{
-            duration: 3,
-            delay: 2
-          }}
-        />
-      </motion.div>
-    </motion.div>
+        <div ref={downArrowRef}><div>Scroll down!</div></div>
+        <div ref={downArrowRef}><DownArrow width={80} height={80}/>
+        </div>
+      </div>
+    </div>
   );
 }
