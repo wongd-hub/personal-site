@@ -25,7 +25,7 @@ export default function Landing() {
     {
       text: "aspiring web dev",
       href: "github.com3",
-    }
+    },
   ]
 
   useEffect(() => {
@@ -64,21 +64,22 @@ export default function Landing() {
           >
             Darren<br/>Wong
           </h1>
-          <h2 className=" noselect">
-            {/* {highlightedRoles.map((el, i) => (
+          <h2 className="noselect">
+            {highlightedRoles.map((el, i) => (
               <div
                 key={el.href}
                 ref={el => roleRef.current[i] = el}
               >
                 <Link href={el.href}>
-                  <div ref={el => roleRef.current[i] = el}>
-                    <span className="underline">{el.text}</span>&nbsp;
+                  <div className="landing-links">
+                    {/* Needs to be gradient text if we want fade-in anims to work. Not compatible with CSS hack for some reason (although other pieces are) */}
+                    <SVGText ref={downArrowRef}>{el.text}</SVGText>&nbsp;
                     <DiagonalArrow width={13} height={13}/>
                   </div>
                 </Link>
               </div>
-            ))} */}
-            <SVGText ref={downArrowRef}>HELLO WORLD testingj</SVGText>
+            ))}
+            
           </h2>
       </div>
       <div className="arrow-down noselect gradient-text" ref={downArrowRef}>
