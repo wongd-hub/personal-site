@@ -56,16 +56,23 @@ export default function Landing() {
       { opacity: 1, duration: 3, delay: 5, ease: "power1.inOut" }
     );
 
-    // Assigning hover animation to each landing link
+    // Define animation functions for on-hover/focus
+    const onInteraction = (el) => {
+      gsap.to(el, { x: "-7px", opacity: 0.7, duration: 0.2, ease: "power1.inOut" });
+    };
+
+    const afterInteraction = (el) => {
+      gsap.to(el, { x: "0px", opacity: 1, duration: 0.2, ease: "power1.inOut" });
+    };
+
+    // Assigning animation to each landing link
     roleRef.current.forEach((el, i) => {
       if (el) { // Check if the element exists
-        el.addEventListener("mouseover", () => {
-          gsap.to(el, { x: "-7px", opacity: 0.7, duration: 0.2, ease: "power1.inOut" });
-        });
+        el.addEventListener("mouseover", () => onInteraction(el));
+        el.addEventListener("mouseout", () => afterInteraction(el));
 
-        el.addEventListener("mouseout", () => {
-          gsap.to(el, { x: "0px", opacity: 1, duration: 0.2, ease: "power1.inOut" });
-        });
+        el.addEventListener("focus", () => onInteraction(el));
+        el.addEventListener("blur", () => afterInteraction(el));
       }
     });
 
