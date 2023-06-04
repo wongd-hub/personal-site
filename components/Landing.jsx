@@ -20,7 +20,7 @@ export default function Landing() {
     },    
     {
       text: "blogger",
-      href: "github.com2",
+      href: "https://www.herdmentality.xyz/authors/darrenwong",
     },
     {
       text: "aspiring web dev",
@@ -34,25 +34,39 @@ export default function Landing() {
     gsap.fromTo(
       titleRef.current, 
       { opacity: 0 }, 
-      { opacity: 1, duration: 3, delay: 0 }
+      { opacity: 1, duration: 3.5, delay: 0, ease: "power1.inOut" }
     );
 
     // Animate roles with stagger
     gsap.fromTo(
       roleRef.current, 
       { opacity: 0 }, 
-      { opacity: 1, duration: 3, delay: 3, stagger: 0.8 }
+      { opacity: 1, duration: 0.8, delay: 2, stagger: 0.6 , ease: "power1.inOut"}
     );
 
     // Animate DownArrow
     gsap.fromTo(
       downArrowRef.current, 
       { opacity: 0 }, 
-      { opacity: 1, duration: 3, delay: 5 }
+      { opacity: 1, duration: 3, delay: 5, ease: "power1.inOut" }
     );
+
+    // Assigning hover animation to each landing link
+    roleRef.current.forEach((el, i) => {
+      if (el) { // Check if the element exists
+        el.addEventListener("mouseover", () => {
+          gsap.to(el, { x: "-7px", opacity: 0.7, duration: 0.2, ease: "power1.inOut" });
+        });
+
+        el.addEventListener("mouseout", () => {
+          gsap.to(el, { x: "0px", opacity: 1, duration: 0.2, ease: "power1.inOut" });
+        });
+      }
+    });
 
   }, []);
 
+  // TODO: Update size of SVG text when screen is smaller
   return (
     <div className="landing-container" id="landing">
       <div className="title-container">
@@ -64,7 +78,7 @@ export default function Landing() {
           >
             Darren<br/>Wong
           </h1>
-          <h2 className="noselect">
+          <div className="noselect landing-link-container">
             {highlightedRoles.map((el, i) => (
               <div
                 key={el.href}
@@ -72,15 +86,13 @@ export default function Landing() {
               >
                 <Link href={el.href}>
                   <div className="landing-links">
-                    {/* Needs to be gradient text if we want fade-in anims to work. Not compatible with CSS hack for some reason (although other pieces are) */}
                     <SVGText ref={downArrowRef}>{el.text}</SVGText>&nbsp;
                     <DiagonalArrow width={13} height={13}/>
                   </div>
                 </Link>
               </div>
             ))}
-            
-          </h2>
+          </div>
       </div>
       <div className="arrow-down noselect gradient-text" ref={downArrowRef}>
         {/* Get this to fade in last and maybe bounce every 10 seconds */}
