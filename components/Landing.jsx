@@ -15,16 +15,20 @@ export default function Landing() {
 
   const highlightedRoles = [
     {
-      text: "data analyst",
-      href: "github.com1",
-    },    
-    {
       text: "blogger",
       href: "https://www.herdmentality.xyz/authors/darrenwong",
     },
     {
+      text: "data analyst",
+      // TODO: Not sure what else to link, maybe when timeline is complete, 
+      // make this scroll down to the data science part. Could do a short 
+      // sentence, then a summary, then maybe 3 boxes, one for each role here
+      // TODO: maybe just do this for aspiring web dev too
+      href: "https://github.com/wongd-hub?tab=repositories",
+    },
+    {
       text: "aspiring web dev",
-      href: "github.com3",
+      href: "https://www.mathkata.app/",
     },
   ]
 
@@ -34,14 +38,14 @@ export default function Landing() {
     gsap.fromTo(
       titleRef.current, 
       { opacity: 0 }, 
-      { opacity: 1, duration: 3.5, delay: 0, ease: "power1.inOut" }
+      { opacity: 1, duration: 3, delay: 0, ease: "power1.inOut" }
     );
 
     // Animate roles with stagger
     gsap.fromTo(
       roleRef.current, 
       { opacity: 0 }, 
-      { opacity: 1, duration: 0.8, delay: 2, stagger: 0.6 , ease: "power1.inOut"}
+      { opacity: 1, duration: 0.8, delay: 2, stagger: 0.8 , ease: "power1.inOut"}
     );
 
     // Animate DownArrow
@@ -84,12 +88,12 @@ export default function Landing() {
                 key={el.href}
                 ref={el => roleRef.current[i] = el}
               >
-                <Link href={el.href}>
+                <a target="_blank" href={el.href} rel="noopener noreferrer">
                   <div className="landing-links">
                     <SVGText ref={downArrowRef}>{el.text}</SVGText>&nbsp;
                     <DiagonalArrow width={13} height={13}/>
                   </div>
-                </Link>
+                </a>
               </div>
             ))}
           </div>
