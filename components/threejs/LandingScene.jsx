@@ -199,6 +199,8 @@ export default function RippleScene(props) {
   });
 
   useEffect(() => {
+    // TODO: May need to make this change only when there is a shift to a different bucket
+    //   This is causing issues when pulling down to refresh on iPhone at least
     const handleResize = () => {
       if (window.innerWidth < 500) {
         setGrid({
