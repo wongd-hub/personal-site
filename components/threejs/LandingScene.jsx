@@ -1,6 +1,6 @@
 // https://www.youtube.com/watch?v=wRmeFtRkF-8
 
-import React, { Suspense, useCallback, useMemo, useRef } from "react";
+import React, { Suspense, useState, useEffect, useMemo, useRef } from "react";
 // import * as THREE from "three";
 import { HemisphereLight, DirectionalLight } from "three";
 import { applyProps, Canvas, useFrame, extend } from "@react-three/fiber";
@@ -191,6 +191,55 @@ function ProceduralPoints({
 }
 
 export default function RippleScene(props) {
+
+  const [grid, setGrid] = useState({
+    width: 120,
+    height: 120,
+    sep: 1.5,
+  });
+
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth < 500) {
+        setGrid({
+          width: 60,
+          height: 50,
+          sep: 1.5,
+        });
+      } else if (window.innerWidth < 800) {
+        setGrid({
+          width: 60,
+          height: 65,
+          sep: 1.5,
+        });
+      } else if (window.innerWidth < 1000) {
+        setGrid({
+          width: 60,
+          height: 80,
+          sep: 1.5,
+        });
+      } else if (window.innerWidth < 1200) {
+        setGrid({
+          width: 60,
+          height: 100,
+          sep: 1.5,
+        });
+      } else {
+        setGrid({
+          width: 60,
+          height: 120,
+          sep: 1.5,
+        });
+      }
+    };
+
+    window.addEventListener('resize', handleResize);
+
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
+
   return (
     <>
       <Canvas
@@ -206,11 +255,7 @@ export default function RippleScene(props) {
           <ProceduralPoints
             position={[0, 0, 0]}
             rotation={[-Math.PI / 2, 0, 0]}
-            grid={{
-              width: 120,
-              height: 150,
-              sep: 1.5,
-            }}
+            grid={grid}
             anim={{
               init: 0,
               update: (t) => t + 0.02 * 0.2,
