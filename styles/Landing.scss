@@ -113,3 +113,14 @@
         }
     }
 }
+
+@media screen and (max-width: 300px) {
+    .title-text {
+        font-size: 3.5rem;
+        line-height: 3rem;
+    }
+
+    .title-container {
+        margin-top: 0.5rem;
+    }
+}
