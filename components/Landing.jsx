@@ -90,7 +90,7 @@ export default function Landing() {
               >
                 <a target="_blank" href={el.href} rel="noopener noreferrer">
                   <div className="landing-links">
-                    <SVGText ref={downArrowRef}>{el.text}</SVGText>&nbsp;
+                    <SVGText>{el.text}</SVGText>&nbsp;
                     <DiagonalArrow width={13} height={13}/>
                   </div>
                 </a>
