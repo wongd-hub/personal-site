@@ -25,14 +25,6 @@ export default function Home() {
       />
       <Landing />
 
-      <main role="main">
-        {/* <About />
-        <HowItWorks /> */}
-        {/* <Pricing />
-        <JoinNow /> */}
-      </main>
-
-      {/* <Footer /> */}
     </div>
   );
 }
