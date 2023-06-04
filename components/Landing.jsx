@@ -24,6 +24,7 @@ export default function Landing() {
       // make this scroll down to the data science part. Could do a short 
       // sentence, then a summary, then maybe 3 boxes, one for each role here
       // TODO: maybe just do this for aspiring web dev too
+      // Maybe turn the arrows down to bottom right to signify going down as well
       href: "https://github.com/wongd-hub?tab=repositories",
     },
     {
