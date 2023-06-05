@@ -20,7 +20,7 @@ export default function Home() {
       <RippleScene
         which="particle"
         style={{
-          height: '100vh', width: '100vw', position: 'absolute', zIndex: -10,
+          height: '100vh', width: '100vw', position: 'fixed', zIndex: -10,
         }}
       />
       <Landing />
