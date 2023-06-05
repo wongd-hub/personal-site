@@ -193,21 +193,32 @@ function Scene({ grid }) {
     // Calculate the current scroll offset as a ratio of the total scrollable distance
     const scrollOffset = scrollY.current / window.innerHeight;
     let targetY, targetZ;
-    console.log(scrollOffset)
+    console.log(scrollOffset * scrollOffset * 50)
 
-    targetY = 7 + scrollOffset * 5;
+    targetY = 7 - scrollOffset * 5;
     targetZ = 50 - scrollOffset * 100;
 
     // Update camera position
     camera.position.y += (targetY - camera.position.y) * damping;
     camera.position.z += (targetZ - camera.position.z) * damping;
 
+    const cameraPanPoint = 0.55;
+
     // Update target position
-    target.position.set(
-      0, 
-      +scrollY.current * 0.05,
-      0
-    );
+    if (scrollOffset < cameraPanPoint) {
+      target.position.set(
+        0, 
+        0,
+        -scrollOffset * 100
+      );
+    } else {
+      target.position.set(
+        0, 
+        (scrollOffset - cameraPanPoint) * 150,
+        -scrollOffset * 100
+      );
+    }
+
 
     // Make camera look at target
     camera.lookAt(target.position);
