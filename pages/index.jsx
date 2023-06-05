@@ -25,6 +25,14 @@ export default function Home() {
       />
       <Landing />
 
+      <main id="main"        
+        style={{
+          height: '100vh', width: '100vw', position: 'absolute', zIndex: -10,
+        }}
+      >
+        hiya
+      </main>
+
     </div>
   );
 }

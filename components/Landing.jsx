@@ -1,10 +1,13 @@
 import React from "react";
 import DownArrow from "./assets/DownArrow";
 import DiagonalArrow from "./assets/DiagonalArrow";
-import Link from "next/link";
+// import Link from "next/link";
 import { gsap } from 'gsap';
 import { useEffect, useRef } from 'react';
 import SVGText from "./assets/SVGText";
+import { ScrollToPlugin } from "gsap/dist/ScrollToPlugin";
+
+gsap.registerPlugin(ScrollToPlugin);
 
 export default function Landing() {
 
@@ -32,6 +35,10 @@ export default function Landing() {
       href: "https://www.mathkata.app/",
     },
   ]
+
+  const scrollToMain = () => {
+    gsap.to(window, {duration: 1, scrollTo: "#main"});
+  };
 
   useEffect(() => {
 
@@ -106,7 +113,7 @@ export default function Landing() {
             ))}
           </div>
       </div>
-      <div className="arrow-down noselect gradient-text" ref={downArrowRef}>
+      <div className="arrow-down noselect gradient-text" ref={downArrowRef} onClick={scrollToMain}>
         {/* Get this to fade in last and maybe bounce every 10 seconds */}
         <div ref={downArrowRef}><div>Scroll down!</div></div>
         <div ref={downArrowRef}><DownArrow width={80} height={80}/>
