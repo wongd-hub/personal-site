@@ -181,7 +181,9 @@ function Scene({ grid }) {
   const { camera } = useThree();
   const scrollY = useRef(window.scrollY);
   const target = new Object3D();
+
   const damping = 0.1;
+  const cameraPanPivotPoint = 0.55;
 
   const onScroll = () => {
     scrollY.current = window.scrollY;
@@ -189,109 +191,60 @@ function Scene({ grid }) {
 
   useFrame(() => {
 
-    // Fly along the waves and move upwards
-    // Calculate the current scroll offset as a ratio of the total scrollable distance
+    // Fly along the waves and move upwards at the end ----
+
+    // Calculate the current scroll offset as a ratio of the 
+    // height of the viewport
     const scrollOffset = scrollY.current / window.innerHeight;
     let targetY, targetZ;
-    console.log(scrollOffset * scrollOffset * 50)
 
-    targetY = 7 - scrollOffset * 5;
+    // As you scroll down:
+    //  - Move the camera downwards (Y-direction) until quarter of 
+    //     the way in, then keep at that point until just after the
+    //     camera panning upwards at which point move upwards slightly
+    //     to make sure none of the points are still visible 
+    if (scrollOffset < 0.25) {
+      targetY = 7 - scrollOffset * 7;
+    } else if (scrollOffset > cameraPanPivotPoint * 1.1){
+      targetY = 7 - scrollOffset * 3;
+    } else {
+      targetY = 7 - 0.25 * 7
+    }
+    
+    //  - Move the camera forwards as well
     targetZ = 50 - scrollOffset * 100;
 
-    // Update camera position
+    // Update camera position to the targets, use linear interpolation
+    // to make the movement smoother
     camera.position.y += (targetY - camera.position.y) * damping;
     camera.position.z += (targetZ - camera.position.z) * damping;
 
-    const cameraPanPoint = 0.55;
-
-    // Update target position
-    if (scrollOffset < cameraPanPoint) {
+    // Set up a target ball for the camera to track
+    // Update target ball's position as you scroll
+    if (scrollOffset < cameraPanPivotPoint) {
       target.position.set(
         0, 
         0,
+        // Move the point of focus forward at the same speed as the camera
+        // don't move in any other direction until cameraPanPivotPoint
         -scrollOffset * 100
       );
     } else {
       target.position.set(
         0, 
-        (scrollOffset - cameraPanPoint) * 150,
+        // Exponential for a slow, then fast movement once cameraPanPivotPoint
+        // is reached
+        (scrollOffset - cameraPanPivotPoint) ** 2 * 290,
         -scrollOffset * 100
       );
     }
 
-
-    // Make camera look at target
+    // Update camera to look at the target ball
     camera.lookAt(target.position);
 
     // Update camera matrix
     camera.updateProjectionMatrix();
 
-    // Move up, face down, then go below the waves
-    // // Calculate the current scroll offset as a ratio of the total scrollable distance
-    // const scrollOffset = scrollY.current / window.innerHeight;
-    // let targetY, targetZ;
-    // console.log(scrollOffset)
-    // // Condition for first half of the scroll
-    // if (scrollOffset < 0.6) {
-    //   targetY = 7 + scrollOffset * 30;
-    //   targetZ = 50 - scrollOffset * 10;
-    // } 
-    // // Condition for second half of the scroll
-    // else {
-    //   targetY = 7 - (scrollOffset * 10);  // Adjust these values
-    //   targetZ = 50 - (scrollOffset * 10 - 0.05);  // Adjust these values
-    // }
-
-    // // Update camera position
-    // camera.position.y += (targetY - camera.position.y) * damping;
-    // camera.position.z += (targetZ - camera.position.z) * damping;
-
-    // // Update target position
-    // target.position.set(
-    //   0, 
-    //   -scrollY.current * 0.5,
-    //   0
-    // );
-
-    // // Make camera look at target
-    // camera.lookAt(target.position);
-
-    // // Update camera matrix
-    // camera.updateProjectionMatrix();
-
-    // -----------------------------
-
-    // // // Adding the actual start point we want to this scroll offset
-    // // const targetY = 7 + scrollY.current * 0.1;
-    // // // Lerping movement to make it smoother
-    // // camera.position.y += (targetY - camera.position.y) * damping;
-    // // camera.updateProjectionMatrix();
-
-    // // const targetX = -scrollY.current * 0.01;
-    // const targetY = 7 + scrollY.current * 0.3;
-    // const targetZ = 50 - scrollY.current * 0.05;
-
-    // // Lerping movement to make it smoother
-    // // camera.position.x += (targetX - camera.position.x) * damping;
-    // camera.position.y += (targetY - camera.position.y) * damping;
-    // camera.position.z += (targetZ - camera.position.z) * damping;
-    // camera.updateProjectionMatrix();
-
-    // // Update target position based on scroll
-    // target.position.set(
-    //   0, 
-    //   -scrollY.current * 0.5,
-    //   0
-    // );
-
-    // // Make camera look at target
-    // camera.lookAt(target.position);
-
-    // // // Calculate target rotation
-    // // const targetRotationX = Math.PI / 2 * scrollY.current / window.innerHeight; 
-
-    // // // Lerp rotation to make it smoother
-    // // camera.rotation.x += (targetRotationX - camera.rotation.x) * damping;
   });
 
   // Set initial position

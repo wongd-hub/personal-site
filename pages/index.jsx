@@ -30,7 +30,7 @@ export default function Home() {
           height: '100vh', width: '100vw', position: 'absolute', zIndex: -10,
         }}
       >
-        hiya
+        howdy
       </main>
 
     </div>
