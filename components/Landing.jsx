@@ -40,6 +40,33 @@ export default function Landing() {
     gsap.to(window, {duration: 1.3, scrollTo: "#main"});
   };
 
+  // Handling down arrow:
+  //  - Fade out when the user gets 20% of the way down the first page,
+  //     they clearly know that you can scroll down now
+  //  - Fade back in when you get to 10% of the first page.
+  useEffect(() => {
+
+    const handleDownArrow = () => {
+      const hideThreshold = 0.01;
+      const hidePosition = window.innerHeight * hideThreshold;
+      const revealPosition = window.innerHeight * hideThreshold;
+
+      if (window.scrollY > hidePosition) {
+        gsap.to(downArrowRef.current, { autoAlpha: 0, duration: 0.2 });
+      } else if (window.scrollY < revealPosition) {
+        gsap.to(downArrowRef.current, { autoAlpha: 1, duration: 0.5 });
+      }
+    };
+
+    window.addEventListener('scroll', handleDownArrow);
+
+    return () => {
+      window.removeEventListener('scroll', handleDownArrow);
+    };
+
+  }, []);
+
+  // Animate in landing elements
   useEffect(() => {
 
     // Animate title
