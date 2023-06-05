@@ -44,6 +44,7 @@ export default function Landing() {
   //  - Fade out when the user gets 20% of the way down the first page,
   //     they clearly know that you can scroll down now
   //  - Fade back in when you get to 10% of the first page.
+  //  - Have the down arrow bounce every once in a while
   useEffect(() => {
 
     const handleDownArrow = () => {
@@ -59,6 +60,21 @@ export default function Landing() {
     };
 
     window.addEventListener('scroll', handleDownArrow);
+
+    const bounceTimeline = gsap.timeline({delay: 3, repeat: 3, repeatDelay: 10});
+
+    bounceTimeline
+      .to(downArrowRef.current, {
+        y: "-25px",
+        duration: 1.2,
+        yoyo: true,
+        yoyoEase: "elastic.out(1.5, 0.3)",
+      })
+      .to(downArrowRef.current, {
+        y: "0px",
+        duration: 0.5,
+        ease: "power2.out",
+      });
 
     return () => {
       window.removeEventListener('scroll', handleDownArrow);
@@ -141,8 +157,7 @@ export default function Landing() {
           </div>
       </div>
       <div className="arrow-down noselect gradient-text" ref={downArrowRef} onClick={scrollToMain}>
-        {/* Get this to fade in last and maybe bounce every 10 seconds */}
-        <div ref={downArrowRef}><div>Scroll down!</div></div>
+        <div><div>Scroll down!</div></div>
         <div ref={downArrowRef}><DownArrow width={60} height={60}/>
         </div>
       </div>
