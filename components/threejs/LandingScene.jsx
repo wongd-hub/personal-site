@@ -1,7 +1,7 @@
 // https://www.youtube.com/watch?v=wRmeFtRkF-8
 
 import React, { Suspense, useState, useEffect, useMemo, useRef } from "react";
-// import * as THREE from "three";
+import { Object3D } from "three";
 import { HemisphereLight, DirectionalLight } from "three";
 import { useThree, Canvas, useFrame, extend } from "@react-three/fiber";
 import { Loader } from "@react-three/drei";
@@ -49,20 +49,6 @@ function ProceduralPoints({
   };
 
   const colorOfXYZT = (x, y, z, t) => {
-    // Interpolate between two colours by finding their r/g/b,
-    // using the average point as the intercept/constant, 
-    // then dividing the distance between the midpoint and the lower
-    // end by the magnitude of raw z (seems to be -3.3--3 with current
-    // perlin noise parameters). Could functionalise if we figure out
-    // the max of the perlin3 function given certain parameters, but
-    // this isn't great since it doesn't give us a mid-point to delineate
-    // colours. Prefer old method for now.
-    // return {
-    //   r: (198 + z * -18.2) / 255,
-    //   g: (154 + z * -4.2) / 255,
-    //   b:  (230 + z * 5.5) / 255
-    // };
-
     // Note r/g/b here range between 0 and 1.
     // Adding t makes colours change as a function of time
     // Making most of the colours depend heavily on z means that colour 
@@ -194,76 +180,114 @@ function Scene({ grid }) {
 
   const { camera } = useThree();
   const scrollY = useRef(window.scrollY);
+  const target = new Object3D();
   const damping = 0.1;
-  // const scroll = useScroll()
 
   const onScroll = () => {
     scrollY.current = window.scrollY;
   };
 
-  // // GSAP, ScrollControls don't work, because there is an element
-  // // covering this scene (which we need to be interactive, so can't
-  // // set pointer-events: none). Go with vanilla option instead.
-  // useEffect(() => {
-
-  //   // GSAP, drei/ScrollControls attempts
-  //   // const tl2 = gsap.timeline({
-  //   //   scrollTrigger: {
-  //   //     trigger: 'body',
-  //   //     start: 'top top',
-  //   //     end: 'bottom bottom',
-  //   //     markers: true,
-  //   //     scrub: 1,
-  //   //   },
-  //   // })
-
-  //   // tl2.to(camera.position, {
-  //   //   y: '+=100',
-  //   // })
-
-  //   // const onScroll = () => {
-  //   //   camera.position.y = window.scrollY * 0.1; // Adjust the multiplier for different scroll speeds
-  //   //   camera.updateProjectionMatrix(); // Updates the camera's matrix after a change.
-  //   // }
-  //   // window.addEventListener('scroll', onScroll);
-  //   // return () => window.removeEventListener('scroll', onScroll);
-
-  //   // gsap.to(camera.position, {
-  //   //   scrollTrigger: {
-  //   //     trigger: document.body,
-  //   //     start: "top top",
-  //   //     end: "bottom bottom",
-  //   //     scrub: false,
-  //   //     markers: true
-  //   //   },
-  //   //   y: 100,
-  //   //   onUpdate: () => camera.updateProjectionMatrix()
-  //   // });
-
-  // }, [camera]);
-
   useFrame(() => {
-    // Adding the actual start point we want to this scroll offset
-    const targetY = 7 + scrollY.current * 0.1;
-    // Lerping movement to make it smoother
+
+    // Fly along the waves and move upwards
+    // Calculate the current scroll offset as a ratio of the total scrollable distance
+    const scrollOffset = scrollY.current / window.innerHeight;
+    let targetY, targetZ;
+    console.log(scrollOffset)
+
+    targetY = 7 + scrollOffset * 5;
+    targetZ = 50 - scrollOffset * 100;
+
+    // Update camera position
     camera.position.y += (targetY - camera.position.y) * damping;
+    camera.position.z += (targetZ - camera.position.z) * damping;
+
+    // Update target position
+    target.position.set(
+      0, 
+      +scrollY.current * 0.05,
+      0
+    );
+
+    // Make camera look at target
+    camera.lookAt(target.position);
+
+    // Update camera matrix
     camera.updateProjectionMatrix();
+
+    // Move up, face down, then go below the waves
+    // // Calculate the current scroll offset as a ratio of the total scrollable distance
+    // const scrollOffset = scrollY.current / window.innerHeight;
+    // let targetY, targetZ;
+    // console.log(scrollOffset)
+    // // Condition for first half of the scroll
+    // if (scrollOffset < 0.6) {
+    //   targetY = 7 + scrollOffset * 30;
+    //   targetZ = 50 - scrollOffset * 10;
+    // } 
+    // // Condition for second half of the scroll
+    // else {
+    //   targetY = 7 - (scrollOffset * 10);  // Adjust these values
+    //   targetZ = 50 - (scrollOffset * 10 - 0.05);  // Adjust these values
+    // }
+
+    // // Update camera position
+    // camera.position.y += (targetY - camera.position.y) * damping;
+    // camera.position.z += (targetZ - camera.position.z) * damping;
+
+    // // Update target position
+    // target.position.set(
+    //   0, 
+    //   -scrollY.current * 0.5,
+    //   0
+    // );
+
+    // // Make camera look at target
+    // camera.lookAt(target.position);
+
+    // // Update camera matrix
+    // camera.updateProjectionMatrix();
+
+    // -----------------------------
+
+    // // // Adding the actual start point we want to this scroll offset
+    // // const targetY = 7 + scrollY.current * 0.1;
+    // // // Lerping movement to make it smoother
+    // // camera.position.y += (targetY - camera.position.y) * damping;
+    // // camera.updateProjectionMatrix();
+
+    // // const targetX = -scrollY.current * 0.01;
+    // const targetY = 7 + scrollY.current * 0.3;
+    // const targetZ = 50 - scrollY.current * 0.05;
+
+    // // Lerping movement to make it smoother
+    // // camera.position.x += (targetX - camera.position.x) * damping;
+    // camera.position.y += (targetY - camera.position.y) * damping;
+    // camera.position.z += (targetZ - camera.position.z) * damping;
+    // camera.updateProjectionMatrix();
+
+    // // Update target position based on scroll
+    // target.position.set(
+    //   0, 
+    //   -scrollY.current * 0.5,
+    //   0
+    // );
+
+    // // Make camera look at target
+    // camera.lookAt(target.position);
+
+    // // // Calculate target rotation
+    // // const targetRotationX = Math.PI / 2 * scrollY.current / window.innerHeight; 
+
+    // // // Lerp rotation to make it smoother
+    // // camera.rotation.x += (targetRotationX - camera.rotation.x) * damping;
   });
 
   // Set initial position
   useEffect(() => {
-    // camera.position.set(
-    //   // right-left (x from our perspective)
-    //   0,
-    //   0,
-    //   0
-    // );
-
     window.addEventListener('scroll', onScroll);
 
-    return () => {
-      window.removeEventListener('scroll', onScroll);
-    };
+    return () => { window.removeEventListener('scroll', onScroll) };
   }, [camera]);
 
   return (
