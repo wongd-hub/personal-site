@@ -37,7 +37,7 @@ export default function Landing() {
   ]
 
   const scrollToMain = () => {
-    gsap.to(window, {duration: 1, scrollTo: "#main"});
+    gsap.to(window, {duration: 1.3, scrollTo: "#main"});
   };
 
   useEffect(() => {
@@ -116,7 +116,7 @@ export default function Landing() {
       <div className="arrow-down noselect gradient-text" ref={downArrowRef} onClick={scrollToMain}>
         {/* Get this to fade in last and maybe bounce every 10 seconds */}
         <div ref={downArrowRef}><div>Scroll down!</div></div>
-        <div ref={downArrowRef}><DownArrow width={80} height={80}/>
+        <div ref={downArrowRef}><DownArrow width={60} height={60}/>
         </div>
       </div>
     </div>
