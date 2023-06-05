@@ -106,12 +106,12 @@ export default function Landing() {
             ))}
           </div>
       </div>
-      {/* <div className="arrow-down noselect gradient-text" ref={downArrowRef}> */}
+      <div className="arrow-down noselect gradient-text" ref={downArrowRef}>
         {/* Get this to fade in last and maybe bounce every 10 seconds */}
-        {/* <div ref={downArrowRef}><div>Scroll down!</div></div>
+        <div ref={downArrowRef}><div>Scroll down!</div></div>
         <div ref={downArrowRef}><DownArrow width={80} height={80}/>
         </div>
-      </div> */}
+      </div>
     </div>
   );
 }
