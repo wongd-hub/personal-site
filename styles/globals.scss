@@ -29,6 +29,17 @@ a {
   -moz-text-fill-color: transparent;
 }
 
+.grain-filter {
+  background-image: url(/assets/images/nnnoise.svg);
+  background-size: cover;
+  z-index: -3;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100%;
+}
+
 .noselect {
   -webkit-touch-callout: none; /* iOS Safari */
   -webkit-user-select: none; /* Safari */

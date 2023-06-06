@@ -6,7 +6,7 @@ import RippleScene from '../components/threejs/LandingScene';
 
 export default function Home() {
   return (
-    <div className={styles.container}>
+    <div className={`${styles.container}`}>
       <Head>
         <title>Darren Wong</title>
         <meta name="description" content="Darren Wong's portfolio" />
@@ -17,6 +17,7 @@ export default function Home() {
         <link rel="manifest" href="/assets/favicon/site.webmanifest" />
       </Head>
 
+      <div className="grain-filter"/>
       <RippleScene
         which="particle"
         style={{
@@ -27,7 +28,7 @@ export default function Home() {
 
       <main id="main"        
         style={{
-          height: '100vh', width: '100vw', position: 'absolute', zIndex: -10,
+          height: '100vh', width: '100vw', position: 'relative', zIndex: -5,
         }}
       >
         howdy
