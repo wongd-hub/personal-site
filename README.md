@@ -6,10 +6,12 @@
 
 * Favicon created using Photopea, font is Space Mono, gradient uses colours from Cotton Candy on [hypercolor.dev](https://hypercolor.dev/): `rgb(249, 168, 212), rgb(216, 180, 254), rgb(129, 140, 248)`
     * Converted to favicon using [favicon.io](favicon.io)
-* [Down arrow](https://www.svgrepo.com/svg/486227/down-arrow-backup-2) (configurations in *Screenshot 1* below) and [diagonal arrow](https://www.svgrepo.com/svg/34346/diagonal-arrow) (configurations in *Screenshot 2* below) sourced from [svgrepo.com](svgrepo.com)
-    * Linear gradients added using colours from Cotton Candy on [hypercolor.dev](https://hypercolor.dev/)
 * Noise filter from [nnnoise](https://fffuel.co/nnnoise/), see configurations in *Screenshot 3* below
 * Particle net taken from my 3js practice site, [repo](https://github.com/wongd-hub/three-js-sandpit) & [site](https://three-js-sandpit.vercel.app/)
+* SVGs
+   * [Down arrow](https://www.svgrepo.com/svg/486227/down-arrow-backup-2) (configurations in *Screenshot 1* below) sourced from [svgrepo.com](svgrepo.com)
+   * [Diagonal arrow](https://www.svgrepo.com/svg/34346/diagonal-arrow) (configurations in *Screenshot 2* below) sourced from [svgrepo.com](svgrepo.com)
+   * Linear gradients added using colours from Cotton Candy on [hypercolor.dev](https://hypercolor.dev/)
 
 <br/>
 
