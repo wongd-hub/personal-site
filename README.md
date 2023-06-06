@@ -25,6 +25,6 @@
 
 *Screenshot 2*
 
-<img width="1115" alt="image" src="https://github.com/wongd-hub/personal-site/assets/74039081/7fb62df2-9df6-4e52-b8b6-cbbd39f511dd">
+<img width="1119" alt="image" src="https://github.com/wongd-hub/personal-site/assets/74039081/de3a9ebd-b45d-46fd-a797-0c82764d4509">
 
 *Screenshot 3*
