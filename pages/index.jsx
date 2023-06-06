@@ -1,12 +1,34 @@
 import React from 'react';
 import Head from 'next/head';
-import styles from '../styles/Home.module.css';
 import Landing from '../components/Landing';
 import RippleScene from '../components/threejs/LandingScene';
+import { useEffect } from 'react';
+import gsap from 'gsap';
+import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
+
+gsap.registerPlugin(ScrollTrigger);
 
 export default function Home() {
+
+  useEffect(() => {
+    gsap.fromTo('#main',
+      { autoAlpha: 0 },
+      {
+        autoAlpha: 1,
+        duration: 1,
+        scrollTrigger: {
+          trigger: '.landing-container',
+          start: "95% top", // when the top of the trigger hits 60% of the viewport
+          end: "bottom top", // when the bottom of the trigger hits the top of the viewport
+          scrub: false,
+          markers: true,
+          toggleActions: "play none none reverse"
+        }
+      });
+  }, [])
+
   return (
-    <div className={`${styles.container}`}>
+    <div className="container">
       <Head>
         <title>Darren Wong</title>
         <meta name="description" content="Darren Wong's portfolio" />
@@ -26,11 +48,7 @@ export default function Home() {
       />
       <Landing />
 
-      <main id="main"        
-        style={{
-          height: '100vh', width: '100vw', position: 'relative', zIndex: -5,
-        }}
-      >
+      <main id="main">
         howdy
       </main>
 
