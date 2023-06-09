@@ -5,6 +5,7 @@ import { useEffect, useState } from "react"
 const SVGText = ({ 
     fontSize = 18, 
     children, 
+    gradientType = 'cottonCandy',
     ...props 
 }) => {
   
@@ -59,7 +60,7 @@ const SVGText = ({
             height={Measurements.fontSize} 
         >
             <defs>
-                <SVGGradient id={id}/>
+                <SVGGradient id={id} type={gradientType}/>
             </defs>
             <text 
                 x="50%"
