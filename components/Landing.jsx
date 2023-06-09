@@ -83,7 +83,7 @@ export default function Landing() {
       { opacity: 0 }, 
       { opacity: 1, duration: 3, delay: 0, ease: "power1.inOut" },
     );
-    
+
     // Animate roles with stagger
     gsap.fromTo(
       roleRef.current, 
@@ -104,26 +104,6 @@ export default function Landing() {
       { opacity: 0 }, 
       { opacity: 1, duration: 3, delay: 5, ease: "power1.inOut" }
     );
-
-    // // Define animation functions for on-hover/focus
-    // const onInteraction = (el) => {
-    //   gsap.to(el, { x: "-7px", opacity: 0.7, duration: 0.2, ease: "power1.inOut" });
-    // };
-
-    // const afterInteraction = (el) => {
-    //   gsap.to(el, { x: "0px", opacity: 1, duration: 0.2, ease: "power1.inOut" });
-    // };
-
-    // // Assigning animation to each landing link
-    // roleRef.current.forEach((el, i) => {
-    //   if (el) { // Check if the element exists
-    //     el.addEventListener("mouseover", () => onInteraction(el));
-    //     el.addEventListener("mouseout", () => afterInteraction(el));
-
-    //     el.addEventListener("focus", () => onInteraction(el));
-    //     el.addEventListener("blur", () => afterInteraction(el));
-    //   }
-    // });
 
   }, []);
 
@@ -152,7 +132,7 @@ export default function Landing() {
           </h1>
           <SocialHoverContext.Provider value={{ highlightedWord, setHighlightedWord }}>
             <div className="noselect landing-link-container">
-              <div ref={socialsRef}><Socials /></div>
+              <div className="socials-container" ref={socialsRef}><Socials /></div>
               <div className="role-links">
                 {roleList.map((el, i) => (
                   <div

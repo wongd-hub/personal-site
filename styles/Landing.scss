@@ -1,3 +1,8 @@
+// Prevent Flash of Unstyled Content
+.title-text, .socials-container {
+    opacity: 0;
+  }
+
 .landing-container {
     width: 100%;
     height: 100vh;
