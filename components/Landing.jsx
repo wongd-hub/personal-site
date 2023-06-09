@@ -149,22 +149,22 @@ export default function Landing() {
                     key={el.href}
                     ref={el => roleRef.current[i] = el}
                     className={
-                      highlightedWord && (
-                        highlightedCases(highlightedWord)?.includes(el.text) 
-                          ? 'highlighted' 
-                          : ''
-                      )
+                      highlightedCases(highlightedWord)?.includes(el.text) 
+                        ? 'highlighted' 
+                        : ''
                     }
                   >
-                    <a 
-                      target="_blank" 
-                      href={el.href} 
-                      rel="noopener noreferrer"
-                    >
-                      <div className="landing-roles">
-                        <SVGText>{el.text}</SVGText>
-                      </div>
-                    </a>
+                    <div className="landing-roles">
+                      <SVGText
+                        gradientType={
+                          highlightedCases(highlightedWord)?.includes(el.text) 
+                          ? 'hyper' 
+                          : 'cottonCandy'
+                        }
+                      >
+                        {el.text}
+                      </SVGText>
+                    </div>
                   </div>
                 ))}
               </div>
