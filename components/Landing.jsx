@@ -74,18 +74,28 @@ export default function Landing() {
       { opacity: 1, duration: 3, delay: 0, ease: "power1.inOut" }
     );
 
+    // Initially disable pointer events on roles
+    gsap.set(socialsRef.current, { pointerEvents: "none" });
+
     // Animate socials
     gsap.fromTo(
       socialsRef.current, 
       { opacity: 0 }, 
-      { opacity: 1, duration: 3, delay: 0, ease: "power1.inOut" }
+      { opacity: 1, duration: 3, delay: 0, ease: "power1.inOut" },
     );
-
+    
     // Animate roles with stagger
     gsap.fromTo(
       roleRef.current, 
       { opacity: 0 }, 
-      { opacity: 1, duration: 0.8, delay: 2, stagger: 0.8 , ease: "power1.inOut"}
+      { 
+        opacity: 1, duration: 0.8, 
+        delay: 2, stagger: 0.8 , 
+        ease: "power1.inOut",
+        onComplete: function() {
+          gsap.set(socialsRef.current, { pointerEvents: "auto" })
+        }
+      }
     );
 
     // Animate DownArrow
