@@ -5,6 +5,7 @@ import Link from "next/link";
 import { gsap } from 'gsap';
 import { useEffect, useRef } from 'react';
 import SVGText from "./assets/SVGText";
+import Socials from "./socials/Socials";
 
 export default function Landing() {
 
@@ -91,19 +92,22 @@ export default function Landing() {
             Darren<br/>Wong
           </h1>
           <div className="noselect landing-link-container">
-            {highlightedRoles.map((el, i) => (
-              <div
-                key={el.href}
-                ref={el => roleRef.current[i] = el}
-              >
-                <a target="_blank" href={el.href} rel="noopener noreferrer">
-                  <div className="landing-links">
-                    <SVGText>{el.text}</SVGText>&nbsp;
-                    <DiagonalArrow width={13} height={13}/>
-                  </div>
-                </a>
-              </div>
-            ))}
+            <Socials />
+            <div className="role-links">
+              {highlightedRoles.map((el, i) => (
+                <div
+                  key={el.href}
+                  ref={el => roleRef.current[i] = el}
+                >
+                  <a target="_blank" href={el.href} rel="noopener noreferrer">
+                    <div className="landing-links">
+                      <SVGText>{el.text}</SVGText>&nbsp;
+                      <DiagonalArrow width={13} height={13}/>
+                    </div>
+                  </a>
+                </div>
+              ))}
+            </div>
           </div>
       </div>
       {/* <div className="arrow-down noselect gradient-text" ref={downArrowRef}> */}

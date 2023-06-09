@@ -14,4 +14,5 @@ const SVGGradient = ({ id, type = 'cottonCandy' }) => {
 
     return gradients[type]
 }
-  export default SVGGradient
+  
+export default SVGGradient
