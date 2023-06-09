@@ -3,14 +3,34 @@ import SVGGithub from "./SVGGithub";
 import SVGHerdMentality from "./SVGHerdMentality";
 import SVGLinkedIn from "./SVGLinkedIn";
 import { gsap } from 'gsap';
-import { useEffect, useRef, useContext } from "react";
+import { useEffect, useState, useRef, useContext } from "react";
 import { SocialHoverContext } from "../contexts/SocialHoverContext";
 
 const Socials = ({ ...props }) => {
 
     const socialRef = useRef([]);
-    const svgSize = 40;
     const { setHighlightedWord } = useContext(SocialHoverContext);
+    const [BoxSize, setBoxSize] = useState(0);
+
+    useEffect(() => {
+
+        const updateBoxSize = () => {
+            const boxSize = window.innerWidth < 850 ? 30 : 40;
+            setBoxSize(boxSize);
+        }
+    
+        // Call once to set initial measurements
+        updateBoxSize();
+    
+        // Listen to window resize event
+        window.addEventListener('resize', updateBoxSize);
+    
+        // Clean up event listener on unmount
+        return () => {
+            window.removeEventListener('resize', updateBoxSize);
+        }
+        
+    }, [])
 
     const socials = [
         {
@@ -76,8 +96,8 @@ const Socials = ({ ...props }) => {
                             data-title={el.title}
                         >
                             <SocialType
-                                width={svgSize}
-                                height={svgSize}
+                                width={BoxSize}
+                                height={BoxSize}
                             />
                         </a>
                     )
