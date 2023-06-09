@@ -73,6 +73,10 @@
     justify-content: flex-end;
 }
 
+.social-link {
+    cursor: pointer;
+}
+
 @media screen and (max-width: 850px) {
     .title-container {
         padding: 2rem 10%;

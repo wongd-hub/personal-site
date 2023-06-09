@@ -2,28 +2,57 @@ import React from "react";
 import SVGGithub from "./SVGGithub";
 import SVGHerdMentality from "./SVGHerdMentality";
 import SVGLinkedIn from "./SVGLinkedIn";
+import { gsap } from 'gsap';
+import { useEffect, useRef } from "react";
 
 const Socials = ({ ...props }) => {
+
+    const socialRef = useRef([]);
+    const svgSize = 40;
 
     const socials = [
         {
             title: 'herd-mentality',
-            // component: <SVGHerdMentality width={30} height={30} />,
-            component: SVGHerdMentality
+            component: SVGHerdMentality,
+            href: 'https://www.herdmentality.xyz/authors/darrenwong'
         },
         {
             // https://fontawesome.com/icons/square-github?f=brands&s=solid
             title: 'github',
-            // component: <SVGGithub width={30} height={30} />,
-            component: SVGGithub
+            component: SVGGithub,
+            href: 'https://github.com/wongd-hub'
         },
         {
             // https://fontawesome.com/icons/linkedin?f=brands&s=solid&pc=%23ffffff
             title: 'linkedin',
-            // component: <SVGLinkedIn width={30} height={30} />,
-            component: SVGLinkedIn
+            component: SVGLinkedIn,
+            href: 'https://www.linkedin.com/in/darren-wong-52212a117/'
         },
     ]
+
+    useEffect(() => {
+
+        // Define animation functions for on-hover/focus
+        const onInteraction = (el) => {
+            gsap.to(el, { y: "7px", opacity: 0.7, duration: 0.2, ease: "sine.inOut" });
+        };
+    
+        const afterInteraction = (el) => {
+            gsap.to(el, { y: "0px", opacity: 1, duration: 0.2, ease: "sine.inOut" });
+        };
+    
+        // Assigning animation to each landing link
+        socialRef.current.forEach((el, i) => {
+            if (el) { // Check if the element exists
+            el.addEventListener("mouseover", () => onInteraction(el));
+            el.addEventListener("mouseout", () => afterInteraction(el));
+    
+            el.addEventListener("focus", () => onInteraction(el));
+            el.addEventListener("blur", () => afterInteraction(el));
+            }
+        });
+
+    }, [])
 
     return (
         <div className='socials'>
@@ -32,7 +61,21 @@ const Socials = ({ ...props }) => {
 
                     const SocialType = el.component;
 
-                    return <SocialType key={i} width={30} height={30} />
+                    return (
+                        <a
+                            ref={el => socialRef.current[i] = el}
+                            key={i}
+                            className="social-link"
+                            href={el.href}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                        >
+                            <SocialType
+                                width={svgSize}
+                                height={svgSize}
+                            />
+                        </a>
+                    )
                 })
             }
         </div>
