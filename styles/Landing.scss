@@ -13,12 +13,13 @@
     justify-content: space-between;
 }
 
-.landing-links {
+.landing-roles {
     display: flex;
     justify-content: flex-end;
     align-items: center;
-    cursor: pointer;
-    margin-top: 0.25rem;
+    // cursor: pointer;
+    margin-top: 0.5rem;
+    // opacity: 0.7;
 }
 
 .title-container {
@@ -75,6 +76,10 @@
 
 .social-link {
     cursor: pointer;
+}
+
+.highlighted {
+    // background-color: yellow; /* Or any other styles */
 }
 
 @media screen and (max-width: 850px) {

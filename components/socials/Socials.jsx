@@ -3,12 +3,14 @@ import SVGGithub from "./SVGGithub";
 import SVGHerdMentality from "./SVGHerdMentality";
 import SVGLinkedIn from "./SVGLinkedIn";
 import { gsap } from 'gsap';
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useContext } from "react";
+import { SocialHoverContext } from "../contexts/SocialHoverContext";
 
 const Socials = ({ ...props }) => {
 
     const socialRef = useRef([]);
     const svgSize = 40;
+    const { setHighlightedWord } = useContext(SocialHoverContext);
 
     const socials = [
         {
@@ -35,24 +37,26 @@ const Socials = ({ ...props }) => {
         // Define animation functions for on-hover/focus
         const onInteraction = (el) => {
             gsap.to(el, { y: "7px", opacity: 0.7, duration: 0.2, ease: "sine.inOut" });
+            setHighlightedWord(el.dataset.title); // Set the highlighted word to the title of the hovered social icon
         };
     
         const afterInteraction = (el) => {
             gsap.to(el, { y: "0px", opacity: 1, duration: 0.2, ease: "sine.inOut" });
+            setHighlightedWord('');
         };
     
         // Assigning animation to each landing link
         socialRef.current.forEach((el, i) => {
             if (el) { // Check if the element exists
-            el.addEventListener("mouseover", () => onInteraction(el));
-            el.addEventListener("mouseout", () => afterInteraction(el));
-    
-            el.addEventListener("focus", () => onInteraction(el));
-            el.addEventListener("blur", () => afterInteraction(el));
+                el.addEventListener("mouseover", () => onInteraction(el));
+                el.addEventListener("mouseout", () => afterInteraction(el));
+        
+                el.addEventListener("focus", () => onInteraction(el));
+                el.addEventListener("blur", () => afterInteraction(el));
             }
         });
 
-    }, [])
+    }, [setHighlightedWord])
 
     return (
         <div className='socials'>
@@ -69,6 +73,7 @@ const Socials = ({ ...props }) => {
                             href={el.href}
                             target="_blank"
                             rel="noopener noreferrer"
+                            data-title={el.title}
                         >
                             <SocialType
                                 width={svgSize}
