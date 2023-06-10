@@ -21,13 +21,21 @@ a {
 
 .gradient-text {
   background-color: white;
-  background-image: linear-gradient(to right top, rgb(249, 168, 212), rgb(216, 180, 254), rgb(129, 140, 248));
   background-size: 100%;
   background-clip: text;
   -webkit-background-clip: text;
   -moz-background-clip: text;
   -webkit-text-fill-color: transparent; 
   -moz-text-fill-color: transparent;
+}
+
+.cotton-candy-gr {
+  background-image: linear-gradient(to right top, rgb(249, 168, 212), rgb(216, 180, 254), rgb(129, 140, 248));
+}
+
+.hyper-gr {
+  background-image: linear-gradient(to right, rgb(236, 72, 153), rgb(239, 68, 68), rgb(234, 179, 8));
+
 }
 
 .grain-filter {

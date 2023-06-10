@@ -23,7 +23,6 @@ export default function Home() {
           start: "95% top", // when the top of the trigger hits 95% of the viewport
           end: "bottom top", // when the bottom of the trigger hits the top of the viewport
           scrub: false,
-          markers: true,
           toggleActions: "play none none reverse"
     }});
   }, [])

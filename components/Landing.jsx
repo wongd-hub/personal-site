@@ -176,7 +176,7 @@ export default function Landing() {
     <div className="landing-container" id="landing">
       <div className="title-container">
           <h1
-            className="title-text gradient-text noselect"
+            className="title-text gradient-text noselect cotton-candy-gr"
             role="heading"
             aria-level="1"
             ref={titleRef}
@@ -214,8 +214,12 @@ export default function Landing() {
             </div>
           </SocialHoverContext.Provider>
       </div>
-      <div className="arrow-down noselect gradient-text" ref={downArrowRef} onClick={scrollToMain}>
-        <div><div>Scroll down!</div></div>
+      <div 
+        className="arrow-down noselect gradient-text cotton-candy-gr" 
+        ref={downArrowRef} 
+        onClick={scrollToMain}
+      >
+        <div>Scroll down!</div>
         <div ref={downArrowRef}><DownArrow width={60} height={60}/>
         </div>
       </div>
