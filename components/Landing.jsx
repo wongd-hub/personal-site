@@ -9,6 +9,10 @@ import { ScrollToPlugin } from "gsap/dist/ScrollToPlugin";
 
 gsap.registerPlugin(ScrollToPlugin);
 
+// TODO: A few options for the rest of the web-page
+//  - Make the on-scroll anim scene finish earlier so there's more time between the end of it and the start of the next one
+//  - Instead of having the main element scroll, just have it fade in (but be static), that'll avoid any gross cut-offs
+
 export default function Landing() {
 
   // Define list of roles to display
@@ -35,48 +39,6 @@ export default function Landing() {
   const scrollToMain = () => {
     gsap.to(window, {duration: 1.3, scrollTo: "#main"});
   };
-
-  // Handling down arrow:
-  //  - Fade out when the user gets 20% of the way down the first page,
-  //     they clearly know that you can scroll down now
-  //  - Fade back in when you get to 10% of the first page.
-  //  - Have the down arrow bounce every once in a while
-  useEffect(() => {
-
-    const handleDownArrow = () => {
-      const hideThreshold = 0.01;
-      const hidePosition = window.innerHeight * hideThreshold;
-      const revealPosition = window.innerHeight * hideThreshold;
-
-      if (window.scrollY > hidePosition) {
-        gsap.to(downArrowRef.current, { autoAlpha: 0, duration: 0.2 });
-      } else if (window.scrollY < revealPosition) {
-        gsap.to(downArrowRef.current, { autoAlpha: 1, duration: 0.5 });
-      }
-    };
-
-    window.addEventListener('scroll', handleDownArrow);
-
-    const bounceTimeline = gsap.timeline({delay: 3, repeat: 3, repeatDelay: 10});
-
-    bounceTimeline
-      .to(downArrowRef.current, {
-        y: "-25px",
-        duration: 1.2,
-        yoyo: true,
-        yoyoEase: "elastic.out(1.5, 0.3)",
-      })
-      .to(downArrowRef.current, {
-        y: "0px",
-        duration: 0.5,
-        ease: "power2.out",
-      });
-
-    return () => {
-      window.removeEventListener('scroll', handleDownArrow);
-    };
-
-  }, []);
 
   // Create references to drive GSAP animations
   const titleRef = useRef(null);
@@ -168,7 +130,48 @@ export default function Landing() {
     }
   }, [highlightedWord]);
 
-  // TODO: Update size of SVG text when screen is smaller
+  // Handling down arrow:
+  //  - Fade out when the user gets 20% of the way down the first page,
+  //     they clearly know that you can scroll down now
+  //  - Fade back in when you get to 10% of the first page.
+  //  - Have the down arrow bounce every once in a while
+  useEffect(() => {
+
+    const handleDownArrow = () => {
+      const hideThreshold = 0.01;
+      const hidePosition = window.innerHeight * hideThreshold;
+      const revealPosition = window.innerHeight * hideThreshold;
+
+      if (window.scrollY > hidePosition) {
+        gsap.to(downArrowRef.current, { autoAlpha: 0, duration: 0.2 });
+      } else if (window.scrollY < revealPosition) {
+        gsap.to(downArrowRef.current, { autoAlpha: 1, duration: 0.5 });
+      }
+    };
+
+    window.addEventListener('scroll', handleDownArrow);
+
+    const bounceTimeline = gsap.timeline({delay: 3, repeat: 3, repeatDelay: 10});
+
+    bounceTimeline
+      .to(downArrowRef.current, {
+        y: "-25px",
+        duration: 1.2,
+        yoyo: true,
+        yoyoEase: "elastic.out(1.5, 0.3)",
+      })
+      .to(downArrowRef.current, {
+        y: "0px",
+        duration: 0.5,
+        ease: "power2.out",
+      });
+
+    return () => {
+      window.removeEventListener('scroll', handleDownArrow);
+    };
+
+  }, []);
+
   return (
     <div className="landing-container" id="landing">
       <div className="title-container">

@@ -1,6 +1,7 @@
 import React from 'react';
 import Head from 'next/head';
 import Landing from '../components/Landing';
+import Content from '../components/Content';
 import RippleScene from '../components/threejs/LandingScene';
 import { useEffect } from 'react';
 import gsap from 'gsap';
@@ -48,9 +49,10 @@ export default function Home() {
       />
       <Landing />
 
-      <main id="main">
-        howdy
-      </main>
+      <Content />
+
+      {/* This is here to allow scroll-down */}
+      <div id="main"/>
 
     </div>
   );

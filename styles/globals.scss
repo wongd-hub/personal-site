@@ -1,4 +1,5 @@
 @import "./Landing.scss";
+@import "./Content.scss";
 
 html,
 body {
@@ -55,38 +56,17 @@ a {
   width: 100%;
 }
 
-main { // Gradient isn't great; visible when you scroll up fast
+#main { 
   width: 100vw; 
-  position: relative;
-  // top: -150px;
-  // padding-top: 150px;
+  // position: relative;
   height: 100vh;
-  padding: 4rem 0;
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  background-image: url('/assets/images/download (4).png');
-  background-position: center 100px;
+  // flex: 1;
+  // display: flex;
+  // flex-direction: column;
+  // justify-content: center;
+  // align-items: center;
+  // background-image: url('/assets/images/download (4).png');
 }
-
-main::before {
-  content: "";
-  display: block;
-  height: 100px; /* The height of your gradient */
-  background: transparent;
-}
-
-// main::before {
-//   content: '';
-//   position: absolute;
-//   top: 0;
-//   left: 0;
-//   width: 100%;
-//   height: 100px; /* This will be the height of your gradient overlay */
-//   background: linear-gradient(180deg, rgba(0,0,0,1) 0%, rgba(255,255,255,0) 100%);
-// }
 
 .footer {
   display: flex;
