@@ -49,10 +49,12 @@ export default function Home() {
       />
       <Landing />
 
-      <Content />
+      <main id="content">
+        <Content />
+      </main>
 
       {/* This is here to allow scroll-down */}
-      <div id="main"/>
+      {/* <div id="main"/> */}
 
     </div>
   );

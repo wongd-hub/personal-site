@@ -6,6 +6,7 @@ import Socials from "./socials/Socials";
 import { SocialHoverContext } from "./contexts/SocialHoverContext";
 import { gsap } from 'gsap';
 import { ScrollToPlugin } from "gsap/dist/ScrollToPlugin";
+import SVGBackground from "./assets/SVGBackground";
 
 export default function Content() {
 
@@ -13,8 +14,19 @@ export default function Content() {
 
 
     return (
-        <main id="content">
-            
-        </main>
+        <>
+            <SVGBackground/>
+            <div className="main-content">
+                <div className="opening-spiel">
+                    <div className="profile-pic"></div>
+                    <div className="hello">Hello there, my name is Darren</div>
+                </div>
+                <div className="callout-cards">
+                    <div className="callout-cards-1">
+
+                    </div>
+                </div>
+            </div>
+        </>
     )
 }

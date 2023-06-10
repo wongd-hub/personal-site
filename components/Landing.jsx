@@ -37,7 +37,7 @@ export default function Landing() {
   ]
 
   const scrollToMain = () => {
-    gsap.to(window, {duration: 1.3, scrollTo: "#main"});
+    gsap.to(window, { duration: 1.3, scrollTo: "#content", ease: "power1.inOut" });
   };
 
   // Create references to drive GSAP animations
