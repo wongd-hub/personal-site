@@ -12,20 +12,20 @@ gsap.registerPlugin(ScrollTrigger);
 export default function Home() {
 
   useEffect(() => {
-    gsap.fromTo('#main',
+    gsap.fromTo(
+      '#content',
       { autoAlpha: 0 },
       {
         autoAlpha: 1,
-        duration: 1,
+        duration: 0.8,
         scrollTrigger: {
           trigger: '.landing-container',
-          start: "95% top", // when the top of the trigger hits 60% of the viewport
+          start: "95% top", // when the top of the trigger hits 95% of the viewport
           end: "bottom top", // when the bottom of the trigger hits the top of the viewport
           scrub: false,
           markers: true,
           toggleActions: "play none none reverse"
-        }
-      });
+    }});
   }, [])
 
   return (
