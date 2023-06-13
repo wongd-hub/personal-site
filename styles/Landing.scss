@@ -92,7 +92,8 @@
     position: absolute;
     bottom: 3rem;
     right: 7rem;
-    opacity: 1;
+    opacity: 0;
+    cursor: pointer;
 }
 
 @media screen and (max-width: 850px) {
