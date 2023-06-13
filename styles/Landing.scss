@@ -87,6 +87,14 @@
     // background-color: yellow; /* Or any other styles */
 }
 
+.justblackjack-button {
+    height: 150px;
+    position: absolute;
+    bottom: 3rem;
+    right: 7rem;
+    opacity: 1;
+}
+
 @media screen and (max-width: 850px) {
     .title-container {
         padding: 2rem 10%;

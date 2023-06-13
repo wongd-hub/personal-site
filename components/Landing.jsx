@@ -5,6 +5,7 @@ import { useEffect, useRef, useState } from 'react';
 import SVGText from "./assets/SVGText";
 import Socials from "./socials/Socials";
 import { SocialHoverContext } from "./contexts/SocialHoverContext";
+import JustBlackjackLogo from '../components/assets/JustBlackjackLogo';
 
 export default function Landing() {
 
@@ -34,6 +35,7 @@ export default function Landing() {
   const roleRef = useRef([]);
   const socialsRef = useRef(null);
   const downArrowRef = useRef(null);
+  const jBButtonRef = useRef(null);
 
   // Use shared context to tell role titles to be highlighted when 
   // social icons are highlighted
@@ -105,6 +107,13 @@ export default function Landing() {
       { opacity: 1, duration: 3, delay: 5, ease: "power1.inOut" }
     );
 
+    // Animate justBlackjack button
+    gsap.fromTo(
+      jBButtonRef.current, 
+      { opacity: 0 }, 
+      { opacity: 1, duration: 3, delay: 5, ease: "power1.inOut" }
+    );
+
   }, []);
 
   // Will run every time highlightedWord changes so that on-hover and 
@@ -167,6 +176,9 @@ export default function Landing() {
         <div ref={downArrowRef}><DownArrow width={80} height={80}/>
         </div>
       </div> */}
+      <div className="justblackjack-button" ref={jBButtonRef}>
+        <JustBlackjackLogo style={{height: "150px", width: "150px"}}/>
+      </div>
     </div>
   );
 }

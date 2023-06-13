@@ -3,13 +3,6 @@ import Head from 'next/head';
 import styles from '../styles/Home.module.css';
 import Landing from '../components/Landing';
 import RippleScene from '../components/threejs/LandingScene';
-import SVGJustBlackjack from '../components/assets/SVGJustBlackjack';
-import Lottie from "lottie-react";
-import justBlackjackAnim from "../components/assets/justBlackjack.json";
-
-const Example = () => {
-  return <Lottie animationData={justBlackjackAnim} />;
-};
 
 export default function Home() {
   return (
@@ -30,9 +23,8 @@ export default function Home() {
           height: '100vh', width: '100vw', position: 'absolute', zIndex: -10,
         }}
       />
+
       <Landing />
-      <Example />
-      {/* <SVGJustBlackjack/> */}
 
     </div>
   );
