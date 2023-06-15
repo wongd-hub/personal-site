@@ -1,6 +1,7 @@
 # Personal portfolio site
 
 ![](https://github.com/wongd-hub/personal-site/blob/main/other-resources/screenie.gif)
+![Kapture 2023-06-16 at 09 37 46](https://github.com/wongd-hub/personal-site/assets/74039081/0d70dbf2-a4c1-42c3-a6ac-f49b865ea285)
 
 ## Development
 
