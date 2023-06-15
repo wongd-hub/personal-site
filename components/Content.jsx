@@ -21,7 +21,6 @@ export default function Content() {
                             <Image 
                                 src="/assets/images/avatar.jpeg"
                                 alt="Picture of the author"
-                                style={{ objectFit: "contain" }}
                                 layout="fill"
                             />
                         </div>

@@ -58,12 +58,6 @@
     }
 }
 
-// .profile-pic::before {
-//     content: '';
-//     display: block;
-//     padding-bottom: 100%;
-//   }
-
 .hello {
     display: flex; 
     font-weight: bold;
@@ -71,3 +65,45 @@
     font-size: x-large;
 }
 
+.opening-spiel-text {
+    text-align: center;
+}
+
+@media screen and (max-width: 850px) {
+
+    .opening-banner {
+        flex-direction: column;
+        column-gap: 0;
+        row-gap: 1.5rem;
+        align-items: center;
+    }
+
+    .hello {
+        text-align: center;
+        font-size: large;
+    }
+
+    .opening-spiel-text {
+        text-align: center;
+        font-size: smaller;
+    }
+
+}
+
+@media screen and (max-width: 600px) {
+
+
+
+}
+
+@media screen and (max-width: 500px) {
+
+
+
+}
+
+@media screen and (max-width: 300px) {
+
+
+
+}
