@@ -1,11 +1,14 @@
 import React from "react";
 import DownArrow from "./assets/DownArrow";
-import { gsap } from 'gsap';
 import { useEffect, useRef, useState } from 'react';
 import SVGText from "./assets/SVGText";
 import Socials from "./socials/Socials";
 import { SocialHoverContext } from "./contexts/SocialHoverContext";
 import JustBlackjackLogo from '../components/assets/JustBlackjackLogo';
+import { gsap } from 'gsap';
+import { ScrollToPlugin } from "gsap/dist/ScrollToPlugin";
+
+gsap.registerPlugin(ScrollToPlugin);
 
 export default function Landing() {
 
@@ -29,6 +32,10 @@ export default function Landing() {
       href: "https://www.mathkata.app/",
     },
   ]
+
+  const scrollToMain = () => {
+    gsap.to(window, { duration: 1.3, scrollTo: "#content", ease: "power1.inOut" });
+  };
 
   // Create references to drive GSAP animations
   const titleRef = useRef(null);
@@ -67,6 +74,7 @@ export default function Landing() {
     return rolesToHighlight(highlighted);
   };
 
+  // Animate in landing elements
   useEffect(() => {
 
     // Animate title
@@ -166,12 +174,53 @@ export default function Landing() {
     }
   }, [highlightedWord]);
 
-  // TODO: Update size of SVG text when screen is smaller
+  // Handling down arrow:
+  //  - Fade out when the user gets 20% of the way down the first page,
+  //     they clearly know that you can scroll down now
+  //  - Fade back in when you get to 10% of the first page.
+  //  - Have the down arrow bounce every once in a while
+  useEffect(() => {
+
+    const handleDownArrow = () => {
+      const hideThreshold = 0.01;
+      const hidePosition = window.innerHeight * hideThreshold;
+      const revealPosition = window.innerHeight * hideThreshold;
+
+      if (window.scrollY > hidePosition) {
+        gsap.to(downArrowRef.current, { autoAlpha: 0, duration: 0.2 });
+      } else if (window.scrollY < revealPosition) {
+        gsap.to(downArrowRef.current, { autoAlpha: 1, duration: 0.5 });
+      }
+    };
+
+    window.addEventListener('scroll', handleDownArrow);
+
+    const bounceTimeline = gsap.timeline({delay: 3, repeat: 3, repeatDelay: 10});
+
+    bounceTimeline
+      .to(downArrowRef.current, {
+        y: "-25px",
+        duration: 1.2,
+        yoyo: true,
+        yoyoEase: "elastic.out(1.5, 0.3)",
+      })
+      .to(downArrowRef.current, {
+        y: "0px",
+        duration: 0.5,
+        ease: "power2.out",
+      });
+
+    return () => {
+      window.removeEventListener('scroll', handleDownArrow);
+    };
+
+  }, []);
+
   return (
     <div className="landing-container" id="landing">
       <div className="title-container">
           <h1
-            className="title-text gradient-text noselect"
+            className="title-text gradient-text noselect cotton-candy-gr"
             role="heading"
             aria-level="1"
             ref={titleRef}
@@ -209,15 +258,17 @@ export default function Landing() {
             </div>
           </SocialHoverContext.Provider>
       </div>
-      {/* <div className="arrow-down noselect gradient-text" ref={downArrowRef}> */}
-        {/* Get this to fade in last and maybe bounce every 10 seconds */}
-        {/* <div ref={downArrowRef}><div>Scroll down!</div></div>
-        <div ref={downArrowRef}><DownArrow width={80} height={80}/>
+      <div 
+        className="arrow-down noselect gradient-text cotton-candy-gr" 
+        ref={downArrowRef} 
+        onClick={scrollToMain}
+      >
+        <div>Scroll down!</div>
+        <div ref={downArrowRef}><DownArrow width={60} height={60}/></div>
+        <div className="justblackjack-button" ref={jBButtonRef}>
+          <JustBlackjackLogo style={{height: "150px", width: "150px"}}/>
         </div>
-      </div> */}
-      <div className="justblackjack-button" ref={jBButtonRef}>
-        <JustBlackjackLogo style={{height: "150px", width: "150px"}}/>
       </div>
     </div>
-  );
+  )
 }

@@ -1,6 +1,7 @@
 # Personal portfolio site
 
 ![](https://github.com/wongd-hub/personal-site/blob/main/other-resources/screenie.gif)
+![Kapture 2023-06-16 at 09 37 46](https://github.com/wongd-hub/personal-site/assets/74039081/0d70dbf2-a4c1-42c3-a6ac-f49b865ea285)
 
 ## Development
 
@@ -12,6 +13,7 @@
    * [Down arrow](https://www.svgrepo.com/svg/486227/down-arrow-backup-2) (configurations in *Screenshot 1* below) sourced from [svgrepo.com](svgrepo.com)
    * [Diagonal arrow](https://www.svgrepo.com/svg/34346/diagonal-arrow) (configurations in *Screenshot 2* below) sourced from [svgrepo.com](svgrepo.com)
    * Linear gradients added using colours from Cotton Candy on [hypercolor.dev](https://hypercolor.dev/)
+   * Gradient background for content section is generated using [gggrain](https://fffuel.co/gggrain/), see configurations in *Screenshot 4* below
 
 <br/>
 
@@ -30,3 +32,7 @@
 <img width="1119" alt="image" src="https://github.com/wongd-hub/personal-site/assets/74039081/de3a9ebd-b45d-46fd-a797-0c82764d4509">
 
 *Screenshot 3*
+
+<img width="1118" alt="image" src="https://github.com/wongd-hub/personal-site/assets/74039081/81463b50-e3b1-4b12-ae3b-fbf30f370e47">
+
+*Screenshot 4*
