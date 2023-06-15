@@ -1,9 +1,9 @@
 // https://www.youtube.com/watch?v=wRmeFtRkF-8
 
 import React, { Suspense, useState, useEffect, useMemo, useRef } from "react";
-// import * as THREE from "three";
+import { Object3D } from "three";
 import { HemisphereLight, DirectionalLight } from "three";
-import { applyProps, Canvas, useFrame, extend } from "@react-three/fiber";
+import { useThree, Canvas, useFrame, extend } from "@react-three/fiber";
 import { Loader } from "@react-three/drei";
 import noise, { perlin3 } from "../assets/noise";
 import { EffectComposer, DepthOfField } from '@react-three/postprocessing';
@@ -49,20 +49,6 @@ function ProceduralPoints({
   };
 
   const colorOfXYZT = (x, y, z, t) => {
-    // Interpolate between two colours by finding their r/g/b,
-    // using the average point as the intercept/constant, 
-    // then dividing the distance between the midpoint and the lower
-    // end by the magnitude of raw z (seems to be -3.3--3 with current
-    // perlin noise parameters). Could functionalise if we figure out
-    // the max of the perlin3 function given certain parameters, but
-    // this isn't great since it doesn't give us a mid-point to delineate
-    // colours. Prefer old method for now.
-    // return {
-    //   r: (198 + z * -18.2) / 255,
-    //   g: (154 + z * -4.2) / 255,
-    //   b:  (230 + z * 5.5) / 255
-    // };
-
     // Note r/g/b here range between 0 and 1.
     // Adding t makes colours change as a function of time
     // Making most of the colours depend heavily on z means that colour 
@@ -190,6 +176,103 @@ function ProceduralPoints({
   );
 }
 
+function Scene({ grid }) {
+
+  const { camera } = useThree();
+  const scrollY = useRef(window.scrollY);
+  const target = new Object3D();
+
+  const damping = 0.1;
+  const cameraPanPivotPoint = 0.55;
+
+  const onScroll = () => {
+    scrollY.current = window.scrollY;
+  };
+
+  useFrame(() => {
+
+    // Fly along the waves and move upwards at the end ----
+
+    // Calculate the current scroll offset as a ratio of the 
+    // height of the viewport
+    const scrollOffset = scrollY.current / window.innerHeight;
+    let targetY, targetZ;
+
+    // As you scroll down:
+    //  - Move the camera downwards (Y-direction) until quarter of 
+    //     the way in, then keep at that point until just after the
+    //     camera panning upwards at which point move upwards slightly
+    //     to make sure none of the points are still visible 
+    if (scrollOffset < 0.25) {
+      targetY = 7 - scrollOffset * 7;
+    } else if (scrollOffset > cameraPanPivotPoint * 1.1){
+      targetY = 7 - scrollOffset * 3;
+    } else {
+      targetY = 7 - 0.25 * 7
+    }
+    
+    //  - Move the camera forwards as well
+    targetZ = 50 - scrollOffset * 100;
+
+    // Update camera position to the targets, use linear interpolation
+    // to make the movement smoother
+    camera.position.y += (targetY - camera.position.y) * damping;
+    camera.position.z += (targetZ - camera.position.z) * damping;
+
+    // Set up a target ball for the camera to track
+    // Update target ball's position as you scroll
+    if (scrollOffset < cameraPanPivotPoint) {
+      target.position.set(
+        0, 
+        0,
+        // Move the point of focus forward at the same speed as the camera
+        // don't move in any other direction until cameraPanPivotPoint
+        -scrollOffset * 100
+      );
+    } else {
+      target.position.set(
+        0, 
+        // Exponential for a slow, then fast movement once cameraPanPivotPoint
+        // is reached
+        (scrollOffset - cameraPanPivotPoint) ** 2 * 290,
+        -scrollOffset * 100
+      );
+    }
+
+    // Update camera to look at the target ball
+    camera.lookAt(target.position);
+
+    // Update camera matrix
+    camera.updateProjectionMatrix();
+
+  });
+
+  // Set initial position
+  useEffect(() => {
+    window.addEventListener('scroll', onScroll);
+
+    return () => { window.removeEventListener('scroll', onScroll) };
+  }, [camera]);
+
+  return (
+    <>
+      <ProceduralPoints
+        position={[0, 0, 0]}
+        rotation={[-Math.PI / 2, 0, 0]}
+        grid={grid}
+        anim={{
+          init: 0,
+          update: (t) => t + 0.02 * 0.2,
+        }}
+      />
+      <hemisphereLight args={["#AF67E9", "#6565E7", 2]} />
+      <EffectComposer>
+        <DepthOfField focusDistance={0.75} focalLength={0.2} bokehScale={2} height={480} />
+      </EffectComposer>
+    </>
+  )
+}
+
 export default function RippleScene(props) {
 
   const [grid, setGrid] = useState({
@@ -248,25 +331,16 @@ export default function RippleScene(props) {
         flat
         linear
         colorManagement={false}
-        camera={{ position: [50, 10, 0], fov: 75, near: 1, far: 100 }}
+        camera={{ 
+          // position: [50, 10, 0],
+          fov: 75, near: 1, far: 100
+        }}
         className="gallery-canvas"
         style={props.style}
       >
         <color attach="background" args={["black"]} />
         <Suspense fallback={null}>
-          <ProceduralPoints
-            position={[0, 0, 0]}
-            rotation={[-Math.PI / 2, 0, 0]}
-            grid={grid}
-            anim={{
-              init: 0,
-              update: (t) => t + 0.02 * 0.2,
-            }}
-          />
-          <hemisphereLight args={["#AF67E9", "#6565E7", 2]} />
-          <EffectComposer>
-            <DepthOfField focusDistance={0.75} focalLength={0.2} bokehScale={2} height={480} />
-          </EffectComposer>
+          <Scene grid={grid} />
         </Suspense>
       </Canvas>
       <Loader />

@@ -65,7 +65,7 @@ const SVGText = ({
             <text 
                 x="50%"
                 y="50%"
-                fill={"url(#" + id + ")"} 
+                fill={`url(#${id})`} 
                 fontFamily="Space Mono" 
                 // Assert length of the SVG text box, note the ratio is not exact 
                 // so we need to do this
