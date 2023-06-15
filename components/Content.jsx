@@ -20,9 +20,9 @@ export default function Content() {
                         <div className="profile-pic">
                             <Image 
                                 src="/assets/images/avatar.jpeg"
-                                width={75}
-                                height={75}
                                 alt="Picture of the author"
+                                style={{ objectFit: "contain" }}
+                                layout="fill"
                             />
                         </div>
                         <div className="hello">
@@ -30,7 +30,7 @@ export default function Content() {
                         </div>
                     </div>
                     <div className="opening-spiel-text">
-                        I&apos;m a hello world lorem ipsum globally transform next-generation systems proactively unleash long-term high-impact web services conveniently plagiarize goal-oriented growth strategies
+                        🚧🚧🚧 Under construction 🚧🚧🚧
                     </div>
                 </div>
                 <div className="callout-cards">
