@@ -111,7 +111,6 @@ function DownArrow(props) {
       <div ref={downArrowRef}>
         <svg
           xmlns="http://www.w3.org/2000/svg"
-          // xmlSpace="preserve"
           fill="#fff"
           stroke="#fff"
           viewBox="0 0 1024 1024"

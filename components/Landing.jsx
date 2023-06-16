@@ -143,8 +143,8 @@ export default function Landing() {
                       <SVGText
                         gradientType={
                           highlightedCases(highlightedWord)?.includes(el.text) 
-                          ? 'hyper' 
-                          : 'cottonCandy'
+                            ? 'hyper' 
+                            : 'cottonCandy'
                         }
                       >
                         {el.text}

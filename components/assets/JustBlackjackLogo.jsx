@@ -72,10 +72,6 @@ const JustBlackjackLogo = ({ ...props }) => {
         
     }, [])
 
-    // TODO: Allow passing of size props into this; maybe changing the style prop etc.
-    // Put all the reactivity in here instead of out in the main landing Component
-    // TODO: See if you can put the animation code here as well (on-hover, fade-in)
-    // TODO: Can we do the same thing for the downarrow to declutter the landing component?
     // TODO: In the sidebar div, include a short spiel about what this is about- my firs tproj etc
     return (
         <div className="justblackjack-button" ref={jBButtonRef}>
