@@ -28,12 +28,14 @@
 
 .title-container {
     width: 100%;
+    height: 100%;
     padding: 2rem 7rem;
-    margin-top: 3rem;
+    margin: 3rem 0;
     color: white;
     position: relative;
     display: flex;
     justify-content: space-between;
+    box-sizing: border-box;
     & > h2 {
         font-size: 1.275rem;
         font-weight: normal;
@@ -45,6 +47,14 @@
         justify-content: flex-end;
         align-items: flex-end;
     }
+}
+
+.title-contents {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    height: fit-content;
+    justify-content: space-between;
 }
 
 .title-text {
@@ -69,6 +79,8 @@
     flex-direction: column;
     align-items: center;
     opacity: 0;
+    left: 50%;
+    transform: translateX(-50%);
     & > p {
         font-size: 0.75rem;
     }
@@ -84,14 +96,14 @@
     cursor: pointer;
 }
 
-.highlighted {
-    // background-color: yellow; /* Or any other styles */
-}
+// .highlighted {
+//     background-color: yellow; /* Or any other styles */
+// }
 
 .justblackjack-button {
-    height: 150px;
+    // height: 150px;
     position: absolute;
-    bottom: 3rem;
+    bottom: 2rem;
     right: 7rem;
     opacity: 0;
     cursor: pointer;
@@ -107,27 +119,40 @@
             padding-top: 1rem;
         }
     }
-
+    
     .title-text {
         font-size: 4.5rem;
         line-height: 4rem;
+    }
+
+    .justblackjack-button {
+        right: 10%;
     }
 
 }
 
 @media screen and (max-width: 640px) {
 
-    .title-text {
-        font-size: 5rem;
-        padding-bottom: 2rem;
+    .title-contents {
+        flex-direction: column;
     }
 
     .title-container {
         flex-direction: column;
         margin-top: 1rem;
+        padding: 2rem 7.5%;
         & > h2 {
             font-size: 1rem;
         }
+    }
+
+    .title-text {
+        font-size: 5rem;
+        padding-bottom: 2rem;
+    }
+
+    .justblackjack-button {
+        right: 7.5%;
     }
 
 }

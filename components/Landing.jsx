@@ -116,6 +116,7 @@ export default function Landing() {
   return (
     <div className="landing-container" id="landing">
       <div className="title-container">
+        <div className="title-contents">
           <h1
             className="title-text gradient-text noselect cotton-candy-gr"
             role="heading"
@@ -154,9 +155,10 @@ export default function Landing() {
               </div>
             </div>
           </SocialHoverContext.Provider>
+        </div>
+        <DownArrow />
+        <JustBlackjackLogo />
       </div>
-      <DownArrow />
-      <JustBlackjackLogo />
     </div>
   )
 }
