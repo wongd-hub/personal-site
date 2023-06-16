@@ -33,16 +33,10 @@ export default function Landing() {
     },
   ]
 
-  // Function to scroll to content upon down arrow click
-  const scrollToMain = () => {
-    gsap.to(window, { duration: 1.3, scrollTo: "#content", ease: "power1.inOut" });
-  };
-
   // Create references to drive GSAP animations
   const titleRef = useRef(null);
   const roleRef = useRef([]);
   const socialsRef = useRef(null);
-  const downArrowRef = useRef(null);
   const jBButtonRef = useRef(null);
 
   // Use shared context to tell role titles to be highlighted when 
@@ -111,24 +105,6 @@ export default function Landing() {
     );
 
     // Initially disable pointer events on roles
-    gsap.set(downArrowRef.current, { pointerEvents: "none" });
-
-    // Animate DownArrow
-    gsap.fromTo(
-      downArrowRef.current, 
-      { opacity: 0 }, 
-      { 
-        opacity: 1, 
-        duration: 3, 
-        delay: 5, 
-        ease: "power1.inOut",
-        onComplete: function() {
-          gsap.set(downArrowRef.current, { pointerEvents: "auto" })
-        } 
-      }
-    );
-
-    // Initially disable pointer events on roles
     gsap.set(jBButtonRef.current, { pointerEvents: "none" });
 
     // Animate justBlackjack button
@@ -176,48 +152,6 @@ export default function Landing() {
     }
   }, [highlightedWord]);
 
-  // Handling down arrow animations
-  //  - Fade out when the user gets 20% of the way down the first page,
-  //     they clearly know that you can scroll down now
-  //  - Fade back in when you get to 10% of the first page.
-  //  - Have the down arrow bounce every once in a while
-  useEffect(() => {
-
-    const handleDownArrow = () => {
-      const hideThreshold = 0.01;
-      const hidePosition = window.innerHeight * hideThreshold;
-      const revealPosition = window.innerHeight * hideThreshold;
-
-      if (window.scrollY > hidePosition) {
-        gsap.to(downArrowRef.current, { autoAlpha: 0, duration: 0.2 });
-      } else if (window.scrollY < revealPosition) {
-        gsap.to(downArrowRef.current, { autoAlpha: 1, duration: 0.5 });
-      }
-    };
-
-    window.addEventListener('scroll', handleDownArrow);
-
-    const bounceTimeline = gsap.timeline({delay: 3, repeat: 3, repeatDelay: 10});
-
-    bounceTimeline
-      .to(downArrowRef.current, {
-        y: "-25px",
-        duration: 1.2,
-        yoyo: true,
-        yoyoEase: "elastic.out(1.5, 0.3)",
-      })
-      .to(downArrowRef.current, {
-        y: "0px",
-        duration: 0.5,
-        ease: "power2.out",
-      });
-
-    return () => {
-      window.removeEventListener('scroll', handleDownArrow);
-    };
-
-  }, []);
-
   return (
     <div className="landing-container" id="landing">
       <div className="title-container">
@@ -260,14 +194,7 @@ export default function Landing() {
             </div>
           </SocialHoverContext.Provider>
       </div>
-      <div 
-        className="arrow-down noselect gradient-text cotton-candy-gr" 
-        ref={downArrowRef} 
-        onClick={scrollToMain}
-      >
-        <div>Scroll down!</div>
-        <div ref={downArrowRef}><DownArrow width={60} height={60}/></div>
-      </div>
+      <DownArrow />
       <div className="justblackjack-button" ref={jBButtonRef}>
           <JustBlackjackLogo />
         </div>
