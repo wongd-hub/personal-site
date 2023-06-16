@@ -6,11 +6,13 @@ import Socials from "./socials/Socials";
 import { SocialHoverContext } from "./contexts/SocialHoverContext";
 import JustBlackjackLogo from '../components/assets/JustBlackjackLogo';
 import { gsap } from 'gsap';
-import { ScrollToPlugin } from "gsap/dist/ScrollToPlugin";
-
-gsap.registerPlugin(ScrollToPlugin);
 
 export default function Landing() {
+
+  // Create references to drive GSAP animations
+  const titleRef = useRef(null);
+  const roleRef = useRef([]);
+  const socialsRef = useRef(null);
 
   // Define list of roles to display
   const roleList = [
@@ -32,12 +34,6 @@ export default function Landing() {
       href: "https://www.mathkata.app/",
     },
   ]
-
-  // Create references to drive GSAP animations
-  const titleRef = useRef(null);
-  const roleRef = useRef([]);
-  const socialsRef = useRef(null);
-  const jBButtonRef = useRef(null);
 
   // Use shared context to tell role titles to be highlighted when 
   // social icons are highlighted
@@ -104,41 +100,6 @@ export default function Landing() {
       }
     );
 
-    // Initially disable pointer events on roles
-    gsap.set(jBButtonRef.current, { pointerEvents: "none" });
-
-    // Animate justBlackjack button
-    gsap.fromTo(
-      jBButtonRef.current, 
-      { opacity: 0 }, 
-      { 
-        opacity: 1, 
-        duration: 3, 
-        delay: 5, 
-        ease: "power1.inOut",
-        onComplete: function() {
-          gsap.set(jBButtonRef.current, { pointerEvents: "auto" })
-        } 
-      }
-    );
-
-    // Define animation functions for on-hover/focus for justBlackjack button
-    const onInteraction = (el) => {
-      gsap.to(el, { opacity: 0.7, duration: 0.2, ease: "sine.inOut" });
-    };
-
-    const afterInteraction = (el) => {
-      gsap.to(el, { opacity: 1, duration: 0.2, ease: "sine.inOut" });
-    };
-
-    // Assigning animations to the justBlackjack button
-    if (jBButtonRef.current) {
-
-      jBButtonRef.current.addEventListener("mouseover", () => onInteraction(jBButtonRef.current));
-      jBButtonRef.current.addEventListener("mouseout", () => afterInteraction(jBButtonRef.current));
-
-    }
-
   }, []);
 
   // Will run every time highlightedWord changes so that on-hover and 
@@ -195,9 +156,7 @@ export default function Landing() {
           </SocialHoverContext.Provider>
       </div>
       <DownArrow />
-      <div className="justblackjack-button" ref={jBButtonRef}>
-          <JustBlackjackLogo />
-        </div>
+      <JustBlackjackLogo />
     </div>
   )
 }
