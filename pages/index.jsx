@@ -53,9 +53,6 @@ export default function Home() {
         <Content />
       </main>
 
-      {/* This is here to allow scroll-down */}
-      {/* <div id="main"/> */}
-
     </div>
   );
 }

@@ -33,6 +33,7 @@ export default function Landing() {
     },
   ]
 
+  // Function to scroll to content upon down arrow click
   const scrollToMain = () => {
     gsap.to(window, { duration: 1.3, scrollTo: "#content", ease: "power1.inOut" });
   };
@@ -48,6 +49,7 @@ export default function Landing() {
   // social icons are highlighted
   const [highlightedWord, setHighlightedWord] = useState(null);
 
+  // Handle the highlighting of the roles when socials are hovered over
   const highlightedCases = (highlighted) => {
     const rolesToHighlight = (highlighted) => {
       switch(highlighted) {
@@ -174,7 +176,7 @@ export default function Landing() {
     }
   }, [highlightedWord]);
 
-  // Handling down arrow:
+  // Handling down arrow animations
   //  - Fade out when the user gets 20% of the way down the first page,
   //     they clearly know that you can scroll down now
   //  - Fade back in when you get to 10% of the first page.
@@ -265,10 +267,10 @@ export default function Landing() {
       >
         <div>Scroll down!</div>
         <div ref={downArrowRef}><DownArrow width={60} height={60}/></div>
-        <div className="justblackjack-button" ref={jBButtonRef}>
-          <JustBlackjackLogo style={{height: "150px", width: "150px"}}/>
-        </div>
       </div>
+      <div className="justblackjack-button" ref={jBButtonRef}>
+          <JustBlackjackLogo style={{ height: "150px", width: "150px" }}/>
+        </div>
     </div>
   )
 }
