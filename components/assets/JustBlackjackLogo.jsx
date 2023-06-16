@@ -52,7 +52,10 @@ const JustBlackjackLogo = ({ ...props }) => {
     useEffect(() => {
 
         const updateLogoSize = () => {
-            const logoSize = window.innerWidth < 850 ? 100 : 150;
+            const logoSize = window.innerWidth < 300 ? 60 
+                : window.innerWidth < 380 ? 80 
+                : window.innerWidth < 850 ? 100 
+                : 150;
             setLogoSize(logoSize);
         }
 

@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import SVGGradient from './SVGGradient';
 import { gsap } from 'gsap';
 import { ScrollToPlugin } from "gsap/dist/ScrollToPlugin";
@@ -7,6 +7,7 @@ gsap.registerPlugin(ScrollToPlugin);
 
 function DownArrow(props) {
 
+  const [ArrowSize, setArrowSize] = useState(0);
   const downArrowRef = useRef(null);
 
   // Function to scroll to content upon down arrow click
@@ -34,6 +35,27 @@ function DownArrow(props) {
         } 
       }
     );
+
+  }, [])
+
+  // Reactivity
+  useEffect(() => {
+
+    const updateArrowSize = () => {
+        const arrowSize = window.innerWidth < 850 ? 35 : 60;
+        setArrowSize(arrowSize);
+    }
+
+    // Call once to set initial measurements
+    updateArrowSize();
+
+    // Listen to window resize event
+    window.addEventListener('resize', updateArrowSize);
+
+    // Clean up event listener on unmount
+    return () => {
+        window.removeEventListener('resize', updateArrowSize);
+    }
 
   }, [])
 
@@ -93,8 +115,8 @@ function DownArrow(props) {
           fill="#fff"
           stroke="#fff"
           viewBox="0 0 1024 1024"
-          width={60} 
-          height={60}
+          width={ArrowSize} 
+          height={ArrowSize}
           {...props}
         >
           <defs>
