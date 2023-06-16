@@ -269,7 +269,7 @@ export default function Landing() {
         <div ref={downArrowRef}><DownArrow width={60} height={60}/></div>
       </div>
       <div className="justblackjack-button" ref={jBButtonRef}>
-          <JustBlackjackLogo style={{ height: "150px", width: "150px" }}/>
+          <JustBlackjackLogo />
         </div>
     </div>
   )
