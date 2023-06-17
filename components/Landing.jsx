@@ -166,11 +166,22 @@ export default function Landing() {
           <ExitButton />
         </div>
         <div className="justblackjack-spiel">
+          🧐 This was my first Javascript project!<br/>
           <a
             href="https://wongd-hub.github.io/justBlackjack/"
             target="_blank"
             rel="noopener noreferrer"
-          >🧐 This was my first Javascript project!</a>
+            className="gradient-text hyper-gr"
+          >
+            Link to site 
+          </a> | <a
+            href="https://www.herdmentality.xyz/blog/justBlackjack/justBlackjack-build-setup"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="gradient-text hyper-gr"
+          >
+            Devblog
+          </a>
         </div>
         <iframe 
           src="https://wongd-hub.github.io/justBlackjack/"
