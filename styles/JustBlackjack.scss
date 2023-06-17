@@ -1,0 +1,39 @@
+.justblackjack-button {
+    position: absolute;
+    bottom: 2rem;
+    right: 7rem;
+    opacity: 0;
+}
+
+.justblackjack-frame {
+    position: absolute;
+    right: 0;
+    top: 0;
+    height: 100vh;
+    width: max(50vw, 490px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    
+    & iframe {
+        position: relative;
+        height: 100%;
+        width: 95%;
+        border-style: none;
+        border-radius: 25px;
+        margin-bottom: 1rem;
+    }
+}
+
+.justblackjack-spiel {
+    padding: 1rem 0;
+    color: white;
+}
+
+.justblackjack-closebutton {
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: 15px;
+    color: white;
+}

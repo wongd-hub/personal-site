@@ -7,6 +7,8 @@ import { SocialHoverContext } from "./contexts/SocialHoverContext";
 import JustBlackjackLogo from '../components/assets/JustBlackjackLogo';
 import { gsap } from 'gsap';
 
+import ExitButton from "./assets/ExitButton"
+
 export default function Landing() {
 
   // Create references to drive GSAP animations
@@ -158,6 +160,22 @@ export default function Landing() {
         </div>
         <DownArrow />
         <JustBlackjackLogo />
+      </div>
+      <div className="justblackjack-frame glass-bg">
+        <div className="justblackjack-closebutton">
+          <ExitButton />
+        </div>
+        <div className="justblackjack-spiel">
+          <a
+            href="https://wongd-hub.github.io/justBlackjack/"
+            target="_blank"
+            rel="noopener noreferrer"
+          >🧐 This was my first Javascript project!</a>
+        </div>
+        <iframe 
+          src="https://wongd-hub.github.io/justBlackjack/"
+          loading="lazy"
+        ></iframe>
       </div>
     </div>
   )

@@ -1,5 +1,6 @@
 @import "./Landing.scss";
 @import "./Content.scss";
+@import "./JustBlackjack.scss";
 
 html,
 body {
@@ -201,12 +202,3 @@ a {
     background: black;
   }
 }
-
-// @keyframes rotate {
-//   0% { start-offset: 0% }
-//   100% { start-offset: 100% }
-// }
-
-// #text-path {
-//   animation: rotate 5s linear infinite;
-// }

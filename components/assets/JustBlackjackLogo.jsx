@@ -72,14 +72,14 @@ const JustBlackjackLogo = ({ ...props }) => {
         
     }, [])
 
-    // TODO: In the sidebar div, include a short spiel about what this is about- my firs tproj etc
     return (
         <div className="justblackjack-button" ref={jBButtonRef}>
             <Lottie 
                 animationData={justBlackjackAnim} 
                 style={{ 
                     height: `${LogoSize}px`, 
-                    width: `${LogoSize}px` 
+                    width: `${LogoSize}px`,
+                    cursor: 'pointer'
                 }} 
                 {...props}  
             />
