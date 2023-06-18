@@ -6,8 +6,7 @@ import Socials from "./socials/Socials";
 import { SocialHoverContext } from "./contexts/SocialHoverContext";
 import JustBlackjackLogo from '../components/assets/JustBlackjackLogo';
 import { gsap } from 'gsap';
-
-import ExitButton from "./assets/ExitButton"
+import JustBlackjack from '../components/JustBlackjack'
 
 export default function Landing() {
 
@@ -161,33 +160,7 @@ export default function Landing() {
         <DownArrow />
         <JustBlackjackLogo />
       </div>
-      <div className="justblackjack-frame glass-bg">
-        <div className="justblackjack-closebutton">
-          <ExitButton />
-        </div>
-        <div className="justblackjack-spiel">
-          🧐 This was my first Javascript project!<br/>
-          <a
-            href="https://wongd-hub.github.io/justBlackjack/"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="gradient-text hyper-gr"
-          >
-            Link to site 
-          </a> | <a
-            href="https://www.herdmentality.xyz/blog/justBlackjack/justBlackjack-build-setup"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="gradient-text hyper-gr"
-          >
-            Devblog
-          </a>
-        </div>
-        <iframe 
-          src="https://wongd-hub.github.io/justBlackjack/"
-          loading="lazy"
-        ></iframe>
-      </div>
+      <JustBlackjack />
     </div>
   )
 }
