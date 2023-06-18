@@ -48,6 +48,29 @@ const JustBlackjackLogo = ({ ...props }) => {
 
     }, []);
 
+    // Fade-out upon scroll-down
+    useEffect(() => {
+
+        const handleBlackjackLogoFade = () => {
+            const hideThreshold = 0.01;
+            const hidePosition = window.innerHeight * hideThreshold;
+            const revealPosition = window.innerHeight * hideThreshold;
+      
+            if (window.scrollY > hidePosition) {
+              gsap.to(jBButtonRef.current, { autoAlpha: 0, duration: 0.2 });
+            } else if (window.scrollY < revealPosition) {
+              gsap.to(jBButtonRef.current, { autoAlpha: 1, duration: 0.5 });
+            }
+          };
+      
+        window.addEventListener('scroll', handleBlackjackLogoFade);
+
+        return () => {
+            window.removeEventListener('scroll', handleBlackjackLogoFade);
+        };
+
+    }, [])
+
     // Reactive sizing of logo
     useEffect(() => {
 
