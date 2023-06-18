@@ -35,6 +35,23 @@ export default function JustBlackjack() {
 
     }, [])
 
+    // Close sidebar when clicking outside
+    useEffect(() => {
+
+        const handleClickOutside = event => {
+            if (jbSidebarRef.current && !jbSidebarRef.current.contains(event.target)) {
+                setIsOpen(false);
+            }
+        };
+
+        document.addEventListener("mousedown", handleClickOutside);
+
+        return () => {
+            document.removeEventListener("mousedown", handleClickOutside);
+        };
+
+    }, []);
+
     // Animate sidebar in and out upon state change
     useEffect(() => {
         if(isOpen) {
