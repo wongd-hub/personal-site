@@ -79,8 +79,8 @@ export default function JustBlackjack() {
                         rel="noopener noreferrer"
                         className="gradient-text hyper-gr justblackjack-link"
                     >
-                        Link to site 
-                    </a> | <a
+                        Link to site
+                    </a>&nbsp;|&nbsp;<a
                         href="https://www.herdmentality.xyz/blog/justBlackjack/justBlackjack-build-setup"
                         target="_blank"
                         rel="noopener noreferrer"
