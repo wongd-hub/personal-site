@@ -9,7 +9,7 @@ function ExitButton(props) {
     const { setIsOpen } = useContext(JustBlackjackContext);
 
     return (
-        <div 
+        <div
             ref={buttonRef}
             onClick={() => {setIsOpen(false)}}
             className="justblackjack-exitarrow"

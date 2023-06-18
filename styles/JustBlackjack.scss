@@ -43,3 +43,27 @@
 .justblackjack-exitarrow:hover {
     opacity: 0.8;
 }
+
+@media screen and (max-width: 850px) {
+
+    .justblackjack-button {
+        right: 10%;
+    }
+
+}
+
+@media screen and (max-width: 640px) {
+
+    .justblackjack-button {
+        right: 7.5%;
+    }
+
+}
+
+@media screen and (max-width: 500px) {
+
+    .justblackjack-button {
+        right: 7.5%;
+    }
+
+}
