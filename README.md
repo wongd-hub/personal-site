@@ -14,6 +14,7 @@
    * [Diagonal arrow](https://www.svgrepo.com/svg/34346/diagonal-arrow) (configurations in *Screenshot 2* below) sourced from [svgrepo.com](svgrepo.com)
    * Linear gradients added using colours from Cotton Candy on [hypercolor.dev](https://hypercolor.dev/)
    * Gradient background for content section is generated using [gggrain](https://fffuel.co/gggrain/), see configurations in *Screenshot 4* below
+   * [Exit arrow](https://www.svgrepo.com/svg/457906/close-round?edit=true) on JustBlackjack side-bar (configurations in *Screenshot 5* below)
 
 <br/>
 
@@ -36,3 +37,7 @@
 <img width="1118" alt="image" src="https://github.com/wongd-hub/personal-site/assets/74039081/81463b50-e3b1-4b12-ae3b-fbf30f370e47">
 
 *Screenshot 4*
+
+<img width="1011" alt="image" src="https://github.com/wongd-hub/personal-site/assets/74039081/de1c8776-af45-48e2-8334-42128136db8f">
+
+*Screenshot 5*
