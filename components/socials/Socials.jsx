@@ -2,6 +2,7 @@ import React from "react";
 import SVGGithub from "./SVGGithub";
 import SVGHerdMentality from "./SVGHerdMentality";
 import SVGLinkedIn from "./SVGLinkedIn";
+import SVGMail from "./SVGMail";
 import { gsap } from 'gsap';
 import { useEffect, useState, useRef, useContext } from "react";
 import { SocialHoverContext } from "../contexts/SocialHoverContext";
@@ -49,6 +50,12 @@ const Socials = ({ ...props }) => {
             title: 'linkedin',
             component: SVGLinkedIn,
             href: 'https://www.linkedin.com/in/darren-wong-52212a117/'
+        },
+        {
+            // https://fontawesome.com/icons/square-envelope?f=classic&s=solid
+            title: 'email',
+            component: SVGMail,
+            href: 'mailto:me@darrenwong.id.au'
         },
     ]
 

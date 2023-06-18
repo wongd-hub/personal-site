@@ -49,6 +49,8 @@ export default function Landing() {
             return ['data analyst', 'aspiring web dev'];
         case 'linkedin':
             return ['data analyst'];
+        case 'email':
+          return ['blogger', 'data analyst', 'aspiring web dev'];
         default:
             return [];
       }
