@@ -35,13 +35,22 @@ export default function JustBlackjack() {
 
     }, [])
 
+    // Animate sidebar in and out upon state change
+    useEffect(() => {
+        if(isOpen) {
+          gsap.to(jbSidebarRef.current, {duration: 0.5, x: '0%', ease: "power2.out"});
+        } else {
+          gsap.to(jbSidebarRef.current, {duration: 0.5, x: '100%', ease: "power2.in"});
+        }
+      }, [isOpen]);
+
     return (
-        <JustBlackjackContext.Provider value={{ isOpen, setIsOpen }}>
+        <JustBlackjackContext.Provider value={{ setIsOpen }}>
             <JustBlackjackLogo />
-            <div 
-                className="justblackjack-frame glass-bg" 
-                ref={jbSidebarRef}
-            >
+                <div
+                    className="justblackjack-frame glass-bg"
+                    ref={jbSidebarRef}
+                >
                 <div className="justblackjack-closebutton">
                     <ExitButton />
                 </div>
@@ -67,7 +76,7 @@ export default function JustBlackjack() {
                     src="https://wongd-hub.github.io/justBlackjack/"
                     loading="lazy"
                 ></iframe>
-            </div>
+                </div>
         </JustBlackjackContext.Provider>
     )
 

@@ -98,7 +98,11 @@ const JustBlackjackLogo = ({ ...props }) => {
     }, [])
 
     return (
-        <div className="justblackjack-button" ref={jBButtonRef}>
+        <div
+            className="justblackjack-button"
+            ref={jBButtonRef}
+            onClick={() => {setIsOpen(true)}}
+        >
             <Lottie 
                 animationData={justBlackjackAnim} 
                 style={{ 

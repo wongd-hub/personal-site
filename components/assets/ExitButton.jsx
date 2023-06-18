@@ -9,7 +9,11 @@ function ExitButton(props) {
     const { setIsOpen } = useContext(JustBlackjackContext);
 
     return (
-        <div ref={buttonRef}>
+        <div 
+            ref={buttonRef}
+            onClick={() => {setIsOpen(false)}}
+            className="justblackjack-exitarrow"
+        >
             <svg
                 xmlns="http://www.w3.org/2000/svg"
                 height={ButtonSize}
