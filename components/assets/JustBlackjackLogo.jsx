@@ -1,12 +1,14 @@
-import React, { useEffect, useState, useRef } from "react"
+import React, { useEffect, useState, useRef, useContext } from "react"
 import Lottie from "lottie-react";
 import justBlackjackAnim from "./justBlackjackLottie.json";
+import { JustBlackjackContext } from "../contexts/JustBlackjackContext";
 import { gsap } from 'gsap';
 
 const JustBlackjackLogo = ({ ...props }) => {
 
     const [LogoSize, setLogoSize] = useState(0);
     const jBButtonRef = useRef(null);
+    const { setIsOpen } = useContext(JustBlackjackContext);
 
     // Animate in
     useEffect(() => {

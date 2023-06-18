@@ -1,8 +1,13 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import ExitButton from './assets/ExitButton';
+import JustBlackjackLogo from '../components/assets/JustBlackjackLogo';
+import { JustBlackjackContext } from "./contexts/JustBlackjackContext";
 import { gsap } from 'gsap';
 
 export default function JustBlackjack() {
+
+    // Set up state
+    const [isOpen, setIsOpen] = useState(false);
 
     // Create references to drive GSAP animations
     const jbSidebarRef = useRef(null);
@@ -31,37 +36,39 @@ export default function JustBlackjack() {
     }, [])
 
     return (
-        <div 
-            className="justblackjack-frame glass-bg" 
-            ref={jbSidebarRef}
-        >
-            {/* Have this fade out the same way as the down arrow on scrolldown? */}
-            <div className="justblackjack-closebutton">
-            <ExitButton />
-            </div>
-            <div className="justblackjack-spiel">
-            🧐 This was my first Javascript project!<br/>
-            <a
-                href="https://wongd-hub.github.io/justBlackjack/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="gradient-text hyper-gr justblackjack-link"
+        <JustBlackjackContext.Provider value={{ isOpen, setIsOpen }}>
+            <JustBlackjackLogo />
+            <div 
+                className="justblackjack-frame glass-bg" 
+                ref={jbSidebarRef}
             >
-                Link to site 
-            </a> | <a
-                href="https://www.herdmentality.xyz/blog/justBlackjack/justBlackjack-build-setup"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="gradient-text hyper-gr justblackjack-link"
-            >
-                Devblog
-            </a>
+                <div className="justblackjack-closebutton">
+                    <ExitButton />
+                </div>
+                <div className="justblackjack-spiel">
+                    🧐 This was my first Javascript project!<br/>
+                    <a
+                        href="https://wongd-hub.github.io/justBlackjack/"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="gradient-text hyper-gr justblackjack-link"
+                    >
+                        Link to site 
+                    </a> | <a
+                        href="https://www.herdmentality.xyz/blog/justBlackjack/justBlackjack-build-setup"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="gradient-text hyper-gr justblackjack-link"
+                    >
+                        Devblog
+                    </a>
+                </div>
+                <iframe 
+                    src="https://wongd-hub.github.io/justBlackjack/"
+                    loading="lazy"
+                ></iframe>
             </div>
-            <iframe 
-            src="https://wongd-hub.github.io/justBlackjack/"
-            loading="lazy"
-            ></iframe>
-        </div>
+        </JustBlackjackContext.Provider>
     )
 
 } 

@@ -4,7 +4,6 @@ import { useEffect, useRef, useState } from 'react';
 import SVGText from "./assets/SVGText";
 import Socials from "./socials/Socials";
 import { SocialHoverContext } from "./contexts/SocialHoverContext";
-import JustBlackjackLogo from '../components/assets/JustBlackjackLogo';
 import { gsap } from 'gsap';
 import JustBlackjack from '../components/JustBlackjack'
 
@@ -158,9 +157,9 @@ export default function Landing() {
           </SocialHoverContext.Provider>
         </div>
         <DownArrow />
-        <JustBlackjackLogo />
+        <JustBlackjack />
       </div>
-      <JustBlackjack />
+      
     </div>
   )
 }
