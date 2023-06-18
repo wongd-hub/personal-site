@@ -70,9 +70,6 @@ const Socials = ({ ...props }) => {
             if (el) { // Check if the element exists
                 el.addEventListener("mouseover", () => onInteraction(el));
                 el.addEventListener("mouseout", () => afterInteraction(el));
-        
-                el.addEventListener("focus", () => onInteraction(el));
-                el.addEventListener("blur", () => afterInteraction(el));
             }
         });
 

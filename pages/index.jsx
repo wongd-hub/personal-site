@@ -46,14 +46,12 @@ export default function Home() {
           height: '100vh', width: '100vw', position: 'fixed', zIndex: -10,
         }}
       />
+
       <Landing />
 
       <main id="content">
         <Content />
       </main>
-
-      {/* This is here to allow scroll-down */}
-      {/* <div id="main"/> */}
 
     </div>
   );
