@@ -1,11 +1,40 @@
-import React, { useEffect, useRef } from 'react'
-import ExitButton from './assets/ExitButton'
-
+import React, { useEffect, useRef } from 'react';
+import ExitButton from './assets/ExitButton';
+import { gsap } from 'gsap';
 
 export default function JustBlackjack() {
 
+    // Create references to drive GSAP animations
+    const jbSidebarRef = useRef(null);
+
+    // Fade out JustBlackjack sidebar when you scroll down 
+    useEffect(() => {
+
+        const handleJBSidebar = () => {
+            const hideThreshold = 0.01;
+            const hidePosition = window.innerHeight * hideThreshold;
+            const revealPosition = window.innerHeight * hideThreshold;
+      
+            if (window.scrollY > hidePosition) {
+              gsap.to(jbSidebarRef.current, { autoAlpha: 0, duration: 0.5 });
+            } else if (window.scrollY < revealPosition) {
+              gsap.to(jbSidebarRef.current, { autoAlpha: 1, duration: 0.5 });
+            }
+          };
+      
+        window.addEventListener('scroll', handleJBSidebar);
+
+        return () => {
+            window.removeEventListener('scroll', handleJBSidebar);
+        };
+
+    }, [])
+
     return (
-        <div className="justblackjack-frame glass-bg">
+        <div 
+            className="justblackjack-frame glass-bg" 
+            ref={jbSidebarRef}
+        >
             {/* Have this fade out the same way as the down arrow on scrolldown? */}
             <div className="justblackjack-closebutton">
             <ExitButton />
@@ -16,14 +45,14 @@ export default function JustBlackjack() {
                 href="https://wongd-hub.github.io/justBlackjack/"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="gradient-text hyper-gr"
+                className="gradient-text hyper-gr justblackjack-link"
             >
                 Link to site 
             </a> | <a
                 href="https://www.herdmentality.xyz/blog/justBlackjack/justBlackjack-build-setup"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="gradient-text hyper-gr"
+                className="gradient-text hyper-gr justblackjack-link"
             >
                 Devblog
             </a>

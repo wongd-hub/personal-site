@@ -60,7 +60,7 @@ function DownArrow(props) {
   }, [])
 
   // Handling down arrow animations
-  //  - Fade out when the user gets 20% of the way down the first page,
+  //  - Fade out when the user gets 1% of the way down the first page,
   //     they clearly know that you can scroll down now
   //  - Fade back in when you get to 10% of the first page.
   //  - Have the down arrow bounce every once in a while
