@@ -30,7 +30,7 @@ export default function Landing() {
       href: "https://github.com/wongd-hub?tab=repositories",
     },
     {
-      text: "aspiring web dev",
+      text: "web dev",
       href: "https://www.mathkata.app/",
     },
   ]
@@ -44,11 +44,13 @@ export default function Landing() {
     const rolesToHighlight = (highlighted) => {
       switch(highlighted) {
         case 'herd-mentality':
-            return ['blogger', 'data analyst', 'aspiring web dev'];
+            return ['blogger', 'data analyst', 'web dev'];
         case 'github':
-            return ['data analyst', 'aspiring web dev'];
+            return ['data analyst', 'web dev'];
         case 'linkedin':
             return ['data analyst'];
+        case 'email':
+          return ['blogger', 'data analyst', 'web dev'];
         default:
             return [];
       }

@@ -8,11 +8,12 @@
 
 * Favicon created using Photopea, font is Space Mono, gradient uses colours from Cotton Candy on [hypercolor.dev](https://hypercolor.dev/): `rgb(249, 168, 212), rgb(216, 180, 254), rgb(129, 140, 248)`
     * Converted to favicon using [favicon.io](favicon.io)
-* Noise filter from [nnnoise](https://fffuel.co/nnnoise/), see configurations in *Screenshot 3* below
+* Noise filter from [nnnoise](https://fffuel.co/nnnoise/), see configurations in *Screenshot 1* below
 * Particle net taken from my 3js practice site, [repo](https://github.com/wongd-hub/three-js-sandpit) & [site](https://three-js-sandpit.vercel.app/)
 * SVGs
-   * [Down arrow](https://www.svgrepo.com/svg/486227/down-arrow-backup-2) (configurations in *Screenshot 1* below) sourced from [svgrepo.com](svgrepo.com)
-   * [Diagonal arrow](https://www.svgrepo.com/svg/34346/diagonal-arrow) (configurations in *Screenshot 2* below) sourced from [svgrepo.com](svgrepo.com)
+   * Socials icons from [Font Awesome](https://fontawesome.com/), Herd Mentality icon from [Icon Scout](https://iconscout.com/icon/sheep-59)
+   * [Down arrow](https://www.svgrepo.com/svg/486227/down-arrow-backup-2) (configurations in *Screenshot 2* below) sourced from [svgrepo.com](svgrepo.com)
+   * [Diagonal arrow](https://www.svgrepo.com/svg/34346/diagonal-arrow) (configurations in *Screenshot 3* below) sourced from [svgrepo.com](svgrepo.com)
    * Linear gradients added using colours from Cotton Candy on [hypercolor.dev](https://hypercolor.dev/)
    * Gradient background for content section is generated using [gggrain](https://fffuel.co/gggrain/), see configurations in *Screenshot 4* below
    * [Exit arrow](https://www.svgrepo.com/svg/457906/close-round?edit=true) on JustBlackjack side-bar (configurations in *Screenshot 5* below)
@@ -23,15 +24,15 @@
 
 <br/>
 
-<img width="1010" alt="image" src="https://github.com/wongd-hub/personal-site/assets/74039081/46f9f777-b025-4e35-891e-19ebd37944cf">
+<img width="1119" alt="image" src="https://github.com/wongd-hub/personal-site/assets/74039081/de3a9ebd-b45d-46fd-a797-0c82764d4509">
 
 *Screenshot 1*
 
-<img width="1010" alt="image" src="https://github.com/wongd-hub/personal-site/assets/74039081/53e96033-de83-445e-a5bd-2595071dc851">
+<img width="1010" alt="image" src="https://github.com/wongd-hub/personal-site/assets/74039081/46f9f777-b025-4e35-891e-19ebd37944cf">
 
 *Screenshot 2*
 
-<img width="1119" alt="image" src="https://github.com/wongd-hub/personal-site/assets/74039081/de3a9ebd-b45d-46fd-a797-0c82764d4509">
+<img width="1010" alt="image" src="https://github.com/wongd-hub/personal-site/assets/74039081/53e96033-de83-445e-a5bd-2595071dc851">
 
 *Screenshot 3*
 
