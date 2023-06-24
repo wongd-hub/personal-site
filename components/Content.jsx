@@ -4,8 +4,17 @@ import Image from "next/image";
 
 export default function Content() {
 
+    const content = {
+        spiel: 
+            "I'm a data analyst with a passion for improving public health policy by informing" + 
+            "decision making. My expertise lies in working with and producing complex models yada yada" +
+            'hello',
+
+        
+    }
+
     return (
-        <>
+        <main id="content">
             <SVGBackground/>
             <div className="main-content">
                 <div className="opening-spiel glass-bg">
@@ -22,7 +31,12 @@ export default function Content() {
                         </div>
                     </div>
                     <div className="opening-spiel-text">
-                        🚧🚧🚧 Under construction 🚧🚧🚧
+                        {content.spiel}
+
+                        Tech stack: R, Python, SQL, Javascript
+                        Credentials: Uni, Certificates, etc
+
+                        Detailed work history
                     </div>
                 </div>
                 <div className="callout-cards">
@@ -31,6 +45,6 @@ export default function Content() {
                     </div>
                 </div>
             </div>
-        </>
+        </main>
     )
 }

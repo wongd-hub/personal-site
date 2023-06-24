@@ -48,11 +48,8 @@ export default function Home() {
       />
 
       <Landing />
-
-      <main id="content">
-        <Content />
-      </main>
-
+      
+      <Content />
     </div>
   );
 }
