@@ -1,8 +1,8 @@
 import React from "react";
 import DownArrow from "./assets/DownArrow";
 import { useEffect, useRef, useState } from 'react';
-import SVGText from "./assets/SVGText";
-import Socials from "./socials/Socials";
+import SVGText from "./svgs/SVGText";
+import Socials from "./Socials";
 import { SocialHoverContext } from "./contexts/SocialHoverContext";
 import { gsap } from 'gsap';
 import JustBlackjack from '../components/JustBlackjack'

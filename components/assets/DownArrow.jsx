@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
-import SVGGradient from './SVGGradient';
+import SVGGradient from '../svgs/SVGGradient';
 import { gsap } from 'gsap';
 import { ScrollToPlugin } from "gsap/dist/ScrollToPlugin";
 

@@ -1,5 +1,5 @@
 import React from "react";
-import SVGBackground from "./assets/SVGBackground";
+import SVGBackground from "./svgs/SVGBackground";
 import Image from "next/image";
 
 export default function Content() {
@@ -31,9 +31,15 @@ export default function Content() {
                         </div>
                     </div>
                     <div className="opening-spiel-text">
-                        {content.spiel}
+                        {content.spiel}<br/><br/>
 
-                        Tech stack: R, Python, SQL, Javascript
+                        <div className="tech-stack">
+                            <h2>Tech stack</h2>
+                            <div className="tech-stack-logos">
+                                </div>
+                        </div>
+                        
+                        <br/> R, Python, SQL, Javascript
                         Credentials: Uni, Certificates, etc
 
                         Detailed work history

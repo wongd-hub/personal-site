@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState, useContext } from 'react';
-import SVGGradient from './SVGGradient';
+import SVGGradient from '../svgs/SVGGradient';
 import { JustBlackjackContext } from "../contexts/JustBlackjackContext";
 
 function ExitButton(props) {
