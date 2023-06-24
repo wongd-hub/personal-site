@@ -1,6 +1,7 @@
 import React from "react";
 import SVGBackground from "./svgs/SVGBackground";
 import Image from "next/image";
+import SVGRLang from "./svgs/SVGRlang";
 
 export default function Content() {
 
@@ -9,9 +10,15 @@ export default function Content() {
             "I'm a data analyst with a passion for improving public health policy by informing" + 
             "decision making. My expertise lies in working with and producing complex models yada yada" +
             'hello',
-
-        
     }
+
+    const techStack = [
+        {
+            title: 'R',
+            component: SVGRLang,
+        },
+    ]
+
 
     return (
         <main id="content">
@@ -36,7 +43,8 @@ export default function Content() {
                         <div className="tech-stack">
                             <h2>Tech stack</h2>
                             <div className="tech-stack-logos">
-                                </div>
+                                <SVGRLang/>
+                            </div>
                         </div>
                         
                         <br/> R, Python, SQL, Javascript
