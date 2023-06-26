@@ -17,11 +17,11 @@ const SVGReact= ({
                 {ogGradient && <SVGGradient id="react"/>}
             </defs>
                 <title>{"React Logo"}</title>
-                <circle r={2.05} fill={"url(#react)"} />
-                <g fill="none" stroke="url(#react)">
-                <ellipse stroke="url(#react)" rx={11} ry={4.2} />
-                <ellipse stroke="url(#react)" rx={11} ry={4.2} transform="rotate(60)" />
-                <ellipse stroke="url(#react)" rx={11} ry={4.2} transform="rotate(120)" />
+                <circle r={2.05} fill={ogGradient ? "#61dafb" : "url(#react)"} />
+                <g fill="none" stroke={ogGradient ? "#61dafb" : "url(#react)"}>
+                <ellipse stroke={ogGradient ? "" : "url(#react)"} rx={11} ry={4.2} />
+                <ellipse stroke={ogGradient ? "" : "url(#react)"}  rx={11} ry={4.2} transform="rotate(60)" />
+                <ellipse stroke={ogGradient ? "" : "url(#react)"}  rx={11} ry={4.2} transform="rotate(120)" />
             </g>
         </svg>
     )

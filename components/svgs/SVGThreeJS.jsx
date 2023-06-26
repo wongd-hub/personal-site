@@ -3,6 +3,7 @@ import SVGGradient from "./SVGGradient"
 
 // From https://upload.wikimedia.org/wikipedia/commons/3/3f/Three.js_Icon.svg
 const SVGThreeJS= ({ 
+    ogGradient,
     ...props 
 }) => {
 
@@ -20,7 +21,7 @@ const SVGThreeJS= ({
             </defs>
             <g
                 fillRule="evenodd"
-                stroke="url(#threejs)"
+                stroke={ogGradient ? "#000000" : "url(#threejs)"}
                 strokeLinecap="butt"
                 strokeLinejoin="round"
                 strokeWidth={4}

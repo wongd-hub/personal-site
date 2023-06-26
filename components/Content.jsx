@@ -66,7 +66,9 @@ export default function Content() {
                     <div className="opening-spiel-text">
                         {content.spiel}<br/><br/>
 
-                        <div className="horizontal-rule">Put horizontal rule here</div>
+                        <br/>
+                        <hr className="horizontal-rule" />
+                        <br/>
 
                         <div className="tech-stack">
                             <h2>Tech stack</h2>
@@ -84,6 +86,7 @@ export default function Content() {
                                                     key={`${el.title}${i}`}
                                                     width={65}
                                                     height={65}
+                                                    ogGradient
                                                 />
                                             )
 
@@ -102,6 +105,7 @@ export default function Content() {
                                                     key={`${el.title}${i}`}
                                                     width={65}
                                                     height={65}
+                                                    ogGradient
                                                 />
                                             )
 

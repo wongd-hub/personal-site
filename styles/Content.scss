@@ -80,6 +80,7 @@
     &-logos {
         display: flex;
         flex-direction: column;
+        row-gap: 1.5rem;
     }
 }
 
@@ -89,6 +90,15 @@
     // justify-content: space-around;
     column-gap: 1.5rem;
     font-family: 'Space Mono', sans-serif;
+}
+
+.horizontal-rule {
+    width: 48px;
+    height: 1px;
+    margin: 4px auto;
+    background-color: #F5F5F5;
+    border: none;
+    border-radius: 50%;
 }
 
 @media screen and (max-width: 850px) {
@@ -110,6 +120,12 @@
         font-size: smaller;
     }
 
+}
+
+@media (prefers-color-scheme: dark) {
+    .horizontal-rule {
+        background-color: #383838;
+    }
 }
 
 @media screen and (max-width: 600px) {
