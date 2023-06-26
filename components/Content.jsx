@@ -3,6 +3,9 @@ import SVGBackground from "./svgs/SVGBackground";
 import Image from "next/image";
 import SVGRLang from "./svgs/SVGRlang";
 import SVGPython from "./svgs/SVGPython";
+import SVGJS from "./svgs/SVGJS";
+import SVGReact from "./svgs/SVGReact";
+import SVGThreeJS from "./svgs/SVGThreeJS";
 
 export default function Content() {
 
@@ -15,6 +18,7 @@ export default function Content() {
             'hello',
     }
 
+    {/* Experiment with switching colouring back to normal; gradients don't seem to work properly with the glass bg */}
     const dsStack = [
         {
             title: 'R',
@@ -28,7 +32,16 @@ export default function Content() {
 
     const wdStack = [
         {
-
+            title: 'JS',
+            component: SVGJS,
+        },
+        {
+            title: 'react',
+            component: SVGReact,
+        },
+        {
+            title: 'threejs',
+            component: SVGThreeJS,
         }
     ]
 
@@ -54,6 +67,7 @@ export default function Content() {
 
                         <div className="tech-stack">
                             <h2>Tech stack</h2>
+                            {/* TODO: Pull into own component */}
                             <div className="tech-stack-logos">
                                 <div className="ds-stack">
                                     <p>Data analysis</p>
@@ -74,7 +88,22 @@ export default function Content() {
                                     }
                                 </div>
                                 <div className="wd-stack">
+                                    <p>Web development</p>
+                                    {
+                                        wdStack && wdStack.map((el, i) => {
 
+                                            const WDTech = el.component;
+
+                                            return (
+                                                <WDTech
+                                                    key={`${el.title}${i}`}
+                                                    width={65}
+                                                    height={65}
+                                                />
+                                            )
+
+                                        })
+                                    }
                                 </div>
                             </div>
                         </div>
