@@ -70,6 +70,15 @@
 
 .tech-stack {
     display: flex;
+    &-logos {
+        display: flex;
+        flex-direction: column;
+    }
+}
+
+.ds-stack, .wd-stack {
+    display: flex;
+    font-family: 'Space Mono', sans-serif;
 }
 
 @media screen and (max-width: 850px) {

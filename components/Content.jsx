@@ -1,9 +1,12 @@
-import React from "react";
+import React, { useState } from "react";
 import SVGBackground from "./svgs/SVGBackground";
 import Image from "next/image";
 import SVGRLang from "./svgs/SVGRlang";
+import SVGPython from "./svgs/SVGPython";
 
 export default function Content() {
+
+    const [BoxSize, setBoxSize] = useState(20);
 
     const content = {
         spiel: 
@@ -12,13 +15,22 @@ export default function Content() {
             'hello',
     }
 
-    const techStack = [
+    const dsStack = [
         {
             title: 'R',
             component: SVGRLang,
         },
+        {
+            title: 'python',
+            component: SVGPython,
+        }
     ]
 
+    const wdStack = [
+        {
+
+        }
+    ]
 
     return (
         <main id="content">
@@ -43,7 +55,27 @@ export default function Content() {
                         <div className="tech-stack">
                             <h2>Tech stack</h2>
                             <div className="tech-stack-logos">
-                                <SVGRLang/>
+                                <div className="ds-stack">
+                                    <p>Data analysis</p>
+                                    {
+                                        dsStack && dsStack.map((el, i) => {
+
+                                            const DSTech = el.component;
+
+                                            return (
+                                                <DSTech
+                                                    key={`${el.title}${i}`}
+                                                    width={65}
+                                                    height={65}
+                                                />
+                                            )
+
+                                        })
+                                    }
+                                </div>
+                                <div className="wd-stack">
+
+                                </div>
                             </div>
                         </div>
                         
