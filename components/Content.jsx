@@ -63,67 +63,90 @@ export default function Content() {
                             <span>Hello there, my name is&nbsp;<span className="gradient-text cotton-candy-gr">Darren</span></span>
                         </div>
                     </div>
-                    <div className="opening-spiel-text">
-                        {content.spiel}<br/><br/>
+                    <div className="text-content-container">
+                        <div className="content-item">
+                            {/* <h2>Intro</h2> */}
+                            <p>{content.spiel}</p>
+                        </div>
 
                         <br/>
                         <hr className="horizontal-rule" />
                         <br/>
 
-                        <div className="tech-stack">
+                        <div className="content-item">
                             <h2>Tech stack</h2>
-                            {/* TODO: Pull into own component */}
-                            <div className="tech-stack-logos">
+                            <div className="tech-stack">
                                 <div className="ds-stack">
                                     <p>Data analysis</p>
-                                    {
-                                        dsStack && dsStack.map((el, i) => {
+                                    <div className="tech-stack-logos">
+                                        {
+                                            dsStack && dsStack.map((el, i) => {
 
-                                            const DSTech = el.component;
+                                                const DSTech = el.component;
 
-                                            return (
-                                                <DSTech
-                                                    key={`${el.title}${i}`}
-                                                    width={65}
-                                                    height={65}
-                                                    ogGradient
-                                                />
-                                            )
+                                                return (
+                                                    <DSTech
+                                                        key={`${el.title}${i}`}
+                                                        width={65}
+                                                        height={65}
+                                                        ogGradient
+                                                    />
+                                                )
 
-                                        })
-                                    }
+                                            })
+                                        }
+                                    </div>
                                 </div>
                                 <div className="wd-stack">
                                     <p>Web development</p>
-                                    {
-                                        wdStack && wdStack.map((el, i) => {
+                                    <div className="tech-stack-logos">
+                                        {
+                                            wdStack && wdStack.map((el, i) => {
 
-                                            const WDTech = el.component;
+                                                const WDTech = el.component;
 
-                                            return (
-                                                <WDTech
-                                                    key={`${el.title}${i}`}
-                                                    width={65}
-                                                    height={65}
-                                                    ogGradient
-                                                />
-                                            )
+                                                return (
+                                                    <WDTech
+                                                        key={`${el.title}${i}`}
+                                                        width={65}
+                                                        height={65}
+                                                        ogGradient
+                                                    />
+                                                )
 
-                                        })
-                                    }
+                                            })
+                                        }
+                                    </div>
                                 </div>
                             </div>
                         </div>
+
+                        <br/>
+                        <hr className="horizontal-rule" />
+                        <br/>
+
+                        <div className="content-item">
+                            <h2>Career</h2>
+                            <p>Lorem ipsum</p>
+                        </div>
+
+                        <br/>
+                        <hr className="horizontal-rule" />
+                        <br/>
+
+                        <div className="content-item">
+                            <h2>Herd Mentality (blog)</h2>
+                            <p>Lorem ipsum (probably an ul or something)</p>
+                        </div>
+
+                        <br/>
+                        <hr className="horizontal-rule" />
+                        <br/>
                         
-                        <br/> 
-
-                        <div className="credentials">Credentials: Uni, Certificates, etc</div>
-
-                        Detailed work history
-                    </div>
-                </div>
-                <div className="callout-cards">
-                    <div className="callout-cards-1">
+                        <div className="content-item">
+                            <h2>Credentials / education</h2>
+                            <p>Uni, certificates, etc</p>
+                        </div>
 
                     </div>
                 </div>
