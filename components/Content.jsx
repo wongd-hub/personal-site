@@ -18,7 +18,8 @@ export default function Content() {
             'hello',
     }
 
-    {/* Experiment with switching colouring back to normal; gradients don't seem to work properly with the glass bg */}
+    // Experiment with switching colouring back to normal; gradients don't seem to work properly with the glass bg
+    // Might be the drop-shadow filter on the glass-bg?
     const dsStack = [
         {
             title: 'R',
@@ -65,6 +66,8 @@ export default function Content() {
                     <div className="opening-spiel-text">
                         {content.spiel}<br/><br/>
 
+                        <div className="horizontal-rule">Put horizontal rule here</div>
+
                         <div className="tech-stack">
                             <h2>Tech stack</h2>
                             {/* TODO: Pull into own component */}
@@ -108,8 +111,9 @@ export default function Content() {
                             </div>
                         </div>
                         
-                        <br/> R, Python, SQL, Javascript
-                        Credentials: Uni, Certificates, etc
+                        <br/> 
+
+                        <div className="credentials">Credentials: Uni, Certificates, etc</div>
 
                         Detailed work history
                     </div>
