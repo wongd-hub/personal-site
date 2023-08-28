@@ -18,8 +18,6 @@ export default function Content() {
             'hello',
     }
 
-    // Experiment with switching colouring back to normal; gradients don't seem to work properly with the glass bg
-    // Might be the drop-shadow filter on the glass-bg?
     const dsStack = [
         {
             title: 'R',
