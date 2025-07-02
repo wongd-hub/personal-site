@@ -3,10 +3,26 @@
 import React, { Suspense, useState, useEffect, useMemo, useRef, useCallback } from "react";
 import * as THREE from "three";
 import { useThree, Canvas, useFrame, extend } from "@react-three/fiber";
-import { Loader } from "@react-three/drei";
+import { Loader, useTexture } from "@react-three/drei";
 import noise, { perlin3 } from "../assets/noise";
-// Temporarily disabled postprocessing to fix Three.js compatibility issues
+// Temporarily disabled postprocessing due to Three.js version compatibility
 // import { EffectComposer, DepthOfField } from '@react-three/postprocessing';
+
+/* 
+// To enable true depth of field, upgrade Three.js to ≥0.138.0:
+// npm install three@latest @react-three/drei@latest @react-three/fiber@latest
+
+// Then wrap Scene in EffectComposer:
+// <EffectComposer>
+//   <Scene grid={grid} />
+//   <DepthOfField 
+//     focusDistance={0.02}
+//     focalLength={0.005}
+//     bokehScale={6}
+//     height={700}
+//   />
+// </EffectComposer>
+*/
 
 function ProceduralPoints({
   position,
@@ -17,6 +33,9 @@ function ProceduralPoints({
   const posRef = useRef(undefined);
   const colorRef = useRef(undefined);
   const tRef = useRef(init);
+  
+  // Load circular texture for points
+  const circleTexture = useTexture("/assets/images/circle.png");
   
   // Cache noise seed to avoid re-seeding
   const seed = useMemo(() => Math.floor(Math.random() * 2 ** 16), []);
@@ -172,12 +191,15 @@ function ProceduralPoints({
 
       <pointsMaterial
         attach="material"
+        map={circleTexture}
         vertexColors
-        size={0.5}
+        size={0.6}
         sizeAttenuation
-        transparent={false}
-        alphaTest={0.5}
+        transparent={true}
+        alphaTest={0.1}
         opacity={1.0}
+        blending={THREE.AdditiveBlending}
+        depthWrite={false}
       />
     </points>
   );
@@ -246,9 +268,9 @@ function Scene({ grid }) {
         }}
       />
       <hemisphereLight args={["#AF67E9", "#6565E7", 2]} />
-      {/* Temporarily disabled postprocessing effects */}
+      {/* Temporarily disabled postprocessing due to Three.js version compatibility */}
       {/* <EffectComposer>
-        <DepthOfField focusDistance={0.75} focalLength={0.2} bokehScale={2} height={480} />
+        <DepthOfField focusDistance={0.6} focalLength={0.15} bokehScale={3} height={480} />
       </EffectComposer> */}
     </>
   )
@@ -313,6 +335,7 @@ export default function RippleScene(props) {
         // Add performance settings
         performance={{ min: 0.5 }}
         dpr={[1, 2]} // Limit device pixel ratio
+        gl={{ antialias: true, alpha: true }} // Better antialiasing for smoother circles
       >
         <color attach="background" args={["black"]} />
         <Suspense fallback={null}>

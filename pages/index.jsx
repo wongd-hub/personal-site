@@ -53,7 +53,11 @@ export default function Home() {
         />
       </Head>
 
-      <div className="grain-filter"/>
+      {/* <div className="grain-filter"/> */}
+      {/* Alternative overlay options - uncomment to enable: */}
+      <div className="scene-blur-overlay"/>
+      <div className="depth-vignette"/>
+      
       <RippleScene
         which="particle"
         style={{
