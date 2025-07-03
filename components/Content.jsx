@@ -6,6 +6,7 @@ import SVGPython from "./svgs/SVGPython";
 import SVGJS from "./svgs/SVGJS";
 import SVGReact from "./svgs/SVGReact";
 import SVGThreeJS from "./svgs/SVGThreeJS";
+import Timeline from "./Timeline";
 
 export default function Content() {
 
@@ -13,9 +14,11 @@ export default function Content() {
 
     const content = {
         spiel: 
-            "I'm a data analyst with a passion for improving public health policy by informing" + 
-            "decision making. My expertise lies in working with and producing complex models yada yada" +
-            'hello',
+            "I'm a versatile, team-oriented and high-tempo data analyst, currently pivoting into software development. " + 
+            "I'm recognized for rapidly mastering complex codebases, new technologies and delivering high-impact results—" +
+            "such as a $25.3B economic forecasting initiative and saving the Government $67M annually. " +
+            "Passionate about AI/ML and learning new technologies, which has led me to pursue an M. Data Science. " +
+            "Skilled at bridging technical and non-technical stakeholders, and contributing to innovative team cultures."
     }
 
     const dsStack = [
@@ -63,7 +66,6 @@ export default function Content() {
                     </div>
                     <div className="text-content-container">
                         <div className="content-item">
-                            {/* <h2>Intro</h2> */}
                             <p>{content.spiel}</p>
                         </div>
 
@@ -118,36 +120,15 @@ export default function Content() {
                                 </div>
                             </div>
                         </div>
-
-                        <br/>
-                        <hr className="horizontal-rule" />
-                        <br/>
-
-                        <div className="content-item">
-                            <h2>Career</h2>
-                            <p>Lorem ipsum</p>
-                        </div>
-
-                        <br/>
-                        <hr className="horizontal-rule" />
-                        <br/>
-
-                        <div className="content-item">
-                            <h2>Herd Mentality (blog)</h2>
-                            <p>Lorem ipsum (probably an ul or something)</p>
-                        </div>
-
-                        <br/>
-                        <hr className="horizontal-rule" />
-                        <br/>
-                        
-                        <div className="content-item">
-                            <h2>Credentials / education</h2>
-                            <p>Uni, certificates, etc</p>
-                        </div>
-
                     </div>
                 </div>
+
+                <br/>
+                <br/>
+
+                {/* Timeline Section */}
+                <Timeline />
+                
             </div>
         </main>
     )
