@@ -5,9 +5,10 @@ import SVGText from "./svgs/SVGText";
 import Socials from "./Socials";
 import { SocialHoverContext } from "./contexts/SocialHoverContext";
 import { gsap } from 'gsap';
-import JustBlackjack from '../components/JustBlackjack'
+import JustBlackjack from '../components/JustBlackjack';
+import ParticleGraphs from './ParticleGraphs';
 
-export default function Landing() {
+export default function Landing({ particleData }) {
 
   // Create references to drive GSAP animations
   const titleRef = useRef(null);
@@ -119,14 +120,18 @@ export default function Landing() {
     <div className="landing-container" id="landing">
       <div className="title-container">
         <div className="title-contents">
-          <h1
-            className="title-text gradient-text noselect cotton-candy-gr"
-            role="heading"
-            aria-level="1"
-            ref={titleRef}
-          >
-            Darren<br/>Wong
-          </h1>
+          <div className="title-left">
+            <h1
+              className="title-text gradient-text noselect cotton-candy-gr"
+              role="heading"
+              aria-level="1"
+              ref={titleRef}
+            >
+              Darren<br/>Wong
+            </h1>
+            {/* Live particle graphs directly under name */}
+            <ParticleGraphs particleData={particleData} />
+          </div>
           <SocialHoverContext.Provider value={{ highlightedWord, setHighlightedWord }}>
             <div className="noselect landing-link-container">
               <div className="socials-container" ref={socialsRef}><Socials /></div>

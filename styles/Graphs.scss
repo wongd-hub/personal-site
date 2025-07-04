@@ -14,6 +14,12 @@
   height: 80px; // reduced height
 }
 
+// narrower square canvas for colour ring
+.color-ring {
+  width: 80px;
+  height: 80px;
+}
+
 .graph-wrapper {
   display: flex;
   flex-direction: column;
@@ -31,6 +37,10 @@
 @media screen and (max-width: 640px) {
   .graph-canvas {
     width: 130px;
+    height: 60px;
+  }
+  .color-ring {
+    width: 60px;
     height: 60px;
   }
 } 

@@ -5,8 +5,9 @@ const HIST_WIDTH = 180;
 const HIST_HEIGHT = 82; // 0.75 of previous 110 to create space for labels
 const HIST_BINS = 14;
 
-const COLOR_WIDTH = 180;
-const COLOR_HEIGHT = 82;
+const COLOR_SIZE = 82; // square canvas for colour ring
+const COLOR_WIDTH = COLOR_SIZE;
+const COLOR_HEIGHT = COLOR_SIZE;
 
 // Utility to convert RGB to Hue (0-360)
 function rgbToHue(r, g, b) {
@@ -168,28 +169,94 @@ export default function ParticleGraphs({ particleData }) {
 
   }, [yHistogram, stats, yRange]);
 
-  // Draw Colour distribution
+  // Draw Colour Spectrum Ring (radial representation)
   useEffect(() => {
     const canvas = colorCanvasRef.current;
     if (!canvas || !colorBins || Object.keys(colorBins).length === 0) return;
     const ctx = canvas.getContext('2d');
-    ctx.globalAlpha = 0.8;
+
+    // Clear canvas fully (no trail needed)
     ctx.clearRect(0, 0, COLOR_WIDTH, COLOR_HEIGHT);
+
+    ctx.globalAlpha = 0.8; // match overall transparency
 
     const categories = Object.keys(colorBins);
     const values = Object.values(colorBins);
-    const maxCount = Math.max(...values);
-    const barWidth = COLOR_WIDTH / categories.length;
+    const maxCount = Math.max(...values, 1);
 
+    // Geometry
+    const cx = COLOR_WIDTH / 2;
+    const cy = COLOR_HEIGHT / 2;
+    const outerR = Math.min(COLOR_WIDTH, COLOR_HEIGHT) / 2 - 4; // padding
+    const innerR = outerR * 0.25; // minimum radius for very low density
+    const angleStep = (Math.PI * 2) / categories.length; // equal slices
+
+    // Draw faint concentric circles (HUD styling)
+    ctx.save();
+    ctx.strokeStyle = 'rgba(255,255,255,0.08)';
+    ctx.lineWidth = 1;
+    ctx.setLineDash([3, 4]);
+    [innerR, (innerR + outerR) / 2, outerR].forEach((r) => {
+      ctx.beginPath();
+      ctx.arc(cx, cy, r, 0, Math.PI * 2);
+      ctx.stroke();
+    });
+
+    // Crosshair lines
+    ctx.beginPath();
+    ctx.moveTo(cx - outerR, cy);
+    ctx.lineTo(cx + outerR, cy);
+    ctx.moveTo(cx, cy - outerR);
+    ctx.lineTo(cx, cy + outerR);
+    ctx.stroke();
+    ctx.restore();
+
+    // Build star-shaped polygon representing colour densities
+    const points = [];
+    categories.forEach((cat, idx) => {
+      const density = values[idx] / maxCount; // 0 → 1
+      const r = innerR + density * (outerR - innerR);
+      const angle = -Math.PI / 2 + idx * angleStep; // start at 12 o'clock
+      points.push({
+        x: cx + r * Math.cos(angle),
+        y: cy + r * Math.sin(angle),
+        colour: cat,
+      });
+    });
+
+    // Fill polygon with translucent mint gradient
+    ctx.beginPath();
+    ctx.moveTo(points[0].x, points[0].y);
+    for (let i = 1; i < points.length; i++) {
+      ctx.lineTo(points[i].x, points[i].y);
+    }
+    ctx.closePath();
+    const gradient = ctx.createRadialGradient(cx, cy, innerR * 0.3, cx, cy, outerR);
+    gradient.addColorStop(0, 'rgba(249,168,212,0.20)'); // pink core
+    gradient.addColorStop(1, 'rgba(216,180,254,0.08)'); // lavender edge
+    ctx.fillStyle = gradient;
+    ctx.fill();
+
+    // Outline with bright cyan base
+    ctx.strokeStyle = '#5ffbf1';
+    ctx.lineWidth = 1.5;
+    ctx.stroke();
+
+    // ----- Per-edge coloured accents so hue bins are obvious -----
     const colourMap = {
       red: '#f87171', orange: '#fb923c', yellow: '#fde047', green: '#4ade80',
       cyan: '#22d3ee', blue: '#60a5fa', purple: '#a78bfa', magenta: '#f472b6',
     };
 
-    categories.forEach((cat, i) => {
-      const barHeight = maxCount ? (values[i] / maxCount) * COLOR_HEIGHT : 0;
-      ctx.fillStyle = colourMap[cat] || '#fff';
-      ctx.fillRect(i * barWidth, COLOR_HEIGHT - barHeight, barWidth - 1, barHeight);
+    categories.forEach((cat, idx) => {
+      const p1 = points[idx];
+      const p2 = points[(idx + 1) % points.length];
+      ctx.beginPath();
+      ctx.strokeStyle = colourMap[cat] || '#ffffff';
+      ctx.lineWidth = 2;
+      ctx.moveTo(p1.x, p1.y);
+      ctx.lineTo(p2.x, p2.y);
+      ctx.stroke();
     });
 
     ctx.globalAlpha = 1;
@@ -212,7 +279,7 @@ export default function ParticleGraphs({ particleData }) {
           ref={colorCanvasRef}
           width={COLOR_WIDTH}
           height={COLOR_HEIGHT}
-          className="graph-canvas"
+          className="graph-canvas color-ring"
           aria-label="Colour Distribution"
         />
         <span className="graph-label">colour-dsn</span>
