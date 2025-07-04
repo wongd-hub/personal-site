@@ -239,11 +239,7 @@ export default function Timeline() {
                 <div className="timeline-location">{item.location}</div>
               </div>
               <div className="timeline-card-content">
-                <ul className="timeline-achievements">
-                  {item.achievements.map((achievement, i) => (
-                    <li key={i}>{achievement}</li>
-                  ))}
-                </ul>
+                {/* achievements list removed for now; will replace with brief summary later */}
                 {item.technologies && (
                   <div className="timeline-technologies">
                     {item.technologies.map((tech, i) => (
