@@ -1,0 +1,36 @@
+.graphs-boxes {
+  display: flex;
+  gap: 1rem;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  margin-top: 0.5rem;
+}
+
+.graph-canvas {
+  border-radius: 0; /* square edges */
+  background: rgba(0,0,0,0.05); /* more transparent */
+  width: 160px;
+  height: 80px; // reduced height
+}
+
+.graph-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.graph-label {
+  margin-top: 0.25rem;
+  font-size: 0.65rem;
+  color: rgba(255, 255, 255, 0.8);
+  text-transform: lowercase;
+  letter-spacing: 0.02em;
+}
+
+@media screen and (max-width: 640px) {
+  .graph-canvas {
+    width: 130px;
+    height: 60px;
+  }
+} 
