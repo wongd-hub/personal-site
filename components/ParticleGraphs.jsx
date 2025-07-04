@@ -264,7 +264,7 @@ export default function ParticleGraphs({ particleData }) {
 
   return (
     <div className="graphs-boxes">
-      <div className="graph-wrapper">
+      <div className="graph-wrapper y-graph">
         <canvas
           ref={histCanvasRef}
           width={HIST_WIDTH}
