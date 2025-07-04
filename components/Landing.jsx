@@ -71,38 +71,19 @@ export default function Landing({ particleData }) {
 
   // Animate in landing elements
   useEffect(() => {
+    const graphsEl = document.querySelector('.graphs-boxes');
+    const headerEls = [titleRef.current, socialsRef.current, ...roleRef.current];
+    if (graphsEl) headerEls.push(graphsEl);
 
-    // Animate title
-    gsap.fromTo(
-      titleRef.current, 
-      { opacity: 0 }, 
-      { opacity: 1, duration: 3, delay: 0, ease: "power1.inOut" }
-    );
+    // Start with all invisible and pointerEvents off for socials
+    gsap.set(headerEls, { autoAlpha: 0 });
+    gsap.set(socialsRef.current, { pointerEvents: 'none' });
 
-    // Initially disable pointer events on roles
-    gsap.set(socialsRef.current, { pointerEvents: "none" });
-
-    // Animate socials
-    gsap.fromTo(
-      socialsRef.current, 
-      { opacity: 0 }, 
-      { opacity: 1, duration: 3, delay: 0, ease: "power1.inOut" },
-    );
-
-    // Animate roles with stagger
-    gsap.fromTo(
-      roleRef.current, 
-      { opacity: 0 }, 
-      { 
-        opacity: 1, duration: 0.8, 
-        delay: 2, stagger: 0.8 , 
-        ease: "power1.inOut",
-        onComplete: function() {
-          gsap.set(socialsRef.current, { pointerEvents: "auto" })
-        }
-      }
-    );
-
+    // Fade everything in simultaneously
+    gsap.to(headerEls, { autoAlpha: 1, duration: 1.5, ease: 'power1.inOut', onComplete: () => {
+      gsap.set(socialsRef.current, { pointerEvents: 'auto' });
+    }});
+ 
   }, []);
 
   // Will run every time highlightedWord changes so that on-hover and 
