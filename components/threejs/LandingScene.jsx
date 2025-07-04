@@ -29,10 +29,12 @@ function ProceduralPoints({
   rotation,
   grid: { width, height, sep },
   anim: { init, update },
+  onDataUpdate = null, // Callback for particle data
 }) {
   const posRef = useRef(undefined);
   const colorRef = useRef(undefined);
   const tRef = useRef(init);
+  const lastDataEmission = useRef(0);
   
   // Load circular texture for points
   const circleTexture = useTexture("/assets/images/circle.png");
@@ -157,6 +159,18 @@ function ProceduralPoints({
 
     posRef.current.needsUpdate = true;
     colorRef.current.needsUpdate = true;
+
+    // Emit particle data for analytics (super smooth - every 50ms)
+    const now = Date.now();
+    if (onDataUpdate && now - lastDataEmission.current > 50) {
+      lastDataEmission.current = now;
+      onDataUpdate({
+        positions: positions,
+        colors: colors,
+        totalParticles: positions.length / 3,
+        timestamp: now
+      });
+    }
   });
 
   return (
@@ -205,7 +219,7 @@ function ProceduralPoints({
   );
 }
 
-function Scene({ grid }) {
+function Scene({ grid, onParticleDataUpdate }) {
   const { camera } = useThree();
   const scrollY = useRef(window.scrollY);
   const target = useMemo(() => new THREE.Object3D(), []); // Memoize target object
@@ -266,6 +280,7 @@ function Scene({ grid }) {
           init: 0,
           update: (t) => t + 0.02 * 0.2,
         }}
+        onDataUpdate={onParticleDataUpdate}
       />
       <hemisphereLight args={["#AF67E9", "#6565E7", 2]} />
       {/* Temporarily disabled postprocessing due to Three.js version compatibility */}
@@ -277,11 +292,24 @@ function Scene({ grid }) {
 }
 
 export default function RippleScene(props) {
+  const { onParticleDataUpdate, ...rest } = props;
   const [grid, setGrid] = useState({
     width: 120,
     height: 120,
     sep: 1.5,
   });
+
+  // Particle data state for analytics
+  const [particleData, setParticleData] = useState(null);
+  // ParticleStats overlay removed – no longer tracking visibility
+
+  // Callback to receive particle data updates
+  const handleParticleDataUpdate = useCallback((data) => {
+    setParticleData(data);
+    if (onParticleDataUpdate) {
+      onParticleDataUpdate(data);
+    }
+  }, [onParticleDataUpdate]);
 
   // Debounced resize handler
   const resizeTimeout = useRef(null);
@@ -331,7 +359,7 @@ export default function RippleScene(props) {
           fov: 75, near: 1, far: 100
         }}
         className="gallery-canvas"
-        style={props.style}
+        style={rest.style}
         // Add performance settings
         performance={{ min: 0.5 }}
         dpr={[1, 2]} // Limit device pixel ratio
@@ -339,7 +367,7 @@ export default function RippleScene(props) {
       >
         <color attach="background" args={["black"]} />
         <Suspense fallback={null}>
-          <Scene grid={grid} />
+          <Scene grid={grid} onParticleDataUpdate={handleParticleDataUpdate} />
         </Suspense>
       </Canvas>
       <Loader />

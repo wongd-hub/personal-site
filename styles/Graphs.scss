@@ -1,0 +1,68 @@
+.graphs-boxes {
+  display: flex;
+  gap: 1rem;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  margin-top: 0.5rem;
+}
+
+.graph-canvas {
+  border-radius: 0; /* square edges */
+  background: rgba(0,0,0,0.05); /* more transparent */
+  width: 128px; /* 80% */
+  height: 64px;
+}
+
+// narrower square canvas for colour ring
+.color-ring {
+  width: 64px;
+  height: 64px;
+}
+
+.graph-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.graph-label {
+  margin-top: 0.25rem;
+  font-size: 0.65rem;
+  color: rgba(255, 255, 255, 0.6); // greyer
+  text-transform: lowercase;
+  letter-spacing: 0.02em;
+}
+
+// Hide colour graph on small screens
+@media screen and (max-width: 640px) {
+  .colour-graph {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 640px) {
+  .graph-canvas {
+    width: 100px;
+    height: 50px;
+  }
+  .color-ring {
+    width: 50px;
+    height: 50px;
+  }
+
+  /* place graphs directly below title (default absolute positioning) */
+  .graphs-boxes {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    margin-top: 0.5rem;
+  }
+
+  .y-graph { margin-left: 0; }
+
+  .y-graph .graph-canvas {
+    width: 90px;
+    height: 45px;
+  }
+} 

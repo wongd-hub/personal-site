@@ -1,15 +1,16 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import Head from 'next/head';
 import Landing from '../components/Landing';
 import Content from '../components/Content';
 import RippleScene from '../components/threejs/LandingScene';
-import { useEffect } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
 
 gsap.registerPlugin(ScrollTrigger);
 
 export default function Home() {
+  // Shared particle data state
+  const [particleData, setParticleData] = useState(null);
 
   useEffect(() => {
     gsap.fromTo(
@@ -63,9 +64,10 @@ export default function Home() {
         style={{
           height: '100vh', width: '100vw', position: 'fixed', zIndex: -10,
         }}
+        onParticleDataUpdate={(data)=>setParticleData(data)}
       />
 
-      <Landing />
+      <Landing particleData={particleData} />
       
       <Content />
     </div>
