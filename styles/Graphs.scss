@@ -10,14 +10,14 @@
 .graph-canvas {
   border-radius: 0; /* square edges */
   background: rgba(0,0,0,0.05); /* more transparent */
-  width: 160px;
-  height: 80px; // reduced height
+  width: 128px; /* 80% */
+  height: 64px;
 }
 
 // narrower square canvas for colour ring
 .color-ring {
-  width: 80px;
-  height: 80px;
+  width: 64px;
+  height: 64px;
 }
 
 .graph-wrapper {
@@ -29,18 +29,25 @@
 .graph-label {
   margin-top: 0.25rem;
   font-size: 0.65rem;
-  color: rgba(255, 255, 255, 0.8);
+  color: rgba(255, 255, 255, 0.6); // greyer
   text-transform: lowercase;
   letter-spacing: 0.02em;
 }
 
+// Hide colour graph on small screens
+@media screen and (max-width: 640px) {
+  .colour-graph {
+    display: none;
+  }
+}
+
 @media screen and (max-width: 640px) {
   .graph-canvas {
-    width: 130px;
-    height: 60px;
+    width: 100px;
+    height: 50px;
   }
   .color-ring {
-    width: 60px;
-    height: 60px;
+    width: 50px;
+    height: 50px;
   }
 } 

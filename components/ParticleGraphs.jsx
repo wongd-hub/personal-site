@@ -1,11 +1,11 @@
 import React, { useRef, useEffect, useMemo } from 'react';
 
 // Configuration constants
-const HIST_WIDTH = 180;
-const HIST_HEIGHT = 82; // 0.75 of previous 110 to create space for labels
+const HIST_WIDTH = 144; // 80% of 180
+const HIST_HEIGHT = 66; // scaled down proportionally
 const HIST_BINS = 14;
 
-const COLOR_SIZE = 82; // square canvas for colour ring
+const COLOR_SIZE = 66; // 80% of previous 82
 const COLOR_WIDTH = COLOR_SIZE;
 const COLOR_HEIGHT = COLOR_SIZE;
 
@@ -274,7 +274,7 @@ export default function ParticleGraphs({ particleData }) {
         />
         <span className="graph-label">y-pos {yRange && Number.isFinite(yRange.min) ? `(${yRange.min.toFixed(1)} → ${yRange.max.toFixed(1)})` : ''}</span>
       </div>
-      <div className="graph-wrapper">
+      <div className="graph-wrapper colour-graph">
         <canvas
           ref={colorCanvasRef}
           width={COLOR_WIDTH}
