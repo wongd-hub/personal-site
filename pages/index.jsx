@@ -55,14 +55,12 @@ export default function Home() {
       </Head>
 
       {/* <div className="grain-filter"/> */}
-      {/* Alternative overlay options - uncomment to enable: */}
-      <div className="scene-blur-overlay"/>
-      <div className="depth-vignette"/>
+      {/* Gradient overlays temporarily removed */}
       
       <RippleScene
         which="particle"
         style={{
-          height: '100vh', width: '100vw', position: 'fixed', zIndex: -10,
+          height: '100vh', width: '100vw', position: 'fixed', zIndex: -1,
         }}
         onParticleDataUpdate={(data)=>setParticleData(data)}
       />

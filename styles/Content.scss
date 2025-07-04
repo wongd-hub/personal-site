@@ -84,24 +84,36 @@
 
 .content-item {
     display: flex;
-    justify-content: space-between;
-    width: 100%;
+    flex-direction: column;
+    row-gap: 1rem;
+    align-items: flex-start;
     & > h2 {
-        width: 30%; 
+        flex: 0 0 auto;
+        margin: 0;
     }
 }
 
 .tech-stack {
     display: flex;
     flex-direction: column;
-    row-gap: 1.5rem;
+    row-gap: 2rem;
 }
 
-.ds-stack, .wd-stack {
+.stack-row {
     display: flex;
-    justify-content: flex-end;
-    column-gap: 1.5rem;
+    align-items: center;
+    column-gap: 2rem;
+}
+
+.stack-label {
     font-family: 'Space Mono', sans-serif;
+    white-space: nowrap;
+}
+
+.stack-logos {
+    display: flex;
+    align-items: center;
+    column-gap: 1.5rem;
 }
 
 .horizontal-rule {
@@ -169,7 +181,29 @@
 
 @media screen and (max-width: 600px) {
 
+  .stack-row {
+      flex-direction: column;
+      row-gap: 1rem;
+      align-items: center;
+  }
 
+  .stack-label {
+      text-align: center;
+  }
+
+  .stack-logos {
+      justify-content: center;
+  }
+
+  .main-content {
+      width: 90%;
+      padding: 3rem 0;
+      align-items: center;
+  }
+
+  .content-item {
+      align-items: center;
+  }
 
 }
 

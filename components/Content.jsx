@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import SVGBackground from "./svgs/SVGBackground";
+// SVGBackground temporarily removed
 import Image from "next/image";
 import SVGRLang from "./svgs/SVGRlang";
 import SVGPython from "./svgs/SVGPython";
@@ -49,7 +49,7 @@ export default function Content() {
 
     return (
         <main id="content">
-            <SVGBackground/>
+            {/* <SVGBackground/> */}
             <div className="main-content">
                 <div className="opening-spiel glass-bg">
                     <div className="opening-banner">
@@ -76,9 +76,9 @@ export default function Content() {
                         <div className="content-item">
                             <h2>Tech stack</h2>
                             <div className="tech-stack">
-                                <div className="ds-stack">
-                                    <p>Data analysis</p>
-                                    <div className="tech-stack-logos">
+                                <div className="stack-row">
+                                    <p className="stack-label">Data analysis</p>
+                                    <div className="stack-logos">
                                         {
                                             dsStack && dsStack.map((el, i) => {
 
@@ -97,9 +97,9 @@ export default function Content() {
                                         }
                                     </div>
                                 </div>
-                                <div className="wd-stack">
-                                    <p>Web development</p>
-                                    <div className="tech-stack-logos">
+                                <div className="stack-row">
+                                    <p className="stack-label">Web development</p>
+                                    <div className="stack-logos">
                                         {
                                             wdStack && wdStack.map((el, i) => {
 
