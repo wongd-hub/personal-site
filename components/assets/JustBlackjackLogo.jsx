@@ -23,7 +23,7 @@ const JustBlackjackLogo = ({ ...props }) => {
             { 
                 opacity: 1, 
                 duration: 3, 
-                delay: 5, 
+                delay: 3, 
                 ease: "power1.inOut",
                 onComplete: function() {
                 gsap.set(jBButtonRef.current, { pointerEvents: "auto" })
