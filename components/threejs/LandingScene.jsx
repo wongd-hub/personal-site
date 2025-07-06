@@ -178,20 +178,20 @@ function ProceduralPoints({
       <bufferGeometry attach="geometry">
         <bufferAttribute
           ref={posRef}
-          attachObject={["attributes", "position"]}
+          attach="attributes-position"
           array={initialGeometry.positions}
           count={initialGeometry.positions.length / 3}
           itemSize={3}
         />
         <bufferAttribute
           ref={colorRef}
-          attachObject={["attributes", "color"]}
+          attach="attributes-color"
           array={initialGeometry.colors}
           count={initialGeometry.colors.length / 3}
           itemSize={3}
         />
         <bufferAttribute
-          attachObject={["attributes", "normal"]}
+          attach="attributes-normal"
           array={initialGeometry.normals}
           count={initialGeometry.normals.length / 3}
           itemSize={3}
