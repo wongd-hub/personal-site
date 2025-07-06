@@ -207,11 +207,11 @@ function ProceduralPoints({
         attach="material"
         map={circleTexture}
         vertexColors
-        size={0.6}
+        size={0.7}
         sizeAttenuation
         transparent={true}
-        alphaTest={0.1}
-        opacity={1.0}
+        alphaTest={0.01}
+        opacity={0.6}
         blending={THREE.AdditiveBlending}
         depthWrite={false}
       />
