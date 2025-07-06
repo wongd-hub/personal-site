@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 // SVGBackground temporarily removed
 import Image from "next/image";
-import SVGRLang from "./svgs/SVGRlang";
+import SVGRLang from "./svgs/SVGRLang";
 import SVGPython from "./svgs/SVGPython";
 import SVGJS from "./svgs/SVGJS";
 import SVGReact from "./svgs/SVGReact";
