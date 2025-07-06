@@ -1,15 +1,17 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import Head from 'next/head';
+import Script from 'next/script';
 import Landing from '../components/Landing';
 import Content from '../components/Content';
 import RippleScene from '../components/threejs/LandingScene';
-import { useEffect } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
 
 gsap.registerPlugin(ScrollTrigger);
 
 export default function Home() {
+  // Shared particle data state
+  const [particleData, setParticleData] = useState(null);
 
   useEffect(() => {
     gsap.fromTo(
@@ -35,38 +37,38 @@ export default function Home() {
         <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon/favicon-32x32.png" />
         <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon/favicon-16x16.png" />
         <link rel="manifest" href="/assets/favicon/site.webmanifest" />
-        <script
-          async
-          src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS_ID}`}
-        />
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `
+      </Head>
+
+      {/* Google Analytics */}
+      <Script
+        src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS_ID}`}
+        strategy="afterInteractive"
+      />
+      <Script id="google-analytics" strategy="afterInteractive">
+        {`
           window.dataLayer = window.dataLayer || [];
           function gtag(){dataLayer.push(arguments);}
           gtag('js', new Date());
           gtag('config', '${process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS_ID}', {
             page_path: window.location.pathname,
           });
-        `,
-          }}
-        />
-      </Head>
+        `}
+      </Script>
 
-      <div className="grain-filter"/>
+      {/* <div className="grain-filter"/> */}
+      {/* Gradient overlays temporarily removed */}
+      
       <RippleScene
         which="particle"
         style={{
-          height: '100vh', width: '100vw', position: 'fixed', zIndex: -10,
+          height: '100vh', width: '100vw', position: 'fixed', zIndex: 0, pointerEvents: 'none'
         }}
+        onParticleDataUpdate={(data)=>setParticleData(data)}
       />
 
-      <Landing />
-
-      <main id="content">
-        <Content />
-      </main>
-
+      <Landing particleData={particleData} />
+      
+      <Content />
     </div>
   );
 }

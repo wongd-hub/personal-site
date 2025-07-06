@@ -1,11 +1,11 @@
 import React from "react";
-import SVGGithub from "./SVGGithub";
-import SVGHerdMentality from "./SVGHerdMentality";
-import SVGLinkedIn from "./SVGLinkedIn";
-import SVGMail from "./SVGMail";
+import SVGGithub from "./svgs/SVGGithub";
+import SVGHerdMentality from "./svgs/SVGHerdMentality";
+import SVGLinkedIn from "./svgs/SVGLinkedIn";
+import SVGMail from "./svgs/SVGMail";
 import { gsap } from 'gsap';
 import { useEffect, useState, useRef, useContext } from "react";
-import { SocialHoverContext } from "../contexts/SocialHoverContext";
+import { SocialHoverContext } from "./contexts/SocialHoverContext";
 
 const Socials = ({ ...props }) => {
 

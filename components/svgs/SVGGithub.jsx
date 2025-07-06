@@ -1,5 +1,5 @@
 import React from "react"
-import SVGGradient from "../assets/SVGGradient"
+import SVGGradient from "./SVGGradient"
 // import { useEffect, useState } from "react"
 
 const SVGGithub = ({ 

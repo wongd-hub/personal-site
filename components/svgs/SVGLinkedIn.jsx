@@ -1,5 +1,5 @@
 import React from "react"
-import SVGGradient from "../assets/SVGGradient"
+import SVGGradient from "./SVGGradient"
 // import { useEffect, useState } from "react"
 
 const SVGLinkedIn = ({ 
@@ -7,9 +7,8 @@ const SVGLinkedIn = ({
 }) => {
 
     return (
-        <svg
+      <svg
         xmlns="http://www.w3.org/2000/svg"
-        height="1em"
         style={{
           fill: "#fff",
         }}

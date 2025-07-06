@@ -1,6 +1,8 @@
 @import "./Landing.scss";
 @import "./Content.scss";
 @import "./JustBlackjack.scss";
+@import "./Timeline.scss";
+@import "./Graphs.scss";
 
 html,
 body {
@@ -8,6 +10,8 @@ body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
     Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+  color: white;
+  background: black;
 }
 
 a {
@@ -17,7 +21,7 @@ a {
 
 * {
   box-sizing: border-box;
-  font-family: 'Space Mono', sans-serif;
+  font-family: 'Space Grotesk Variable', sans-serif;
 }
 
 .gradient-text {
@@ -49,6 +53,32 @@ a {
   left: 0;
   width: 100vw;
   height: 100%;
+  opacity: 0.8;
+  mix-blend-mode: overlay;
+}
+
+.scene-blur-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  backdrop-filter: blur(0.5px) brightness(0.95);
+  -webkit-backdrop-filter: blur(0.5px) brightness(0.95);
+  pointer-events: none;
+  z-index: -2;
+  background: radial-gradient(circle at center, transparent 40%, rgba(0,0,0,0.05) 100%);
+}
+
+.depth-vignette {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: radial-gradient(ellipse at center, transparent 30%, rgba(0,0,0,0.3) 70%, rgba(0,0,0,0.6) 100%);
+  pointer-events: none;
+  z-index: -1;
 }
 
 .noselect {
@@ -196,9 +226,5 @@ a {
 @media (prefers-color-scheme: dark) {
   html {
     color-scheme: dark;
-  }
-  body {
-    color: white;
-    background: black;
   }
 }

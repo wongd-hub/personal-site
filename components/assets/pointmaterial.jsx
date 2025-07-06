@@ -1,35 +1,40 @@
-import { ShaderMaterial, Vector3, Color } from 'three';
-// import { extend } from '@react-three/fiber';
+import { ShaderMaterial } from 'three';
 
 const vertexShader = `
-  varying vec2 vUv;
+  attribute vec3 color;
+  varying vec3 vColor;
 
-  void main()  {
-    vUv = uv;
+  void main() {
+    vColor = color;
     vec4 mvPosition = modelViewMatrix * vec4( position, 1.0 );
-    gl_PointSize = 8.0 * ( 300.0 / -mvPosition.z );
+    gl_PointSize = 0.5 * ( 300.0 / -mvPosition.z );
     gl_Position = projectionMatrix * mvPosition;
   }
 `;
 
 const fragmentShader = `
-  varying vec2 vUv;
-  uniform vec3 color;
+  varying vec3 vColor;
 
   void main() {
-    float len = length(vUv - vec2(0.5));
+    // Create circular point by measuring distance from center
+    vec2 coord = gl_PointCoord - vec2(0.5);
+    float len = length(coord);
+    
+    // Discard pixels outside the circle
     if (len > 0.5) discard;
-    gl_FragColor = vec4(color, 1.0);
+    
+    // Smooth edge for anti-aliasing
+    float alpha = 1.0 - smoothstep(0.4, 0.5, len);
+    
+    gl_FragColor = vec4(vColor, alpha);
   }
 `;
 
-const myPointMaterial = new ShaderMaterial({
-  uniforms: {
-    color: { value: new Color('red') },
-  },
+const CircularPointMaterial = new ShaderMaterial({
   vertexShader,
   fragmentShader,
   transparent: true,
+  vertexColors: true,
 });
 
-export default myPointMaterial
+export default CircularPointMaterial;

@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
-import SVGGradient from './SVGGradient';
+import SVGGradient from '../svgs/SVGGradient';
 import { gsap } from 'gsap';
 import { ScrollToPlugin } from "gsap/dist/ScrollToPlugin";
 
@@ -28,7 +28,7 @@ function DownArrow(props) {
       { 
         opacity: 1, 
         duration: 3, 
-        delay: 5, 
+        delay: 3, 
         ease: "power1.inOut",
         onComplete: function() {
           gsap.set(downArrowRef.current, { pointerEvents: "auto" })
