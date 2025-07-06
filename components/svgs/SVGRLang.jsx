@@ -17,12 +17,12 @@ const SVGRLang = ({
             <defs>
                 <SVGGradient id='R'/>
                 <linearGradient id="gradientFill-1" x1="0" x2="1" y1="0" y2="1" gradientUnits="objectBoundingBox" spreadMethod="pad">
-                    <stop offset="0" stop-color="rgb(203,206,208)" stop-opacity="1"/>
-                    <stop offset="1" stop-color="rgb(132,131,139)" stop-opacity="1"/>
+                    <stop offset="0" stopColor="rgb(203,206,208)" stopOpacity="1"/>
+                    <stop offset="1" stopColor="rgb(132,131,139)" stopOpacity="1"/>
                 </linearGradient>
                 <linearGradient id="gradientFill-2" x1="0" x2="1" y1="0" y2="1" gradientUnits="objectBoundingBox" spreadMethod="pad">
-                    <stop offset="0" stop-color="rgb(39,109,195)" stop-opacity="1"/>
-                    <stop offset="1" stop-color="rgb(22,92,170)" stop-opacity="1"/>
+                    <stop offset="0" stopColor="rgb(39,109,195)" stopOpacity="1"/>
+                    <stop offset="1" stopColor="rgb(22,92,170)" stopOpacity="1"/>
                 </linearGradient>
             </defs>
             <path

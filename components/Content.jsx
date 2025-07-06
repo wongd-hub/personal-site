@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 // SVGBackground temporarily removed
-import Image from "next/image";
 import SVGRLang from "./svgs/SVGRLang";
 import SVGPython from "./svgs/SVGPython";
 import SVGJS from "./svgs/SVGJS";
@@ -54,10 +53,14 @@ export default function Content() {
                 <div className="opening-spiel glass-bg">
                     <div className="opening-banner">
                         <div className="profile-pic">
-                            <Image 
+                            <img 
                                 src="/assets/images/avatar.jpeg"
                                 alt="Picture of the author"
-                                layout="fill"
+                                style={{ 
+                                    width: '100%',
+                                    height: '100%',
+                                    objectFit: 'cover'
+                                }}
                             />
                         </div>
                         <div className="hello">
