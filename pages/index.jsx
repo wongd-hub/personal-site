@@ -60,7 +60,7 @@ export default function Home() {
       <RippleScene
         which="particle"
         style={{
-          height: '100vh', width: '100vw', position: 'fixed', zIndex: -1,
+          height: '100vh', width: '100vw', position: 'fixed', zIndex: 0, pointerEvents: 'none'
         }}
         onParticleDataUpdate={(data)=>setParticleData(data)}
       />

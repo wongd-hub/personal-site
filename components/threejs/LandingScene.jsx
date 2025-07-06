@@ -3,7 +3,7 @@
 import React, { Suspense, useState, useEffect, useMemo, useRef, useCallback } from "react";
 import * as THREE from "three";
 import { useThree, Canvas, useFrame, extend } from "@react-three/fiber";
-import { Loader, useTexture } from "@react-three/drei";
+import { Loader, useTexture, OrbitControls } from "@react-three/drei";
 import noise, { perlin3 } from "../assets/noise";
 // Temporarily disabled postprocessing due to Three.js version compatibility
 // import { EffectComposer, DepthOfField } from '@react-three/postprocessing';
@@ -111,19 +111,7 @@ function ProceduralPoints({
     };
   }, [width, height, sep, init, noiseSetup]);
 
-  // Index buffer - only depends on grid dimensions
-  const indices = useMemo(() => {
-    let indices = [];
-    let i = 0;
-    for (let yi = 0; yi < height - 1; yi++) {
-      for (let xi = 0; xi < width - 1; xi++) {
-        indices.push(i, i + 1, i + width + 1);
-        indices.push(i + width + 1, i + width, i);
-        i++;
-      }
-    }
-    return new Uint16Array(indices);
-  }, [width, height]);
+  // No indices needed for points
 
   // Optimized animation loop with reduced frequency updates
   const frameCount = useRef(0);
@@ -175,31 +163,26 @@ function ProceduralPoints({
 
   return (
     <points position={position} rotation={rotation}>
-      <bufferGeometry attach="geometry">
+      <bufferGeometry>
         <bufferAttribute
           ref={posRef}
           attach="attributes-position"
-          array={initialGeometry.positions}
           count={initialGeometry.positions.length / 3}
+          array={initialGeometry.positions}
           itemSize={3}
         />
         <bufferAttribute
           ref={colorRef}
           attach="attributes-color"
-          array={initialGeometry.colors}
           count={initialGeometry.colors.length / 3}
+          array={initialGeometry.colors}
           itemSize={3}
         />
         <bufferAttribute
           attach="attributes-normal"
-          array={initialGeometry.normals}
           count={initialGeometry.normals.length / 3}
+          array={initialGeometry.normals}
           itemSize={3}
-        />
-        <bufferAttribute
-          attach="index"
-          array={indices}
-          count={indices.length}
         />
       </bufferGeometry>
 
@@ -211,7 +194,7 @@ function ProceduralPoints({
         sizeAttenuation
         transparent={true}
         alphaTest={0.01}
-        opacity={0.6}
+        opacity={0.9}
         blending={THREE.AdditiveBlending}
         depthWrite={false}
       />
@@ -283,10 +266,6 @@ function Scene({ grid, onParticleDataUpdate }) {
         onDataUpdate={onParticleDataUpdate}
       />
       <hemisphereLight args={["#AF67E9", "#6565E7", 2]} />
-      {/* Temporarily disabled postprocessing due to Three.js version compatibility */}
-      {/* <EffectComposer>
-        <DepthOfField focusDistance={0.6} focalLength={0.15} bokehScale={3} height={480} />
-      </EffectComposer> */}
     </>
   )
 }
@@ -301,7 +280,6 @@ export default function RippleScene(props) {
 
   // Particle data state for analytics
   const [particleData, setParticleData] = useState(null);
-  // ParticleStats overlay removed – no longer tracking visibility
 
   // Callback to receive particle data updates
   const handleParticleDataUpdate = useCallback((data) => {
@@ -325,7 +303,7 @@ export default function RippleScene(props) {
         let newGrid;
         
         if (width < 500) {
-          newGrid = { width: 40, height: 35, sep: 1.5 }; // Reduced for mobile
+          newGrid = { width: 40, height: 35, sep: 1.5 };
         } else if (width < 800) {
           newGrid = { width: 50, height: 45, sep: 1.5 };
         } else if (width < 1000) {
@@ -333,11 +311,11 @@ export default function RippleScene(props) {
         } else if (width < 1200) {
           newGrid = { width: 70, height: 80, sep: 1.5 };
         } else {
-          newGrid = { width: 80, height: 100, sep: 1.5 }; // Reduced from 120
+          newGrid = { width: 80, height: 100, sep: 1.5 };
         }
         
         setGrid(newGrid);
-      }, 150); // Debounce resize events
+      }, 150);
     };
 
     window.addEventListener('resize', handleResize);
@@ -352,18 +330,13 @@ export default function RippleScene(props) {
   return (
     <>
       <Canvas
-        flat
-        linear
-        colorManagement={false}
         camera={{ 
-          fov: 75, near: 1, far: 100
+          fov: 75, 
+          near: 1, 
+          far: 100,
+          position: [0, 7, 50]
         }}
-        className="gallery-canvas"
         style={rest.style}
-        // Add performance settings
-        performance={{ min: 0.5 }}
-        dpr={[1, 2]} // Limit device pixel ratio
-        gl={{ antialias: true, alpha: true }} // Better antialiasing for smoother circles
       >
         <color attach="background" args={["black"]} />
         <Suspense fallback={null}>
