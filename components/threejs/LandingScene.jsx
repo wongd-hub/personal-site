@@ -128,6 +128,13 @@ function ProceduralPoints({
     
     const positions = posRef.current.array;
     const colors = colorRef.current.array;
+    
+    // Safety check: ensure buffer arrays match expected grid size
+    const expectedPositions = width * height * 3;
+    const expectedColors = width * height * 3;
+    if (positions.length !== expectedPositions || colors.length !== expectedColors) {
+      return; // Skip this frame if sizes don't match
+    }
     const { sampleNoise, colorOfXYZT } = noiseSetup;
 
     let i = 0;
@@ -256,6 +263,7 @@ function Scene({ grid, onParticleDataUpdate }) {
   return (
     <>
       <ProceduralPoints
+        key={`${grid.width}-${grid.height}`}
         position={[0, 0, 0]}
         rotation={[-Math.PI / 2, 0, 0]}
         grid={grid}
@@ -314,8 +322,14 @@ export default function RippleScene(props) {
           newGrid = { width: 80, height: 100, sep: 1.5 };
         }
         
-        setGrid(newGrid);
-      }, 150);
+        // Use a callback to access current grid state
+        setGrid(currentGrid => {
+          if (newGrid.width !== currentGrid.width || newGrid.height !== currentGrid.height || newGrid.sep !== currentGrid.sep) {
+            return newGrid;
+          }
+          return currentGrid;
+        });
+      }, 300);
     };
 
     window.addEventListener('resize', handleResize);
