@@ -270,9 +270,9 @@ export default function ParticleGraphs({ particleData }) {
           width={HIST_WIDTH}
           height={HIST_HEIGHT}
           className="graph-canvas"
-          aria-label="Y Position Distribution"
+          aria-label="Z Position Distribution"
         />
-        <span className="graph-label">y-pos {yRange && Number.isFinite(yRange.min) ? `(${yRange.min.toFixed(1)} → ${yRange.max.toFixed(1)})` : ''}</span>
+        <span className="graph-label">z-pos {yRange && Number.isFinite(yRange.min) ? `(${yRange.min.toFixed(1)} → ${yRange.max.toFixed(1)})` : ''}</span>
       </div>
       <div className="graph-wrapper colour-graph">
         <canvas
