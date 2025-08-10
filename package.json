@@ -43,5 +43,8 @@
   },
   "overrides": {
     "three-mesh-bvh": "^0.8.0"
+  },
+  "engines": {
+    "node": "22.x"
   }
 }
